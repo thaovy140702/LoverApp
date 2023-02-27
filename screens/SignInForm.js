@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, ImageBackground, TouchableOpacity, View } from "react-native";
+import React, { useCallback, useReducer } from "react";
+import { StyleSheet, ImageBackground, TouchableOpacity, View, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import imageBackground from '../assets/images/test.png';
 import BigButton from "../components/button/BigButton";
 import BoldText from "../components/text/BoldText";
@@ -8,47 +8,84 @@ import RegularText from "../components/text/RegularText";
 import Title from "../components/text/Title";
 import Separator from "../components/Separator";
 import colors from "../constants/colors";
+import { validateInput } from "../utils/actions/formActions";
+import { reducer } from "../utils/reducers/formReducers";
 
+const initialState = {
+    inputValidities: {
+        username: false,
+        password: false,
+    },
+    formIsValid: false
+}
 
 const SignInForm = () => {
-    
+
+    const [formState, dispatchFormState] = useReducer(reducer, initialState);
+
+    const inputChangedHandler = useCallback((inputId, inputValue) => {
+        const result = validateInput(inputId, inputValue);
+        dispatchFormState({ inputId, validationResult: result })
+    }, [dispatchFormState])
+
+   
     return (
         <ImageBackground source={imageBackground} style={styles.image}>
 
-        <Title text="Welcome!"/>
-        <RegularText marginStart={24} text="Sign in to continue" />
+            <ScrollView>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "height" : undefined}
+                    keyboardVerticalOffset={100}
+                >
+                    <Title text="Welcome!"/>
+                    <RegularText marginStart={'9%'} text="Sign in to continue" />
 
-        <View style={styles.button}>
-        <BigButton text="Continue with Google"/>
-        </View>
+                    <View style={styles.button}>
+                        <BigButton text="Continue with Google"/>
+                    </View>
 
-        <View style={styles.separator}>
-        <Separator width={115}/>
-        <RegularText text="or" color="grey"/>
-        <Separator width={112}/>
-        </View>
+                    <View style={styles.separator}>
+                        <Separator width={115}/>
+                        <RegularText text="or" color="grey"/>
+                        <Separator width={112}/>
+                    </View>
 
+                    <Input 
+                        id="username"
+                        placeholder="Username"
+                        onInputChanged={inputChangedHandler}
+                        errorText={formState.inputValidities["username"]}
+                    />
+                    <Input
+                        id="password"
+                        placeholder="Password"
+                        secureTextEntry={true}
+                        onInputChanged={inputChangedHandler}
+                        errorText={formState.inputValidities["password"]}
+                    />
 
-        <Input placeholder="Username" />
-        <Input placeholder="Password" secureTextEntry={true}/>
+                    <TouchableOpacity onPress={()=>{
+                        // xu ly forgot password
+                    }}>
+                        <View style={styles.textForgot}>
+                            <BoldText text="Forgot password?"/>
+                        </View>
+                    </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=>{}}>
-            <View style={styles.textForgot}>
-            <BoldText text="Forgot password?"/>
-            </View>
-        </TouchableOpacity>
+                <View style={styles.button2}>
+                    <BigButton 
+                        text="Get Started"
+                        disabled={!formState.formIsValid}/>
+                </View>
 
-        <View style={styles.button1}>
-        <BigButton text="Get Started"/>
-        </View>
-
-        <View style={styles.separator}>
-        <BoldText text="Didn't have an account?"/>
-        <TouchableOpacity onPress={()=>{}}>
-            <BoldText text=" Sign Up" color={colors.pink} />
-        </TouchableOpacity>
-        </View>
-
+                <View style={styles.separator}>
+                    <BoldText text="Didn't have an account?"/>
+                    <TouchableOpacity onPress={()=>{}}>
+                        <BoldText text=" Sign Up" color={colors.pink} />
+                    </TouchableOpacity>
+                </View>
+            </KeyboardAvoidingView>
+            </ScrollView>
         </ImageBackground>
     );
     
@@ -56,28 +93,28 @@ const SignInForm = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-      },
     image: {
         flex: 1,
         height: 200,
-        resizeMode: 'cover'
+        resizeMode: 'cover',
+        position: 'relative'
     },
     textForgot:{
-        marginTop: 20,
-        marginStart: 220
+        marginTop: '5%',
+        marginStart: '57%'
     },
     separator:{
-        marginTop: 20,
+        marginTop: '5%',
         flexDirection: 'row',
         justifyContent: 'center'
     },
     button:{
-        marginTop: 90
+        marginTop: '23%',
+        alignItems: 'center'
     },
-    button1:{
-        marginTop: 70
+    button2:{
+        marginTop: '25%',
+        alignItems: 'center'
     }
 });
 
