@@ -8,8 +8,7 @@ const Title = props => {
 
 const styles = StyleSheet.create({
     heading1:{
-        marginStart: '9%',
-        marginTop: '8%',
+        marginStart: '8%',
         fontSize: 40,
         fontFamily: "bold"
     },

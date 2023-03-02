@@ -11,6 +11,7 @@ import Separator from "../components/Separator";
 import colors from "../constants/colors";
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducers";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const initialState = {
     inputValidities: {
@@ -41,60 +42,64 @@ const SignInForm = () => {
     return (
         <ImageBackground source={imageBackground} style={styles.image}>
 
-            <ScrollView>
+            <SafeAreaView>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "height" : undefined}
-                    keyboardVerticalOffset={100}
-                >
+                    keyboardVerticalOffset={100} >
+
                     <Title text="Welcome!"/>
                     <RegularText marginStart={'9%'} text="Sign in to continue" />
 
-                    <View style={styles.button}>
-                        <BigButton text="Continue with Google"/>
+                    <View style={styles.container}>
+
+                        <View style={styles.button}>
+                            <BigButton text="Continue with Google"/>
+                        </View>
+
+                        <View style={styles.separator}>
+                            <Separator width={115}/>
+                            <RegularText text="Or" color="grey"/>
+                            <Separator width={112}/>
+                        </View>
+
+                        <Input 
+                            id="username"
+                            placeholder="Username"
+                            onInputChanged={inputChangedHandler}
+                            errorText={formState.inputValidities["username"]}
+                        />
+                        <Input
+                            id="password"
+                            placeholder="Password"
+                            secureTextEntry={true}
+                            onInputChanged={inputChangedHandler}
+                            errorText={formState.inputValidities["password"]}
+                        />
+                    
+                        <TouchableOpacity onPress={()=>{
+                            // xu ly forgot password
+                        }}>
+                            <View style={styles.textForgot}>
+                                <BoldText text="Forgot password?"/>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <View style={styles.button2}>
+                        <BigButton 
+                            text="Get Started"
+                            disabled={!formState.formIsValid}/>
                     </View>
 
                     <View style={styles.separator}>
-                        <Separator width={115}/>
-                        <RegularText text="or" color="grey"/>
-                        <Separator width={112}/>
+                        <BoldText text="Didn't have an account?"/>
+                        <TouchableOpacity onPress={()=> navigation.navigate("Signup")}>
+                            <BoldText text=" Sign Up" color={colors.pink} />
+                        </TouchableOpacity>
                     </View>
-
-                    <Input 
-                        id="username"
-                        placeholder="Username"
-                        onInputChanged={inputChangedHandler}
-                        errorText={formState.inputValidities["username"]}
-                    />
-                    <Input
-                        id="password"
-                        placeholder="Password"
-                        secureTextEntry={true}
-                        onInputChanged={inputChangedHandler}
-                        errorText={formState.inputValidities["password"]}
-                    />
-
-                    <TouchableOpacity onPress={()=>{
-                        // xu ly forgot password
-                    }}>
-                        <View style={styles.textForgot}>
-                            <BoldText text="Forgot password?"/>
-                        </View>
-                    </TouchableOpacity>
-
-                <View style={styles.button2}>
-                    <BigButton 
-                        text="Get Started"
-                        disabled={!formState.formIsValid}/>
-                </View>
-
-                <View style={styles.separator}>
-                    <BoldText text="Didn't have an account?"/>
-                    <TouchableOpacity onPress={()=> navigation.navigate("Signup")}>
-                        <BoldText text=" Sign Up" color={colors.pink} />
-                    </TouchableOpacity>
-                </View>
             </KeyboardAvoidingView>
-            </ScrollView>
+            </SafeAreaView>
         </ImageBackground>
     );
     
@@ -102,27 +107,33 @@ const SignInForm = () => {
 }
 
 const styles = StyleSheet.create({
+    container:{
+        paddingHorizontal: '8%',
+        marginVertical: '25%'
+    },
     image: {
-        flex: 1,
-        height: 200,
+        padding:0,
+        margin:0,
+        height: 230,
         resizeMode: 'cover',
         position: 'relative'
     },
     textForgot:{
         marginTop: '5%',
-        marginStart: '57%'
+        flexDirection: "row-reverse"
     },
     separator:{
-        marginTop: '5%',
+        marginTop: '3%',
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     button:{
-        marginTop: '23%',
+        // marginTop: '23%',
         alignItems: 'center'
     },
     button2:{
-        marginTop: '25%',
+        // marginTop: '25%',
         alignItems: 'center'
     }
 });

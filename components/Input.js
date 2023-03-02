@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 60,
-        width: 327,
+        width: 320,
         borderWidth: 1,
-        borderRadius: 16,
+        borderRadius: 20,
         padding: 10,
-        marginTop: 30,
+        marginTop: 20,
         borderColor: colors.lightGrey,
-        color: colors.grey,
+        color: colors.brown,
         paddingStart: 20,
         fontFamily: 'medium',
       },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         color: colors.textColorRed,
         fontFamily: 'regular',
         fontSize: 12
-      }
+      },
 });
 
 export default Input;
