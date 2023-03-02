@@ -1,14 +1,15 @@
-import { StyleSheet, View } from 'react-native';
-import { useCallback } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import ChooseAge from './screens/ChooseAge';
-import AuthScreen from './screens/AuthScreen';
+import WelcomePage from './screens/WelcomePage';
+import SignInForm from './screens/SignInForm';
+import SignUpForm from './screens/SignUpForm';
+import HomeScreen from './screens/navigation/HomeScreen';
 
-
-SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+
+  const Stack = createNativeStackNavigator();
 
   const [fontsLoaded] = useFonts({
     'regularIrishGrover': require('./assets/fonts/IrishGrover-Regular.ttf'),
@@ -21,25 +22,19 @@ export default function App() {
     'thin': require('./assets/fonts/Poppins-Thin.ttf')
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
   if (!fontsLoaded) {
     return null;
   }
 
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
-      <AuthScreen />
-   </View>
+    <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Welcome" component={WelcomePage} />
+          <Stack.Screen name="Signin" component={SignInForm} />
+          <Stack.Screen name="Signup" component={SignUpForm} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});

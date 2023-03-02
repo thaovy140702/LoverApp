@@ -1,4 +1,5 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useLayoutEffect } from "react";
+import { useNavigation } from '@react-navigation/native'
 import { StyleSheet, ImageBackground, TouchableOpacity, View, ScrollView, KeyboardAvoidingView} from "react-native";
 import { useState } from "react";
 import imageBackground from '../assets/images/test.png';
@@ -23,6 +24,14 @@ const initialState = {
 }
 
 const SignUpForm = props => {
+
+    const navigation = useNavigation()
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerShown: false,
+        })
+    }, [])
 
 
     const [isChecked, setChecked] = useState(false);
@@ -99,9 +108,7 @@ const SignUpForm = props => {
 
         <View style={styles.separator}>
             <BoldText text="Already have an account?"/>
-            <TouchableOpacity onPress={()=>{
-                // ham xu ly sign up
-            }}>
+            <TouchableOpacity onPress={()=> navigation.navigate("Signin")}>
                 <BoldText text=" Sign In" color={colors.pink} />
             </TouchableOpacity>
         </View>
