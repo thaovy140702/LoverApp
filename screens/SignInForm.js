@@ -1,4 +1,5 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useLayoutEffect } from "react";
+import { useNavigation } from '@react-navigation/native'
 import { StyleSheet, ImageBackground, TouchableOpacity, View, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import imageBackground from '../assets/images/test.png';
 import BigButton from "../components/button/BigButton";
@@ -20,6 +21,14 @@ const initialState = {
 }
 
 const SignInForm = () => {
+
+    const navigation = useNavigation()
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerShown: false,
+        })
+    }, [])
 
     const [formState, dispatchFormState] = useReducer(reducer, initialState);
 
@@ -80,7 +89,7 @@ const SignInForm = () => {
 
                 <View style={styles.separator}>
                     <BoldText text="Didn't have an account?"/>
-                    <TouchableOpacity onPress={()=>{}}>
+                    <TouchableOpacity onPress={()=> navigation.navigate("Signup")}>
                         <BoldText text=" Sign Up" color={colors.pink} />
                     </TouchableOpacity>
                 </View>

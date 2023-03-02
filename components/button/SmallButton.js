@@ -1,12 +1,12 @@
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { useNavigation } from '@react-navigation/native'
 
 const SmallButton = props => {
+
+    const navigation = useNavigation()
     return (
-        <TouchableOpacity 
-        style={[styles.button, {backgroundColor: props.backgroundColor}]}
-        onPress={() => {
-            // ham xu ly khi nhan button
-        }}>
+      <TouchableOpacity style={[styles.button, {backgroundColor: props.backgroundColor}]}
+        onPress={() => navigation.navigate(`${props.page}`)}>
         <Text style={[styles.text, {color: props.color}]}>{props.text}</Text>
       </TouchableOpacity>
     );
