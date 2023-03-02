@@ -21,6 +21,7 @@ const Input = props => {
         selectionColor={colors.pink}
         onChangeText={onChangeText}
         placeholder={props.placeholder}
+        placeholderTextColor={colors.grey}
         // value={text}
         />
         </View>
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 30,
         borderColor: colors.lightGrey,
-        color: colors.grey,
+        color: colors.textColorBlack,
         paddingStart: 20,
         fontFamily: 'medium',
       },
