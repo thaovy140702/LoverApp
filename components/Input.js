@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 20,
         borderColor: colors.lightGrey,
-        color: colors.grey,
+        color: colors.textColorBlack,
         paddingStart: 20,
         fontFamily: 'medium',
       },
