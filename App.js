@@ -5,6 +5,8 @@ import WelcomePage from './screens/WelcomePage';
 import SignInForm from './screens/SignInForm';
 import SignUpForm from './screens/SignUpForm';
 import HomeScreen from './screens/navigation/HomeScreen';
+import ForgotPassword from './screens/ForgotPassword';
+import CompleteForgotPass from './screens/CompleteForgotPass';
 
 
 export default function App() {
@@ -33,6 +35,8 @@ export default function App() {
           <Stack.Screen name="Signin" component={SignInForm} />
           <Stack.Screen name="Signup" component={SignUpForm} />
           <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Forgotpassword" component={ForgotPassword} />
+          <Stack.Screen name="CompleteFotgotPass" component={CompleteForgotPass} />
         </Stack.Navigator>
     </NavigationContainer>
   );

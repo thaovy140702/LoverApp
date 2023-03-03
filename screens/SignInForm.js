@@ -77,7 +77,7 @@ const SignInForm = () => {
                         />
                     
                         <TouchableOpacity onPress={()=>{
-                            // xu ly forgot password
+                            navigation.navigate("Forgotpassword")
                         }}>
                             <View style={styles.textForgot}>
                                 <BoldText text="Forgot password?"/>
