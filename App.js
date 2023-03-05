@@ -5,6 +5,10 @@ import WelcomePage from './screens/WelcomePage';
 import SignInForm from './screens/SignInForm';
 import SignUpForm from './screens/SignUpForm';
 import HomeScreen from './screens/navigation/HomeScreen';
+import AgeScreen from './screens/Onboarding/AgeScreen';
+import GenresScreen from './screens/Onboarding/GenresScreen';
+import AppearanceScreen from './screens/Onboarding/AppearanceScreen';
+import CharacterScreen from './screens/Onboarding/CharacterScreen';
 
 
 export default function App() {
