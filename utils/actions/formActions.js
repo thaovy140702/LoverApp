@@ -7,5 +7,7 @@ export const validateInput = (inputId, inputValue) => {
         return validateString(inputId,inputValue)      
     } else if ( inputId === 'password') {
         return validatePassword(inputId,inputValue)
-    }
+    }  else if ( inputId === 'repeatPassword') {
+        return validatePassword(inputId,inputValue)
+    } 
 }

@@ -1,18 +1,23 @@
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import colors from "../../constants/colors";
+import { useNavigation } from '@react-navigation/native'
 
 const BigButton = props => {
 
     const enabledBgColor = props.color || colors.pink;
     const disabledBgColor = colors.lightGrey;
     const bgColor = props.disabled ? disabledBgColor : enabledBgColor;
+
+    const navigation = useNavigation()
     return (
         <TouchableOpacity 
         style={{
             ...styles.button,
             ...props.style,
             ...{ backgroundColor: bgColor }}}
-        onPress={props.onPress}>
+        onPress={() => {
+            // ham xu ly khi nhan button
+        }}>
         <Text style={styles.text}>{props.text}</Text>
         </TouchableOpacity>
     );

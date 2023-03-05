@@ -14,12 +14,13 @@ import colors from "../constants/colors";
 
 const initialState = {
     inputValidities: {
-        email: false
+        password: false,
+        repeatPassword: false
     },
     formIsValid: false
 }
 
-const ForgotPassword = () => {
+const CompleteForgotPass = () => {
 
     const navigation = useNavigation()
 
@@ -46,17 +47,29 @@ const ForgotPassword = () => {
                     keyboardVerticalOffset={100} >
 
                     <Title text="Forgot password"/>
-                    <RegularText marginStart={'9%'} text="Please enter your email" />
+                    <RegularText marginStart={'9%'} text="Please enter your new password" />
 
                     <View style={styles.container}>
 
-                        <Input
-                            id="email"
-                            placeholder="Email" 
-                            keyboardType="email-address"
-                            onInputChanged={inputChangedHandler}
-                            errorText={formState.inputValidities["email"]}
-                        />
+                            <Input
+                                id="password" 
+                                placeholder="New Password" 
+                                secureTextEntry={true}
+                                autoCapitalize="none"
+                                onInputChanged={inputChangedHandler}
+                                errorText={formState.inputValidities["password"]}
+                            />
+                    
+                            <Input
+                                id="repeatPassword" 
+                                placeholder="Confirm Password" 
+                                secureTextEntry={true}
+                                autoCapitalize="none"
+                                onInputChanged={inputChangedHandler}
+                                errorText={formState.inputValidities["repeatPassword"]}
+                            />
+
+                    
                         
                     </View>
 
@@ -64,7 +77,6 @@ const ForgotPassword = () => {
                     <View style={styles.button}>
                         <BigButton 
                             text="Next"
-                            page="CompleteFotgotPass"
                             disabled={!formState.formIsValid}/>
                     </View>
 
@@ -107,4 +119,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ForgotPassword;
+export default CompleteForgotPass;

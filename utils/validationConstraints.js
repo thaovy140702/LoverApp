@@ -44,3 +44,11 @@ export const validatePassword = (id, value) => {
     const validationResult = validate({[id]: value}, {[id]: constraints})
     return validationResult
 }
+
+export const validateRepeatPassword = (id, value) => {
+    const constraints = {
+        presence: { allowEmpty: false}
+    }
+    const validationResult = validate({[id]: value}, {[id]: constraints})
+    return validationResult
+}
