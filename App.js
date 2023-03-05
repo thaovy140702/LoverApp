@@ -4,6 +4,8 @@ import { useFonts } from 'expo-font';
 import WelcomePage from './screens/WelcomePage';
 import SignInForm from './screens/SignInForm';
 import SignUpForm from './screens/SignUpForm';
+import ForgotPassword from './screens/ForgotPassword';
+import CompleteForgotPass from './screens/CompleteForgotPass';
 import HomeScreen from './screens/navigation/HomeScreen';
 import AgeScreen from './screens/Onboarding/AgeScreen';
 import GenresScreen from './screens/Onboarding/GenresScreen';
