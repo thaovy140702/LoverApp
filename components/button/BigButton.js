@@ -12,9 +12,7 @@ const BigButton = props => {
             ...styles.button,
             ...props.style,
             ...{ backgroundColor: bgColor }}}
-        onPress={() => {
-            // ham xu ly khi nhan button
-        }}>
+        onPress={props.onPress}>
         <Text style={styles.text}>{props.text}</Text>
         </TouchableOpacity>
     );

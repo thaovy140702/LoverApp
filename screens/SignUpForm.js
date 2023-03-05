@@ -28,13 +28,6 @@ const SignUpForm = props => {
 
     const navigation = useNavigation()
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        })
-    }, [])
-
-
     const [isChecked, setChecked] = useState(false);
 
     // check state of sign up form and validate input

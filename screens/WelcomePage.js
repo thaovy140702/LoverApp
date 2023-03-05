@@ -13,12 +13,6 @@ const WelcomePage = () => {
 
   const navigation = useNavigation()
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        })
-    }, [])
-
   return (
     <View style={styles.container}>
       <SafeAreaView style={{flex: 1}}>
