@@ -1,4 +1,4 @@
-import { validateEmail, validatePassword, validateString } from "../validationConstraints";
+import { validateEmail, validatePassword, validateString, validateRepeatPassword } from "../validationConstraints";
 
 export const validateInput = (inputId, inputValue) => {
     if( inputId === 'email') {
@@ -8,6 +8,6 @@ export const validateInput = (inputId, inputValue) => {
     } else if ( inputId === 'password') {
         return validatePassword(inputId,inputValue)
     }  else if ( inputId === 'repeatPassword') {
-        return validatePassword(inputId,inputValue)
+        return validateRepeatPassword(inputId,inputValue)
     } 
 }
