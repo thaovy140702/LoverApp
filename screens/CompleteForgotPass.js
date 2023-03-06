@@ -24,12 +24,6 @@ const CompleteForgotPass = () => {
 
     const navigation = useNavigation()
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        })
-    }, [])
-
     const [formState, dispatchFormState] = useReducer(reducer, initialState);
 
     const inputChangedHandler = useCallback((inputId, inputValue) => {

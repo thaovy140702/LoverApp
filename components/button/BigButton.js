@@ -15,7 +15,7 @@ const BigButton = props => {
             ...styles.button,
             ...props.style,
             ...{ backgroundColor: bgColor }}}
-        onPress={() => navigation.navigate(`${props.page}`)}>
+        onPress={props.onPress}>
         <Text style={styles.text}>{props.text}</Text>
         </TouchableOpacity>
     );
