@@ -16,6 +16,7 @@ import UserScheduleScreen from './screens/navigation/UserScheduleScreen';
 import SearchScreen from './screens/navigation/SearchScreen';
 import ChatListScreen from './screens/navigation/ChatListScreen';
 import ProfileScreen from './screens/navigation/ProfileScreen';
+// import LoadingScreen from './screens/LoadingScreen';
 
 
 export default function App() {
@@ -47,6 +48,8 @@ export default function App() {
           <Stack.Screen name="Slide2" component={GenresScreen} />
           <Stack.Screen name="Slide3" component={AppearanceScreen} />
           <Stack.Screen name="Slide4" component={CharacterScreen} />
+          
+          <Stack.Screen name="Navigation" component={AnimTab1} />
           <Stack.Screen name="Signin" component={SignInForm} />
           <Stack.Screen name="Signup" component={SignUpForm} />
           <Stack.Screen name="Forgotpassword" component={ForgotPassword} />

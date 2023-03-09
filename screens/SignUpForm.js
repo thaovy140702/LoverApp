@@ -1,6 +1,6 @@
 import React, { useCallback, useReducer, useLayoutEffect } from "react";
 import { useNavigation } from '@react-navigation/native'
-import { StyleSheet, ImageBackground, TouchableOpacity, View, ScrollView, KeyboardAvoidingView} from "react-native";
+import { StyleSheet, ImageBackground, TouchableOpacity, View, ScrollView, KeyboardAvoidingView, Dimensions} from "react-native";
 import { useState } from "react";
 import imageBackground from '../assets/images/test.png';
 import BigButton from "../components/button/BigButton";
@@ -13,9 +13,10 @@ import Checkbox from 'expo-checkbox';
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {Dimensions} from 'react-native';
+import MyStyles from "../constants/MyStyles";
 
-const {height, width} = Dimensions.get('window');
+
+const {width, height} = Dimensions.get('window')
 
 const initialState = {
     inputValidities: {
@@ -25,6 +26,7 @@ const initialState = {
     },
     formIsValid: false
 }
+
 
 const SignUpForm = props => {
 
@@ -44,15 +46,16 @@ const SignUpForm = props => {
     
         <ImageBackground source={imageBackground} style={[styles.image]}>
 
-            <SafeAreaView style={{width,height}}>
+            <SafeAreaView style={{width, height }}> 
                 <KeyboardAvoidingView
+                    style={{flex: 1}}
                     behavior={Platform.OS === "ios" ? "height" : undefined}
                     keyboardVerticalOffset={100}>
 
                     <Title text="Hi!"/>
                     <RegularText marginStart="9%" text="Create a new account" />
 
-                    <View style={[styles.container, {backgroundColor: 'green'}]}>
+                    <View style={[styles.container,{flex: 5, flexDirection:'column'}]}>
                         <View >
                             <Input
                                 id="email"
@@ -80,7 +83,7 @@ const SignUpForm = props => {
                         </View>
                         
 
-                        <View style={styles.checkbox} >
+                        <View style={[styles.checkbox]} >
                             <Checkbox 
                                 color={colors.pink} 
                                 value={isChecked} 
@@ -94,25 +97,25 @@ const SignUpForm = props => {
                         <View style={{marginStart: '9%'}}>
                             <RegularText text="Privacy Policy" color={colors.pink}/>
                         </View>
+
                     </View>
                 
                     {/* submit button */}
-                    <View style={[styles.button, {backgroundColor: 'pink'}]}>
-                        <BigButton 
-                        text="Get Started"
-                        disabled={!formState.formIsValid}
-                        />
+                    <View style={{flex: 2, position:'absolute', bottom: 5}}> 
+                        <View style={styles.button}>
+                            <BigButton 
+                            text="Get Started"
+                            disabled={!formState.formIsValid}
+                            />
+                        </View>
+                        <View style={styles.separator}>
+                            <BoldText text="Already have an account?"/>
+                            <TouchableOpacity onPress={()=> navigation.navigate("Signin")}>
+                                <BoldText text=" Sign In" color={colors.pink} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
 
-                    <View style={{}}>
-                    <View style={[styles.separator, {backgroundColor: 'yellow'}]}>
-                        <BoldText text="Already have an account?"/>
-                        <TouchableOpacity onPress={()=> navigation.navigate("Signin")}>
-                            <BoldText text=" Sign In" color={colors.pink} />
-                        </TouchableOpacity>
-                    </View>
-                    </View>
-                    
 
                 </KeyboardAvoidingView>
             </SafeAreaView>
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
     },
     button:{
         // marginTop: '18%',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     checkbox:{
         // marginStart: '9%',
