@@ -14,7 +14,7 @@ import CharacterScreen from './screens/Onboarding/CharacterScreen';
 import AnimTab1 from './screens/navigation/MainNavigation';
 import UserScheduleScreen from './screens/navigation/UserScheduleScreen';
 import SearchScreen from './screens/navigation/SearchScreen';
-import ChatScreen from './screens/navigation/ChatScreen';
+import ChatListScreen from './screens/navigation/ChatListScreen';
 import ProfileScreen from './screens/navigation/ProfileScreen';
 // import LoadingScreen from './screens/LoadingScreen';
 
@@ -57,7 +57,7 @@ export default function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Appointment" component={UserScheduleScreen} />
           <Stack.Screen name="Search" component={SearchScreen} />
-          <Stack.Screen name="Chat" component={ChatScreen} />
+          <Stack.Screen name="Chat" component={ChatListScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
         </Stack.Navigator>
     </NavigationContainer>

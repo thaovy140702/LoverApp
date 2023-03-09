@@ -9,7 +9,7 @@ import colors from '../../constants/colors';
 import UserScheduleScreen from './UserScheduleScreen';
 import HomeScreen from './HomeScreen';
 import SearchScreen from './SearchScreen';
-import ChatScreen from './ChatScreen';
+import ChatListScreen from './ChatListScreen';
 import ProfileScreen from './ProfileScreen';
 
 
@@ -17,7 +17,7 @@ const TabArr = [
   { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
   { route: 'Appointment', label: 'Appointment', component: UserScheduleScreen, iconName: 'clipboard'},
   { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'search' },
-  { route: 'Chat', label: 'My Chat', component: ChatScreen, iconName: 'message-square' },
+  { route: 'Chat', label: 'My Chat', component: ChatListScreen, iconName: 'message-square' },
   { route: 'Profile', label: 'My profile', component: ProfileScreen, iconName: 'user' },
 ];
 
