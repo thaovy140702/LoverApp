@@ -13,7 +13,9 @@ import Checkbox from 'expo-checkbox';
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
+import {Dimensions} from 'react-native';
 
+const {height, width} = Dimensions.get('window');
 
 const initialState = {
     inputValidities: {
@@ -39,10 +41,10 @@ const SignUpForm = props => {
     }, [dispatchFormState])
 
     return (
-        
-        <ImageBackground source={imageBackground} style={styles.image}>
+    
+        <ImageBackground source={imageBackground} style={[styles.image]}>
 
-            <SafeAreaView>
+            <SafeAreaView style={{width,height}}>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "height" : undefined}
                     keyboardVerticalOffset={100}>
@@ -50,7 +52,7 @@ const SignUpForm = props => {
                     <Title text="Hi!"/>
                     <RegularText marginStart="9%" text="Create a new account" />
 
-                    <View style={styles.container}>
+                    <View style={[styles.container, {backgroundColor: 'green'}]}>
                         <View >
                             <Input
                                 id="email"
@@ -95,23 +97,27 @@ const SignUpForm = props => {
                     </View>
                 
                     {/* submit button */}
-                    <View style={styles.button}>
+                    <View style={[styles.button, {backgroundColor: 'pink'}]}>
                         <BigButton 
                         text="Get Started"
                         disabled={!formState.formIsValid}
                         />
                     </View>
 
-                    <View style={styles.separator}>
+                    <View style={{}}>
+                    <View style={[styles.separator, {backgroundColor: 'yellow'}]}>
                         <BoldText text="Already have an account?"/>
                         <TouchableOpacity onPress={()=> navigation.navigate("Signin")}>
                             <BoldText text=" Sign In" color={colors.pink} />
                         </TouchableOpacity>
                     </View>
+                    </View>
+                    
 
                 </KeyboardAvoidingView>
             </SafeAreaView>
         </ImageBackground>
+        
     );
     
     
@@ -120,7 +126,8 @@ const SignUpForm = props => {
 const styles = StyleSheet.create({
     container:{
         paddingHorizontal: '8%',
-        marginVertical: '25%'
+        marginVertical: '25%',
+        position: 'relative'
     },
     image: {
         // flex: 1,

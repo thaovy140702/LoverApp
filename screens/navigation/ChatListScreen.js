@@ -61,12 +61,13 @@ const ChatListScreen = () => {
         </View>
 
         <View style={styles.searchInput}>
-        <Feather style={styles.iconSearch} name="search" size={24} color="black" />
+        {/* <Feather style={styles.iconSearch} name="search" size={24} color="black" /> */}
         <TextInput 
           style={styles.textInputSearch}
           placeholder='Search'
           selectionColor={colors.pink}
         />
+        <Feather style={styles.iconSearch} name="search" size={24} color="black" />
         </View>
 
       <View>
@@ -102,24 +103,27 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    alignSelf: 'center',
+    // justifyContent: 'center',
     marginVertical: '2%'
   },
   iconSearch: {
+    start: -15,
+    position:'absolute',
     backgroundColor: colors.pink,
-    borderTopLeftRadius: 20,
-    borderBottomLeftRadius: 20,
+    borderRadius: 20,
     padding: 15,
     width: 55,
     height: 60,
   },
   textInputSearch: {
     height: 60,
-    width: '75%',
+    width: '85%',
     borderWidth: 1,
+    // alignSelf: 'center',
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
-    padding: 10,
+    paddingStart: 50,
     borderColor: colors.lightGrey,
     color: colors.textColorBlack,
     fontFamily: 'medium'

@@ -5,6 +5,8 @@ import HeaderTitle from '../../components/text/HeaderTitle'
 import { Feather } from '@expo/vector-icons';
 import colors from '../../constants/colors'
 
+
+
 const SearchScreen = () => {
   return (
     <View style={{flex: 1}}>
@@ -18,6 +20,10 @@ const SearchScreen = () => {
           selectionColor={colors.pink}
         />
         <Feather style={styles.iconFilter} name="sliders" size={24} color="black" />
+        </View>
+
+        <View>
+          <HeaderTitle text="Some advise" />
         </View>
 
       
@@ -37,7 +43,8 @@ const styles = StyleSheet.create({
   searchInput: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: '15%'
+    marginTop: '15%',
+    marginHorizontal: '5%'
   },
   iconSearch: {
     backgroundColor: 'white',
@@ -48,9 +55,10 @@ const styles = StyleSheet.create({
     height: 50,
   },
   iconFilter: {
+    end: 10,
+    position: 'relative',
     backgroundColor: colors.pink,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
+    borderRadius: 10,
     padding: 11,
     width: 50,
     height: 50,
@@ -58,7 +66,8 @@ const styles = StyleSheet.create({
   textInputSearch: {
     backgroundColor: 'white',
     height: 50,
-    width: '60%',
+    alignSelf: 'center',
+    width: '65%',
     borderWidth: 1,
     padding: 10,
     borderColor: 'white',

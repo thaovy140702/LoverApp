@@ -41,8 +41,8 @@ export default function App() {
     <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {/* <Stack.Screen name="Age" component={ChooseAge} /> */}
-          <Stack.Screen name="Navigation" component={AnimTab1} />
           <Stack.Screen name="Welcome" component={WelcomePage} />
+          <Stack.Screen name="Navigation" component={AnimTab1} />
           <Stack.Screen name="Slide1" component={AgeScreen} />
           <Stack.Screen name="Slide2" component={GenresScreen} />
           <Stack.Screen name="Slide3" component={AppearanceScreen} />
