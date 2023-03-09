@@ -14,7 +14,7 @@ import CharacterScreen from './screens/Onboarding/CharacterScreen';
 import AnimTab1 from './screens/navigation/MainNavigation';
 import UserScheduleScreen from './screens/navigation/UserScheduleScreen';
 import SearchScreen from './screens/navigation/SearchScreen';
-import ChatScreen from './screens/navigation/ChatScreen';
+import ChatListScreen from './screens/navigation/ChatListScreen';
 import ProfileScreen from './screens/navigation/ProfileScreen';
 
 
@@ -41,13 +41,12 @@ export default function App() {
     <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {/* <Stack.Screen name="Age" component={ChooseAge} /> */}
+          <Stack.Screen name="Navigation" component={AnimTab1} />
+          <Stack.Screen name="Welcome" component={WelcomePage} />
           <Stack.Screen name="Slide1" component={AgeScreen} />
           <Stack.Screen name="Slide2" component={GenresScreen} />
           <Stack.Screen name="Slide3" component={AppearanceScreen} />
           <Stack.Screen name="Slide4" component={CharacterScreen} />
-        {/* <Stack.Navigator> */}
-          <Stack.Screen name="Navigation" component={AnimTab1} />
-          <Stack.Screen name="Welcome" component={WelcomePage} />
           <Stack.Screen name="Signin" component={SignInForm} />
           <Stack.Screen name="Signup" component={SignUpForm} />
           <Stack.Screen name="Forgotpassword" component={ForgotPassword} />
@@ -55,7 +54,7 @@ export default function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Appointment" component={UserScheduleScreen} />
           <Stack.Screen name="Search" component={SearchScreen} />
-          <Stack.Screen name="Chat" component={ChatScreen} />
+          <Stack.Screen name="Chat" component={ChatListScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
         </Stack.Navigator>
     </NavigationContainer>

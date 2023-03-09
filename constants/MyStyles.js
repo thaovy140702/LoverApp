@@ -13,5 +13,9 @@ export default{
         top: '15%',
         marginHorizontal: '5%',
         textAlign: 'center',
+    },
+    flexDirection: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between'
     }
 }
