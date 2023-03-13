@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
+  Dimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +13,8 @@ import MyStyles from "../../constants/MyStyles";
 import colors from "../../constants/colors";
 import BigButton from "../../components/button/BigButton";
 import { useNavigation } from "@react-navigation/native";
+
+const { width, height } = Dimensions.get("window"); 
 
 const dataApperance = [
   { id: 1, appearance: "one" },

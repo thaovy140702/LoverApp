@@ -1,3 +1,5 @@
+import colors from "./colors";
+
 export default{
     container:{
         width: '100%',
@@ -10,8 +12,28 @@ export default{
         fontSize: 20,
         fontWeight: 'bold',
         alignSelf: 'center',
-        top: '15%',
+        justifyContent: 'center',
+        // top: '15%',
         marginHorizontal: '5%',
         textAlign: 'center',
+    },
+    flexDirection: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between'
+    },
+    text_sm:{
+        fontSize: 12,
+        color: 'black',
+        // fontFamily: 'regular'
+    },
+    text_md:{
+        fontSize: 14,
+        color: 'black',
+        fontFamily: 'regular'
+    },
+    text_lg:{
+        fontSize: 30,
+        color: 'black',
+        fontFamily: 'bold'
     }
 }
