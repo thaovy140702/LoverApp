@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
+  Dimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +13,8 @@ import MyStyles from "../../constants/MyStyles";
 import colors from "../../constants/colors";
 import BigButton from "../../components/button/BigButton";
 import { useNavigation } from "@react-navigation/native";
+
+const { width, height } = Dimensions.get("window");
 
 const dataGenres = [
   {
@@ -50,16 +53,19 @@ const GenresScreen = () => {
       source={require("../../assets/images/bg-heart.png")}
       style={MyStyles.container}
     >
-      <SafeAreaView>
-        <Text style={MyStyles.headerSlide}>Your SEX is</Text>
+      <SafeAreaView style={{ width, height }}>
+        <View style={{ flex: 1 }}>
+          <View style={{ flex: 0.25, justifyContent:"center" }}>
+            <Text style={MyStyles.headerSlide}>Your SEX is</Text>
+          </View>
 
-        <View>
+        <View style={styles.slide}>
           <FlatList
-            style={styles.slide}
             data={data}
             numColumns={2}
             contentContainerStyle={{
               padding: 20,
+              justifyContent: 'center',
               alignItems: "center",
             }}
             renderItem={({ item, index }) => {
@@ -93,6 +99,7 @@ const GenresScreen = () => {
           <BigButton text="Next" onPress={() => navigation.navigate("Slide3")}/>
         </View>
 
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -102,16 +109,18 @@ export default GenresScreen;
 
 const styles = StyleSheet.create({
   slide: {
-    position: 'relative',
-    width: "100%",
-    height: 200,
-    alignSelf: "center",
-    marginVertical: '71%',
+    width: width,
+    // backgroundColor: "red",
+    flex: 0.8,
+    // height: 200,
+    // alignSelf: "center",
+    // justifyContent: "center",
+    // marginVertical: '71%',
   },
 
   button: {
-    position: "absolute",
+    flex: 0.25,
+    justifyContent: "center",
     alignSelf: "center",
-    bottom: "8%",
   },
 });

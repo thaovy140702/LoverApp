@@ -31,8 +31,9 @@ const styles = StyleSheet.create({
         width: 325,
         height: 57,
         borderRadius: 30,
-        marginHorizontal: 24,
+        // marginHorizontal: 24,
         justifyContent: 'center'
+        // alignSelf:'center'
       },
       text: {
         marginStart: 15,

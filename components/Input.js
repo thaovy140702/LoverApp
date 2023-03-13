@@ -47,14 +47,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     input: {
-        height: 60,
-        width: 320,
+        height: 50,
+        width: 300,
         borderWidth: 1,
         borderRadius: 20,
         padding: 10,
         marginTop: 20,
         borderColor: colors.lightGrey,
         color: colors.textColorBlack,
+        // backgroundColor: 'white',
         paddingStart: 20,
         fontFamily: 'medium',
       },
