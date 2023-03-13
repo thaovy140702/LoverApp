@@ -40,6 +40,7 @@ export default function App() {
   return (
     <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Welcome" component={WelcomePage} />
           {/* <Stack.Screen name="Age" component={ChooseAge} /> */}
           <Stack.Screen name="Slide1" component={AgeScreen} />
           <Stack.Screen name="Slide2" component={GenresScreen} />
@@ -47,7 +48,7 @@ export default function App() {
           <Stack.Screen name="Slide4" component={CharacterScreen} />
         {/* <Stack.Navigator> */}
           <Stack.Screen name="Navigation" component={AnimTab1} />
-          <Stack.Screen name="Welcome" component={WelcomePage} />
+          
           <Stack.Screen name="Signin" component={SignInForm} />
           <Stack.Screen name="Signup" component={SignUpForm} />
           <Stack.Screen name="Forgotpassword" component={ForgotPassword} />
