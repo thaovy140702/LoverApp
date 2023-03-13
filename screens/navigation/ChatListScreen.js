@@ -1,115 +1,177 @@
-import { FlatList, Image, ImageBackground, StyleSheet, TextInput, View} from 'react-native'
-import React from 'react'
-import imageBackground from '../../assets/images/Rectangle5.png'
-import HeaderTitle from '../../components/text/HeaderTitle'
-import RegularText from '../../components/text/RegularText'
-import { Feather } from '@expo/vector-icons';
-import colors from '../../constants/colors'
-import MyStyles from '../../constants/MyStyles'
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React from "react";
+import imageBackground from "../../assets/images/Rectangle5.png";
+import HeaderTitle from "../../components/text/HeaderTitle";
+import RegularText from "../../components/text/RegularText";
+import { Feather } from "@expo/vector-icons";
+import colors from "../../constants/colors";
+import MyStyles from "../../constants/MyStyles";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+const { width, height } = Dimensions.get("screen");
 
 const DATA = [
   {
-    id: '123456',
-    image:'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
-    name: 'Lisa',
-    lastMessage: 'Hi',
-    time: '06:00 AM'
+    id: "123456",
+    image:
+      "https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg",
+    name: "Lisa",
+    lastMessage: "Hi",
+    time: "06:00 AM",
   },
   {
-    id: '12345633',
-    image:'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
-    name: 'Lisa',
-    lastMessage: 'Hi',
-    time: '06:00 AM'
+    id: "12345633",
+    image:
+      "https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg",
+    name: "Lisa",
+    lastMessage: "Hi",
+    time: "06:00 AM",
   },
   {
-    id: '12345564633',
-    image:'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
-    name: 'Lisa',
-    lastMessage: 'Hi',
-    time: '06:00 AM'
+    id: "12345622233",
+    image:
+      "https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg",
+    name: "Lisa",
+    lastMessage: "Hi",
+    time: "06:00 AM",
+  },
+  {
+    id: "123456223",
+    image:
+      "https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg",
+    name: "Lisa",
+    lastMessage: "Hi",
+    time: "06:00 AM",
+  },
+  {
+    id: "123622233",
+    image:
+      "https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg",
+    name: "Lisa",
+    lastMessage: "Hi",
+    time: "06:00 AM",
+  },
+
+  {
+    id: "12362223",
+    image:
+      "https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg",
+    name: "Lisa",
+    lastMessage: "Hi",
+    time: "06:00 AM",
+  },
+  {
+    id: "12622233",
+    image:
+      "https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg",
+    name: "Lisa",
+    lastMessage: "Hi",
+    time: "06:00 AM",
+  },
+  {
+    id: "1262223",
+    image:
+      "https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg",
+    name: "Lisa",
+    lastMessage: "Hi",
+    time: "06:00 AM",
   },
 ];
 
-
 // user item
-const Item = ({image, name, lastMessage, time}) => (
-  <View style={styles.item}>
-
+const Item = ({ image, name, lastMessage, time }) => (
+  <TouchableOpacity style={styles.item}>
     <View style={styles.imageContainer}>
-      <Image source={{uri: image}} style={styles.userImage}/>
+      <Image source={{ uri: image }} style={styles.userImage} />
     </View>
 
     <View style={styles.content}>
-      <HeaderTitle text={name} fontSize={16}/>
+      <HeaderTitle text={name} fontSize={16} />
       <View style={MyStyles.flexDirection}>
-        <RegularText text={lastMessage} color={colors.grey}/>
-        <RegularText text={time} color={colors.grey}/>
+        <RegularText text={lastMessage} color={colors.grey} />
+        <RegularText text={time} color={colors.grey} />
       </View>
     </View>
-  </View>
-  
+  </TouchableOpacity>
+
 );
 
 const ChatListScreen = () => {
   return (
-    <View style={{flex: 1}}>
-      <ImageBackground source={imageBackground} style={styles.background}>
+    <View>
+      <SafeAreaView style={{ width, height, position:'absolute', top:0 }}>
         <View style={styles.headerTitle}>
-          <HeaderTitle text="Contact" fontSize={20}/>
+          <HeaderTitle text="Contact" fontSize={20} />
           <Feather name="bell" size={24} color="black" />
         </View>
 
         <View style={styles.searchInput}>
-        {/* <Feather style={styles.iconSearch} name="search" size={24} color="black" /> */}
-        <TextInput 
-          style={styles.textInputSearch}
-          placeholder='Search'
-          selectionColor={colors.pink}
-        />
-        <Feather style={styles.iconSearch} name="search" size={24} color="black" />
+          {/* <Feather style={styles.iconSearch} name="search" size={24} color="black" /> */}
+          <TextInput
+            style={styles.textInputSearch}
+            placeholder="Search"
+            selectionColor={colors.pink}
+          />
+          <Feather
+            style={styles.iconSearch}
+            name="search"
+            size={24}
+            color="black"
+          />
         </View>
 
-      <View>
-        <FlatList
-         data={DATA}
-         renderItem={
-          ({item}) => <Item image={item.image}
-                            name={item.name}
-                            lastMessage={item.lastMessage}
-                            time={item.time} />}
-         keyExtractor={item => item.id}
-        />
-      </View>
-
-      </ImageBackground>
+        <View style={{ flex: 1 }}>
+          <FlatList
+            // style={{ flex: 1 }}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            decelerationRate = "fast"
+            scrollEventThrottle={16}
+            data={DATA}
+            renderItem={({ item }) => (
+              <Item
+                image={item.image}
+                name={item.name}
+                lastMessage={item.lastMessage}
+                time={item.time}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
+      </SafeAreaView>
     </View>
-  )
-}
+  );
+};
 
-export default ChatListScreen
+export default ChatListScreen;
 
 const styles = StyleSheet.create({
-  background: {
-    height: '40%',
-    width: '100%',
-    resizeMode: 'cover',
-  },
   headerTitle: {
-    marginVertical: '10%',
-    marginHorizontal: '5%',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    marginVertical: "5%",
+    marginHorizontal: "5%",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   searchInput: {
-    flexDirection: 'row',
-    alignSelf: 'center',
+    flexDirection: "row",
+    alignSelf: "center",
     // justifyContent: 'center',
-    marginVertical: '2%'
+    marginVertical: "2%",
   },
   iconSearch: {
     start: -15,
-    position:'absolute',
+    position: "absolute",
     backgroundColor: colors.pink,
     borderRadius: 20,
     padding: 15,
@@ -118,7 +180,7 @@ const styles = StyleSheet.create({
   },
   textInputSearch: {
     height: 60,
-    width: '85%',
+    width: "85%",
     borderWidth: 1,
     // alignSelf: 'center',
     borderTopRightRadius: 20,
@@ -126,37 +188,46 @@ const styles = StyleSheet.create({
     paddingStart: 50,
     borderColor: colors.lightGrey,
     color: colors.textColorBlack,
-    fontFamily: 'medium'
+    fontFamily: "medium",
   },
-  item:{
-    flexDirection: 'row',
-    paddingTop: '5%',
-    width: '90%',
-    marginHorizontal: '5%',
-    justifyContent: 'center'
+  item: {
+    flexDirection: "row",
+    paddingTop: "5%",
+    width: "90%",
+    marginHorizontal: "5%",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  userImage:{
+  userImage: {
     height: 60,
     width: 60,
-    borderRadius: 40
+    borderRadius: 40,
   },
   imageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,159,159,0.4)',
-    overlayColor: '40%',
-    borderTopLeftRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: 'rgba(255, 159, 159, 0.2)',
+    borderRadius: 50,
+    overlayColor: "40%",
     width: 70,
-    height: 70
+    height: 70,
+    shadowColor: colors.grey,
+    shadowOffset: {
+      width: 0,
+      height: 4
+    },
+    shadowRadius: 20,
+    shadowOpacity: 0.25,
+    elevation: 3,
   },
-  content:{
-    backgroundColor: 'rgba(255,159,159,0.1)',
+  content: {
     borderTopRightRadius: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255, 159, 159, 0.2)',
     borderBottomRightRadius: 20,
     height: 70,
-    width: '80%',
-    paddingHorizontal: '5%',
-    justifyContent: 'center'
-  }
-  
-})
+    width: "80%",
+    paddingHorizontal: "5%",
+    justifyContent: "center",
+  },
+});

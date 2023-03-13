@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     height: 65,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    position: 'absolute',
+    position: 'relative',
   },
   btn: {
     width: 50,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   text: {
-    fontSize: 10,
+    fontSize: 9,
     textAlign: 'center',
     color: colors.pink,
     fontFamily: 'regular'

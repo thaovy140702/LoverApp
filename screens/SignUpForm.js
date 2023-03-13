@@ -101,7 +101,7 @@ const SignUpForm = props => {
                     </View>
                 
                     {/* submit button */}
-                    <View style={{flex: 2, position:'absolute', bottom: 5}}> 
+                    <View style={{flex: 2, position:'absolute', bottom: '10%', alignSelf: 'center'}}> 
                         <View style={styles.button}>
                             <BigButton 
                             text="Get Started"
