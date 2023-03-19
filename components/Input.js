@@ -14,15 +14,16 @@ const Input = props => {
 
     return <View>
 
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer]}>
         <TextInput
         {...props}
-        style={styles.input}
+        style={[styles.input, {backgroundColor: props.backgroundColor}]}
         selectionColor={colors.pink}
+        borderColor={props.borderColor}
         onChangeText={onChangeText}
         placeholder={props.placeholder}
         placeholderTextColor={colors.grey}
-        // value={text}
+        value={props.value}
         />
         </View>
 
@@ -53,9 +54,8 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 10,
         marginTop: 20,
-        borderColor: colors.lightGrey,
         color: colors.textColorBlack,
-        // backgroundColor: 'white',
+        // backgroundColor: 'pink',
         paddingStart: 20,
         fontFamily: 'medium',
       },

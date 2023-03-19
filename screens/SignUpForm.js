@@ -72,6 +72,7 @@ const SignUpForm = (props) => {
                 id="email"
                 placeholder="Email"
                 keyboardType="email-address"
+                borderColor={colors.lightGrey}
                 onInputChanged={inputChangedHandler}
                 errorText={formState.inputValidities["email"]}
               />
@@ -79,6 +80,7 @@ const SignUpForm = (props) => {
               <Input
                 id="username"
                 placeholder="Username"
+                borderColor={colors.lightGrey}
                 onInputChanged={inputChangedHandler}
                 errorText={formState.inputValidities["username"]}
               />
@@ -88,6 +90,7 @@ const SignUpForm = (props) => {
                 placeholder="Password"
                 secureTextEntry={true}
                 autoCapitalize="none"
+                borderColor={colors.lightGrey}
                 onInputChanged={inputChangedHandler}
                 errorText={formState.inputValidities["password"]}
               />

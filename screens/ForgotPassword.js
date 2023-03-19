@@ -66,6 +66,7 @@ const ForgotPassword = () => {
               id="email"
               placeholder="Email"
               keyboardType="email-address"
+              borderColor={colors.lightGrey}
               onInputChanged={inputChangedHandler}
               errorText={formState.inputValidities["email"]}
             />

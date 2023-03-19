@@ -1,40 +1,67 @@
 import {Button, Dimensions, FlatList, StyleSheet, TextInput, Image, View, TouchableOpacity} from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import RegularText from "../../components/text/RegularText";
 import BoldText from "../../components/text/BoldText";
 import { Feather, FontAwesome  } from "@expo/vector-icons";
 import colors from "../../constants/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Info from "../../components/Info";
 
 
 const { width, height } = Dimensions.get("screen");
 
-// handle rating
 const ratingOptions = [1, 2, 3, 4, 5];
-// const [starRating, setStarRating] = useState(null);
-// const animatedButtonScale = new Animated.Value(1);
+
 
 const searchItemData = [
-  {
-    id: '1',
-    filter: 'Da nang'
-  },
-  {
-    id: '2',
-    filter: 'Da nang'
-  },
-  {
-    id: '3',
-    filter: 'Da Nang'
-  }
+  { id: 1, filter: "Da Nang" },
+  { id: 2, filter: "HCM" },
+  { id: 3, filter: "Da Nang" },
+  { id: 4, filter: "Da Nang" },
+  { id: 5, filter: "Da Nang" },
+  { id: 6, filter: "Da Nang" }
 ]
+
 
 const UserData = [
   {
     id: '12',
     name: "Lisa",
     image: 'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
-    rate: 3,
+    rate: 1,
+    price: 10,
+    age: 20,
+    gender: 'female',
+    weight: 48,
+    height: 165
+  },
+  {
+    id: '123',
+    name: "Lisa",
+    image: 'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
+    rate: 5,
+    price: 10,
+    age: 20,
+    gender: 'female',
+    weight: 48,
+    height: 165
+  },
+  {
+    id: '1234',
+    name: "Lisa",
+    image: 'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
+    rate: 2,
+    price: 10,
+    age: 20,
+    gender: 'female',
+    weight: 48,
+    height: 165
+  },
+  {
+    id: '12345',
+    name: "Lisa",
+    image: 'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
+    rate: 4,
     price: 10,
     age: 20,
     gender: 'female',
@@ -42,20 +69,16 @@ const UserData = [
     height: 165
   }
 ]
-const SearchItem = ({filter}) => (
-  <View style={styles.searchItem}>
-    <RegularText text={filter} color={colors.pink}/>
-    <Feather style={{marginLeft: 5}} name="x-circle" size={16} color="white" />
-  </View>
-)
+
 
 const UserItem = ({name, image, rate, price, age, gender, weight, height}) => (
   <View style={{alignItems: 'center'}}>
     
     {/* <Image source={{uri: image}} style={styles.imageUser}/> */}
     <View style={styles.userCardView}>
-      <BoldText text={name} />
 
+      <View style={{alignItems: 'center'}}>
+      <BoldText text={name}/>
       <View style={{flexDirection: 'row'}}>
       {
         ratingOptions.map((option) => (
@@ -67,29 +90,17 @@ const UserItem = ({name, image, rate, price, age, gender, weight, height}) => (
       }
       </View>
       <BoldText text={`$ ` + price + ` /hour`} color={colors.pink} fontSize="16"/>
+      </View>
 
-      <View style={{flexDirection: 'row', marginTop: '5%'}}>
-        <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
-          <RegularText text="Age" color={colors.pink}/>
-          <RegularText text={age}/>
-        </View>
-
-        <View style={{flexDirection: 'column'}}>
-          <RegularText text="Gender" color={colors.pink}/>
-          <RegularText text={gender}/>
-        </View>
+      <View style={{flexDirection: 'row', marginTop: 20, justifyContent: 'space-evenly'}}>
+        <Info type = "Age" value={age} />
+        <Info type = "Gender" value={gender} />
       </View>
 
       <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-      <View style={{flexDirection: 'column'}}>
-        <RegularText text="Weight" color={colors.pink}/>
-        <RegularText text={weight}/>
-      </View>
-
-      <View style={{flexDirection: 'column'}}>
-        <RegularText text="Height" color={colors.pink}/>
-        <RegularText text={height}/>
-      </View>
+    
+      <Info type="Weight" value={weight} />
+      <Info type="Height" value={height} />
       </View>
 
 
@@ -104,6 +115,25 @@ const UserItem = ({name, image, rate, price, age, gender, weight, height}) => (
 )
 
 const SearchScreen = () => {
+
+  const [filter, setFilter] = useState(searchItemData)
+
+  const onSelect = (item, index) => {
+    const newArrFilter = filter.map(e => {
+      if (item.id == e.id) {
+        return {
+          ...e,
+          selected: !e.selected
+        }
+      }
+      return {
+        ...e,
+        selected: e.selected
+      }
+    })
+    setFilter(newArrFilter);
+  }
+  
   return (
     <View>
       <SafeAreaView style={{ width, height, position:'absolute', top:0 }}>
@@ -127,26 +157,39 @@ const SearchScreen = () => {
           />
         </View>
 
-        <View style={{ flex: 0.2}}>
+        <View style={{ flex: 0.3, marginTop: '5%'}}>
           <FlatList
-          data={searchItemData}
+          data={filter}
           numColumns={3}
           contentContainerStyle={{
             alignItems: "center",
           }}
-          renderItem={({item}) => (
-            <SearchItem 
-              filter = {item.filter}
-            />
-          )}
-          keyExtractor={(item) => item.id}
+          renderItem={({item, index}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => onSelect(item, index)}
+                style={[styles.searchItem,{ 
+                  backgroundColor: item.selected
+                        ? "rgba(255, 159, 159, 0.2)"
+                        : "white",
+                  }]}>
+                <RegularText text={item.filter} color={colors.pink}/>
+                {item.selected &&
+                <Feather style={{marginLeft: 5}} name="x-circle" size={16} color="white" />
+                }
+                </TouchableOpacity>
+            );
+          }}
+          keyExtractor={(item, index) => item.id}
           />
         </View>
 
-        
+        <View style={{flex: 1}}>
           <FlatList
+            horizontal
             style={{flex: 1}}
             data={UserData}
+            showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
               <UserItem
                 name={item.name}
@@ -161,7 +204,11 @@ const SearchScreen = () => {
             )}
             keyExtractor={(item) => item.id}
           />
-        
+        </View>
+
+        <TouchableOpacity style={{flex: 0.5, alignItems: 'center'}}>
+          <BoldText text="Have it later" color={colors.pink} textDecorationLine='underline'/>
+        </TouchableOpacity> 
       </SafeAreaView>
     </View>
   );
@@ -182,9 +229,9 @@ const styles = StyleSheet.create({
     marginVertical: "2%",
   },
   iconSearch: {
-    start: -5,
+    start: -10,
     position: "absolute",
-    backgroundColor: colors.pink,
+    backgroundColor: 'rgba(255, 159, 159, 1)',
     borderRadius: 20,
     padding: 15,
     width: 55,
@@ -203,11 +250,20 @@ const styles = StyleSheet.create({
   },
   searchItem: {
     flexDirection: 'row',
-    backgroundColor: "rgba(255,159,159,0.2)",
     borderRadius: 30,
-    paddingHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 5,
-    margin: 2
+    marginHorizontal: 2,
+    marginBottom: 10,
+    width: 100,
+    shadowColor: colors.pink,
+    shadowOffset: {
+      width: 0,
+      height: 4
+    },
+    shadowOpacity: 0.9,
+    elevation: 5,
   },
   imageUser: {
     height: 90,
@@ -216,21 +272,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   userCardView: {
-    alignItems: 'center',
-    width: 200,
-    marginTop: '10%',
+    backgroundColor: 'white',
+    marginTop: 45,
+    marginBottom: 20,
+    marginHorizontal: 20,
     height: 300,
-    borderColor: 'white',
+    width: 220,
+    borderRadius: 20,
     justifyContent: 'flex-end',
-    paddingBottom: '5%',
-    shadowColor: colors.lightPink,
+    paddingBottom: 20,
+    shadowColor: colors.pink,
     shadowOffset: {
       width: 1,
       height: -5
     },
-    shadowRadius: 20,
-    shadowOpacity: 0.25,
-    elevation: 3,
+    shadowRadius: 7,
+    shadowOpacity: 0.5,
+    elevation: 10
   },
   button:{
     backgroundColor: 'white',
@@ -239,6 +297,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    marginTop: '5%'
+    marginTop: '5%',
+    alignSelf: 'center'
   }
 });

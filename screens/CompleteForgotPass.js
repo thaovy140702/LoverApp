@@ -68,6 +68,7 @@ const CompleteForgotPass = () => {
               placeholder="New Password"
               secureTextEntry={true}
               autoCapitalize="none"
+              borderColor={colors.lightGrey}
               onInputChanged={inputChangedHandler}
               errorText={formState.inputValidities["password"]}
             />
@@ -77,6 +78,7 @@ const CompleteForgotPass = () => {
               placeholder="Confirm Password"
               secureTextEntry={true}
               autoCapitalize="none"
+              borderColor={colors.lightGrey}
               onInputChanged={inputChangedHandler}
               errorText={formState.inputValidities["repeatPassword"]}
             />
