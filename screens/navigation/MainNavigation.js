@@ -10,7 +10,7 @@ import UserScheduleScreen from './UserScheduleScreen';
 import HomeScreen from './HomeScreen';
 import SearchScreen from './SearchScreen';
 import ChatListScreen from './ChatListScreen';
-import ProfileScreen from './ProfileScreen';
+import ProfileScreen from './setting/ProfileScreen';
 
 
 const TabArr = [

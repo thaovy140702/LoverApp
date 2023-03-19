@@ -52,7 +52,7 @@ const ForgotPassword = () => {
           behavior={Platform.OS === "ios" ? "height" : undefined}
           keyboardVerticalOffset={100}
         >
-            <View style={{flex:.25}}>
+            <View style={{flex:.3}}>
           <Text style={[MyStyles.text_lg, { marginStart: "8%", top: 8 }]}>
             Forgot password
           </Text>
@@ -79,8 +79,8 @@ const ForgotPassword = () => {
           }}>
             <View style={styles.button}>
               <BigButton
-                text="Next"
-                onPress={() => navigation.navigate("CompleteFotgotPass")}
+                text="Send Email"
+                onPress={() => navigation.navigate("ChangePassword")}
                 disabled={!formState.formIsValid}
               />
             </View>
@@ -88,7 +88,6 @@ const ForgotPassword = () => {
             <View style={styles.separator}>
             <Text style={[MyStyles.text_sm,{fontFamily:'bold'}]}>Already have an account ?</Text>
               <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-                {/* <BoldText text=" Sign Up" color={colors.pink} /> */}
               <Text style={[MyStyles.text_sm,{fontFamily:'bold', color:colors.pink}]}> Sign In</Text>
               </TouchableOpacity>
             </View>
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   image: {
-    flex: .23,
+    flex: .25,
     padding: 0,
     margin: 0,
     height: 200,

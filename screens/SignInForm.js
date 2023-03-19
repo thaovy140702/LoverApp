@@ -118,7 +118,7 @@ const SignInForm = () => {
                 text="Get Started"
                 disabled={!formState.formIsValid}
                 onPress={() => {
-                  navigation.navigate("Slide1");
+                  navigation.navigate("Onboarding");
                 }}
               />
             </View>

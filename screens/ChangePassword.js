@@ -13,12 +13,9 @@ import {
 import imageBackground from "../assets/images/test.png";
 import BigButton from "../components/button/BigButton";
 import Input from "../components/Input";
-import RegularText from "../components/text/RegularText";
-import Title from "../components/text/Title";
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
-import BoldText from "../components/text/BoldText";
 import colors from "../constants/colors";
 import MyStyles from "../constants/MyStyles";
 
@@ -32,7 +29,7 @@ const initialState = {
   formIsValid: false,
 };
 
-const CompleteForgotPass = () => {
+const ChangePassword = () => {
   const navigation = useNavigation();
 
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
@@ -91,8 +88,8 @@ const CompleteForgotPass = () => {
           >
             <View style={styles.button}>
               <BigButton
-                text="Next"
-                onPress={() => navigation.navigate("CompleteFotgotPass")}
+                text="Change password"
+                onPress={() => navigation.navigate("ChangePassword")}
                 disabled={!formState.formIsValid}
               />
             </View>
@@ -126,12 +123,12 @@ const styles = StyleSheet.create({
     flex: 0.7,
     // position: "relative",
     paddingHorizontal: "8%",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignSelf: "center",
     alignContent: "center",
   },
   image: {
-    flex: 0.23,
+    flex: 0.25,
     padding: 0,
     margin: 0,
     height: 200,
@@ -149,4 +146,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CompleteForgotPass;
+export default ChangePassword;
