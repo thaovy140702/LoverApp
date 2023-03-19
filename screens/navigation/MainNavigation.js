@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
     height: 65,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    position: 'relative',
   },
   btn: {
     width: 50,

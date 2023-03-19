@@ -65,6 +65,7 @@ const ChangePassword = () => {
               placeholder="New Password"
               secureTextEntry={true}
               autoCapitalize="none"
+              borderColor={colors.lightGrey}
               onInputChanged={inputChangedHandler}
               errorText={formState.inputValidities["password"]}
             />
@@ -74,6 +75,7 @@ const ChangePassword = () => {
               placeholder="Confirm Password"
               secureTextEntry={true}
               autoCapitalize="none"
+              borderColor={colors.lightGrey}
               onInputChanged={inputChangedHandler}
               errorText={formState.inputValidities["repeatPassword"]}
             />

@@ -2,21 +2,21 @@ import {
   Dimensions,
   FlatList,
   Image,
-  ImageBackground,
-  ScrollView,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
-import imageBackground from "../../assets/images/Rectangle5.png";
 import HeaderTitle from "../../components/text/HeaderTitle";
 import RegularText from "../../components/text/RegularText";
 import { Feather } from "@expo/vector-icons";
 import colors from "../../constants/colors";
 import MyStyles from "../../constants/MyStyles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
+import ChatScreen from "./ChatScreen";
+import UserImage from "../../components/UserImage";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -88,31 +88,40 @@ const DATA = [
   },
 ];
 
-// user item
-const Item = ({ image, name, lastMessage, time }) => (
-  <TouchableOpacity style={styles.item}>
-    <View style={styles.imageContainer}>
-      <Image source={{ uri: image }} style={styles.userImage} />
-    </View>
 
-    <View style={styles.content}>
-      <HeaderTitle text={name} fontSize={16} />
-      <View style={MyStyles.flexDirection}>
-        <RegularText text={lastMessage} color={colors.grey} />
-        <RegularText text={time} color={colors.grey} />
-      </View>
-    </View>
-  </TouchableOpacity>
-
-);
 
 const ChatListScreen = () => {
+
+  const navigation = useNavigation();
+
+  // user item
+  const Item = ({ image, name, lastMessage, time }) => (
+  
+    <TouchableOpacity 
+      onPress={() => navigation.navigate(ChatScreen)}
+      style={styles.item}>
+      
+      <UserImage height={60} width={60} image={image} widthContainer={70} heightContainer={70}/>
+  
+      <View style={styles.content}>
+        <HeaderTitle text={name} fontSize={16} />
+        <View style={MyStyles.flexDirection}>
+          <RegularText text={lastMessage} color={colors.grey} />
+          <RegularText text={time} color={colors.grey} />
+        </View>
+      </View>
+    </TouchableOpacity>
+  
+  );
+  
   return (
     <View>
       <SafeAreaView style={{ width, height, position:'absolute', top:0 }}>
         <View style={styles.headerTitle}>
           <HeaderTitle text="Contact" fontSize={20} />
-          <Feather name="bell" size={24} color="black" />
+          <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
+              <Feather name="bell" size={24} color="black" />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.searchInput}>
@@ -130,7 +139,9 @@ const ChatListScreen = () => {
           />
         </View>
 
-        <View style={{ flex: 1 }}>
+        <View
+        // onPress ={() => {navigation.navigate(ChatScreen)}}
+        style={{ flex: 1 }}>
           <FlatList
             // style={{ flex: 1 }}
             showsVerticalScrollIndicator={false}
@@ -172,7 +183,7 @@ const styles = StyleSheet.create({
   iconSearch: {
     start: -15,
     position: "absolute",
-    backgroundColor: colors.pink,
+    backgroundColor: 'rgba(255, 159, 159, 1)',
     borderRadius: 20,
     padding: 15,
     width: 55,
@@ -197,28 +208,6 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%",
     alignItems: "center",
     justifyContent: "center",
-  },
-  userImage: {
-    height: 60,
-    width: 60,
-    borderRadius: 40,
-  },
-  imageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: 'rgba(255, 159, 159, 0.2)',
-    borderRadius: 50,
-    overlayColor: "40%",
-    width: 70,
-    height: 70,
-    shadowColor: colors.grey,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowRadius: 20,
-    shadowOpacity: 0.25,
-    elevation: 3,
   },
   content: {
     borderTopRightRadius: 20,

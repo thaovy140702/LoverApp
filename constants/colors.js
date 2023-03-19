@@ -2,6 +2,7 @@ export default {
     // pink
     pink: "#E97777",
     lightPink: "#FF9F9F",
+    darkPink: "#FF6984",
 
     // yellow
     yellow: "#FCDDB0",

@@ -81,12 +81,14 @@ const SignInForm = () => {
                 id="username"
                 placeholder="Username"
                 onInputChanged={inputChangedHandler}
+                borderColor={colors.lightGrey}
                 errorText={formState.inputValidities["username"]}
               />
               <Input
                 id="password"
                 placeholder="Password"
                 secureTextEntry={true}
+                borderColor={colors.lightGrey}
                 onInputChanged={inputChangedHandler}
                 errorText={formState.inputValidities["password"]}
               />

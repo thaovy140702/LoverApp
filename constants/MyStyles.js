@@ -1,4 +1,7 @@
+import { Dimensions } from "react-native";
 import colors from "./colors";
+
+const { width, height } = Dimensions.get("screen");
 
 export default{
     container:{
@@ -55,10 +58,18 @@ export default{
         fontSize: 30,
         color: 'black',
         fontFamily: 'bold'
+        
     },
     arrowBack:{
         backgroundColor: 'rgba(233, 119, 119, 0.1)',
         borderRadius: 10,
         // alignSelf:'baseline'
     },
+    headerPage: {
+        width, 
+        height, 
+        position:'absolute', 
+        top:0, 
+        backgroundColor: 'white'
+    }
 }
