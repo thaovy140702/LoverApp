@@ -1,16 +1,17 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
+import colors from '../../constants/colors';
 
 const BackButton = (props) => {
     const navigation = useNavigation()
   return (
     <TouchableOpacity 
         {...props}
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.dispatch(CommonActions.goBack())}
         style={styles.buttonStyle}>
-        <Feather name="chevron-left" size={24} color="black" />
+        <Feather name="chevron-left" size={24} color={colors.pink} />
     </TouchableOpacity>
   )
 }

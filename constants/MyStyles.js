@@ -24,20 +24,46 @@ export default{
         flexDirection: 'row', 
         justifyContent: 'space-between'
     },
+    text_sm_grey:{
+        fontSize: 12,
+        color: colors.grey,
+        fontFamily: 'light'
+    },
     text_sm:{
         fontSize: 12,
         color: 'black',
-        // fontFamily: 'regular'
+        fontFamily: 'regular'
+    },
+    text_sm_bold:{
+        fontSize: 12,
+        color: 'white',
+        fontFamily: 'bold'
     },
     text_md:{
         fontSize: 14,
         color: 'black',
         fontFamily: 'regular'
     },
+    text_md_bold:{
+        fontSize: 14,
+        color: 'black',
+        fontFamily: 'bold'
+    },
+    text_xl:{
+        fontSize: 16,
+        color: 'black',
+        fontFamily: 'bold'        
+    },
     text_lg:{
         fontSize: 30,
         color: 'black',
         fontFamily: 'bold'
+        
+    },
+    arrowBack:{
+        backgroundColor: 'rgba(233, 119, 119, 0.1)',
+        borderRadius: 10,
+        // alignSelf:'baseline'
     },
     headerPage: {
         width, 

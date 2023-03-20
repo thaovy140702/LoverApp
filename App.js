@@ -5,18 +5,17 @@ import WelcomePage from './screens/WelcomePage';
 import SignInForm from './screens/SignInForm';
 import SignUpForm from './screens/SignUpForm';
 import ForgotPassword from './screens/ForgotPassword';
-import CompleteForgotPass from './screens/CompleteForgotPass';
+import ChangePassword from './screens/ChangePassword';
 import HomeScreen from './screens/navigation/HomeScreen';
 import AgeScreen from './screens/Onboarding/AgeScreen';
-import GenresScreen from './screens/Onboarding/GenresScreen';
-import AppearanceScreen from './screens/Onboarding/AppearanceScreen';
-import CharacterScreen from './screens/Onboarding/CharacterScreen';
 import AnimTab1 from './screens/navigation/MainNavigation';
 import UserScheduleScreen from './screens/navigation/UserScheduleScreen';
 import SearchScreen from './screens/navigation/SearchScreen';
-import ChatListScreen from './screens/navigation/ChatListScreen';
-import ProfileScreen from './screens/navigation/ProfileScreen';
-import ChatScreen from './screens/navigation/ChatScreen';
+import ChatListScreen from './screens/navigation/chat/ChatListScreen';
+import ProfileScreen from './screens/navigation/setting/ProfileScreen';
+import OnboardingScreen from './screens/Onboarding/OnboardingScreen';
+import EditProfileScreen from './screens/navigation/setting/EditProfileScreen';
+import ChatScreen from './screens/navigation/chat/ChatScreen';
 import NotificationScreen from './screens/navigation/NotificationScreen';
 import PartnerInfoScreen from './screens/navigation/PartnerInfoScreen';
 // import LoadingScreen from './screens/LoadingScreen';
@@ -43,30 +42,34 @@ export default function App() {
 
   return (
     <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-        
-          {/* <Stack.Screen name="Age" component={ChooseAge} /> */}
-          <Stack.Screen name="PartnerInfo" component={PartnerInfoScreen} />
+        <Stack.Navigator screenOptions={{ headerShown: false, statusBarHidden: true, navigationBarHidden: true}}>
           
-          <Stack.Screen name="Navigation" component={AnimTab1} />
-          
-          {/* <Stack.Screen name="Navigation" component={AnimTab1} /> */}
+        {/* <Stack.Screen name="EditProfile" component={EditProfileScreen} /> */}
+          {/* <Stack.Screen name="PartnerInfo" component={PartnerInfoScreen} /> */}
           <Stack.Screen name="Welcome" component={WelcomePage} />
-          <Stack.Screen name="Search" component={SearchScreen} />
-          <Stack.Screen name="Slide2" component={GenresScreen} />
-          <Stack.Screen name="Slide3" component={AppearanceScreen} />
-          <Stack.Screen name="Slide4" component={CharacterScreen} />
-          
+            {/* Register */}
           <Stack.Screen name="Signin" component={SignInForm} />
           <Stack.Screen name="Signup" component={SignUpForm} />
           <Stack.Screen name="Forgotpassword" component={ForgotPassword} />
-          <Stack.Screen name="CompleteFotgotPass" component={CompleteForgotPass} />
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Appointment" component={UserScheduleScreen} />
-          <Stack.Screen name="Chat" component={ChatListScreen} />
-          <Stack.Screen name="Profile" component={ProfileScreen} />
-          <Stack.Screen name="ChatScreen" component={ChatScreen} />
+          <Stack.Screen name="ChangePassword" component={ChangePassword} />
+            {/* Onboarding */}
+          <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+          <Stack.Screen name="Slide1" component={AgeScreen} />
+            {/* Navvigation */}
+          <Stack.Screen name="Navigation" component={AnimTab1} />
           <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
+            {/* home */}
+          <Stack.Screen name="Home" component={HomeScreen} />
+            {/* Search */}
+          <Stack.Screen name="Search" component={SearchScreen} />
+            {/* Schedule */}
+          <Stack.Screen name="Appointment" component={UserScheduleScreen} />
+            {/* chat */}
+          <Stack.Screen name="Chat" component={ChatListScreen} />
+          <Stack.Screen name="ChatScreen" component={ChatScreen} />
+            {/* setting */}
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="EditProfile" component={EditProfileScreen} />
         </Stack.Navigator>
     </NavigationContainer>
   );
