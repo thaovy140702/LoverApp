@@ -8,15 +8,15 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import HeaderTitle from "../../components/text/HeaderTitle";
-import RegularText from "../../components/text/RegularText";
+import HeaderTitle from "../../../components/text/HeaderTitle";
+import RegularText from "../../../components/text/RegularText";
 import { Feather } from "@expo/vector-icons";
-import colors from "../../constants/colors";
-import MyStyles from "../../constants/MyStyles";
+import colors from "../../../constants/colors";
+import MyStyles from "../../../constants/MyStyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import ChatScreen from "./ChatScreen";
-import UserImage from "../../components/UserImage";
+// import ChatScreen from "./ChatScreen";
+import UserImage from "../../../components/UserImage";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -88,8 +88,6 @@ const DATA = [
   },
 ];
 
-
-
 const ChatListScreen = () => {
 
   const navigation = useNavigation();
@@ -98,7 +96,7 @@ const ChatListScreen = () => {
   const Item = ({ image, name, lastMessage, time }) => (
   
     <TouchableOpacity 
-      onPress={() => navigation.navigate(ChatScreen)}
+      onPress={() => navigation.navigate('ChatScreen')}
       style={styles.item}>
       
       <UserImage height={60} width={60} image={image} widthContainer={70} heightContainer={70}/>
@@ -115,8 +113,8 @@ const ChatListScreen = () => {
   );
   
   return (
-    <View>
-      <SafeAreaView style={{ width, height, position:'absolute', top:0 }}>
+    <SafeAreaView style={{ width, height, backgroundColor:'#f7f7f7' }}>
+      <View style={{flex:1}}>
         <View style={styles.headerTitle}>
           <HeaderTitle text="Contact" fontSize={20} />
           <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
@@ -125,7 +123,6 @@ const ChatListScreen = () => {
         </View>
 
         <View style={styles.searchInput}>
-          {/* <Feather style={styles.iconSearch} name="search" size={24} color="black" /> */}
           <TextInput
             style={styles.textInputSearch}
             placeholder="Search"
@@ -135,13 +132,11 @@ const ChatListScreen = () => {
             style={styles.iconSearch}
             name="search"
             size={24}
-            color="black"
+            color="white"
           />
         </View>
 
-        <View
-        // onPress ={() => {navigation.navigate(ChatScreen)}}
-        style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
           <FlatList
             // style={{ flex: 1 }}
             showsVerticalScrollIndicator={false}
@@ -160,8 +155,9 @@ const ChatListScreen = () => {
             keyExtractor={(item) => item.id}
           />
         </View>
-      </SafeAreaView>
-    </View>
+
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -175,29 +171,29 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   searchInput: {
+    position:'relative',
     flexDirection: "row",
     alignSelf: "center",
-    // justifyContent: 'center',
+    alignItems:'center',
     marginVertical: "2%",
   },
   iconSearch: {
-    start: -15,
+    start: -10,
     position: "absolute",
     backgroundColor: 'rgba(255, 159, 159, 1)',
     borderRadius: 20,
-    padding: 15,
-    width: 55,
-    height: 60,
+    padding: 16,
+    // width: 50,
+    // height: 50,
   },
   textInputSearch: {
-    height: 60,
+    height: 50,
     width: "85%",
     borderWidth: 1,
-    // alignSelf: 'center',
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
-    paddingStart: 50,
-    borderColor: colors.lightGrey,
+    borderRadius: 20,
+    paddingStart: 65,
+    backgroundColor: 'white',
+    borderColor: 'white',
     color: colors.textColorBlack,
     fontFamily: "medium",
   },

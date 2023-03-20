@@ -90,7 +90,7 @@ const HomeScreen = () => {
                             <Text style={MyStyles.text_sm_grey}> {item.address}</Text>
                           </View>
                           <View style={{flexDirection:'row'}}>
-                            <Text style={MyStyles.text_sm}> {item.paymment} per hour</Text>
+                            <Text style={MyStyles.text_sm}> $ {item.paymment} per hour</Text>
                             <TouchableOpacity style={styles.button}>
                               <Text style={MyStyles.text_sm_bold}>appointment</Text>
                             </TouchableOpacity>

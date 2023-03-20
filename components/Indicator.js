@@ -3,11 +3,11 @@ import React from 'react'
 import colors from '../constants/colors'
 import MyStyles from '../constants/MyStyles'
 
-const Indicator = (props,title) => {
+const Indicator = (props) => {
   return (
     <View style={{flexDirection:'row'}}> 
-        <Text style={MyStyles.text_sm_grey}>{title}</Text>
-        <View style={styles.Indicator} />
+        <Text style={MyStyles.text_sm_grey}>{props.text}</Text>
+        
     </View>
   )
 }

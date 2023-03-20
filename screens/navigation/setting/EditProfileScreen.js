@@ -15,7 +15,7 @@ const EditProfileScreen = () => {
   return (
     <SafeAreaView style={{width, height, backgroundColor:'#f7f7f7'}}>
         <View style={{flex:1}}>
-            <TouchableOpacity style={{flexDirection:'row', marginTop:'8%', marginHorizontal:20, alignItems:'center', justifyContent:'space-between'}}>
+            <View style={{flexDirection:'row', marginTop:'8%', marginHorizontal:20, alignItems:'center', justifyContent:'space-between'}}>
                 <TouchableOpacity onPress={() => navigation.dispatch(CommonActions.goBack())}>
                     <MaterialIcons style={MyStyles.arrowBack} name="keyboard-arrow-left" size={24} color={colors.pink} />
                 </TouchableOpacity>
@@ -23,7 +23,7 @@ const EditProfileScreen = () => {
                 <TouchableOpacity>
                     <MaterialIcons name="fact-check" size={24} color={colors.pink} />
                 </TouchableOpacity>
-            </TouchableOpacity>
+            </View>
 
             <ScrollView
                 showsVerticalScrollIndicator={false}

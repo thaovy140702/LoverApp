@@ -6,12 +6,11 @@ import { Feather, FontAwesome  } from "@expo/vector-icons";
 import colors from "../../constants/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Info from "../../components/Info";
+import usersData from "./data/usersData";
 
 
 const { width, height } = Dimensions.get("screen");
-
 const ratingOptions = [1, 2, 3, 4, 5];
-
 
 const searchItemData = [
   { id: 1, filter: "Da Nang" },
@@ -22,74 +21,25 @@ const searchItemData = [
   { id: 6, filter: "Da Nang" }
 ]
 
-
-const UserData = [
-  {
-    id: '12',
-    name: "Lisa",
-    image: 'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
-    rate: 1,
-    price: 10,
-    age: 20,
-    gender: 'female',
-    weight: 48,
-    height: 165
-  },
-  {
-    id: '123',
-    name: "Lisa",
-    image: 'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
-    rate: 5,
-    price: 10,
-    age: 20,
-    gender: 'female',
-    weight: 48,
-    height: 165
-  },
-  {
-    id: '1234',
-    name: "Lisa",
-    image: 'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
-    rate: 2,
-    price: 10,
-    age: 20,
-    gender: 'female',
-    weight: 48,
-    height: 165
-  },
-  {
-    id: '12345',
-    name: "Lisa",
-    image: 'https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg',
-    rate: 4,
-    price: 10,
-    age: 20,
-    gender: 'female',
-    weight: 48,
-    height: 165
-  }
-]
-
-
-const UserItem = ({name, image, rate, price, age, gender, weight, height}) => (
-  <View style={{alignItems: 'center'}}>
+const UserItem = ({ name, image, rate, price, age, gender, weight, height}) => (
+  <View style={{alignItems: 'center', marginEnd: 20}}>
     
     {/* <Image source={{uri: image}} style={styles.imageUser}/> */}
     <View style={styles.userCardView}>
 
       <View style={{alignItems: 'center'}}>
-      <BoldText text={name}/>
-      <View style={{flexDirection: 'row'}}>
-      {
-        ratingOptions.map((option) => (
-          <FontAwesome name={rate >= option ? 'heart' : 'heart-o'} 
-                    size={16} 
-                    color={colors.pink}
-                    style={{margin: 1.5}} />
-        ))
-      }
-      </View>
-      <BoldText text={`$ ` + price + ` /hour`} color={colors.pink} fontSize="16"/>
+        <BoldText text={name}/>
+        <View style={{flexDirection: 'row'}}>
+          {
+            ratingOptions.map((option) => (
+              <FontAwesome name={rate >= option ? 'heart' : 'heart-o'} 
+                        size={16} 
+                        color={colors.pink}
+                        style={{margin: 1.5}} />
+            ))
+          }
+        </View>
+        <BoldText text={`$ ` + price + ` /hour`} color={colors.pink} fontSize="16"/>
       </View>
 
       <View style={{flexDirection: 'row', marginTop: 20, justifyContent: 'space-evenly'}}>
@@ -98,19 +48,16 @@ const UserItem = ({name, image, rate, price, age, gender, weight, height}) => (
       </View>
 
       <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-    
-      <Info type="Weight" value={weight} />
-      <Info type="Height" value={height} />
+        <Info type="Weight" value={weight} />
+        <Info type="Height" value={height} />
       </View>
 
-
       <TouchableOpacity style={styles.button} onPress={() => {}}>
-        
         <BoldText text="Appointment" color={colors.pink}/>
-        
       </TouchableOpacity>
+
     </View>
-    <Image source={{uri: image}} style={styles.imageUser}/>
+    <Image source={image} style={styles.imageUser}/>
   </View>
 )
 
@@ -135,12 +82,12 @@ const SearchScreen = () => {
   }
   
   return (
-    <View>
-      <SafeAreaView style={{ width, height, position:'absolute', top:0 }}>
-        <View style={styles.headerTitle}>
+    <SafeAreaView style={{ width, height, backgroundColor:'#f7f7f7'}}>
+      <View style={{flex:1, paddingHorizontal:20}}>
+        {/* <View style={styles.headerTitle}>
           <Feather name="map-pin" size={24} color={colors.grey} />
           <RegularText text=" Da Nang" color={colors.grey}/>
-        </View>
+        </View> */}
 
         <View style={styles.searchInput}>
           
@@ -153,7 +100,7 @@ const SearchScreen = () => {
             style={styles.iconSearch}
             name="search"
             size={24}
-            color="black"
+            color="white"
           />
         </View>
 
@@ -180,24 +127,24 @@ const SearchScreen = () => {
                 </TouchableOpacity>
             );
           }}
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item) => item.id}
           />
         </View>
 
         <View style={{flex: 1}}>
           <FlatList
             horizontal
-            style={{flex: 1}}
-            data={UserData}
+            // style={{flex: 1}}
+            data={usersData}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
               <UserItem
                 name={item.name}
                 image={item.image}
                 rate={item.rate}
-                price={item.price}
+                price={item.paymment}
                 age={item.age}
-                gender={item.gender}
+                gender={item.genres}
                 weight={item.weight}
                 height={item.height}
               />
@@ -209,8 +156,8 @@ const SearchScreen = () => {
         <TouchableOpacity style={{flex: 0.5, alignItems: 'center'}}>
           <BoldText text="Have it later" color={colors.pink} textDecorationLine='underline'/>
         </TouchableOpacity> 
-      </SafeAreaView>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -219,32 +166,35 @@ export default SearchScreen;
 const styles = StyleSheet.create({
   headerTitle: {
     marginVertical: "5%",
-    marginHorizontal: "5%",
+    // marginHorizontal: "5%",
     justifyContent: 'center',
     flexDirection: "row",
   },
   searchInput: {
+    position:'relative',
+    marginTop:'8%',
     flexDirection: "row",
     alignSelf: "center",
+    alignItems:'center',
     marginVertical: "2%",
   },
   iconSearch: {
-    start: -10,
+    // start: -10,
     position: "absolute",
     backgroundColor: 'rgba(255, 159, 159, 1)',
     borderRadius: 20,
-    padding: 15,
-    width: 55,
-    height: 60,
+    padding: 16,
+    // width: 50,
+    // height: 50,
   },
   textInputSearch: {
-    height: 60,
-    width: "85%",
+    height: 50,
+    width: "100%",
     borderWidth: 1,
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
+    borderRadius: 20,
     paddingStart: 65,
-    borderColor: colors.lightGrey,
+    backgroundColor: 'white',
+    borderColor: 'white',
     color: colors.textColorBlack,
     fontFamily: "medium",
   },
@@ -254,8 +204,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 5,
-    marginHorizontal: 2,
-    marginBottom: 10,
+    marginHorizontal: 5,
+    marginBottom: 15,
     width: 100,
     shadowColor: colors.pink,
     shadowOffset: {
@@ -272,12 +222,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   userCardView: {
-    backgroundColor: 'white',
-    marginTop: 45,
-    marginBottom: 20,
-    marginHorizontal: 20,
     height: 300,
     width: 220,
+    position:'relative',
+    backgroundColor: 'white',
+    marginTop: 50,
     borderRadius: 20,
     justifyContent: 'flex-end',
     paddingBottom: 20,
@@ -295,8 +244,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: colors.pink,
     borderWidth: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    padding:10,
     marginTop: '5%',
     alignSelf: 'center'
   }

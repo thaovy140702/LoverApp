@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import RegularText from '../../components/text/RegularText'
-import colors from '../../constants/colors'
-import BoldText from '../../components/text/BoldText'
+import RegularText from '../../../components/text/RegularText'
+import colors from '../../../constants/colors'
+import BoldText from '../../../components/text/BoldText'
 import { Feather, FontAwesome5, FontAwesome } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import ChatListScreen from './ChatListScreen'
-import Bubble from '../../components/Bubble'
+import Bubble from '../../../components/Bubble'
 import { NavigationContainer } from '@react-navigation/native';
-import Input from '../../components/Input'
-import BackButton from '../../components/button/BackButton'
+import Input from '../../../components/Input'
+import BackButton from '../../../components/button/BackButton'
 
 const chatData =[
  

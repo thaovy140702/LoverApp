@@ -9,7 +9,7 @@ import colors from '../../constants/colors';
 import UserScheduleScreen from './UserScheduleScreen';
 import HomeScreen from './HomeScreen';
 import SearchScreen from './SearchScreen';
-import ChatListScreen from './ChatListScreen';
+import ChatListScreen from './chat/ChatListScreen';
 import ProfileScreen from './setting/ProfileScreen';
 
 
