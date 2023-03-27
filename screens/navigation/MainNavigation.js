@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabBar: {
-    height: 65,
+    height: 75,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },

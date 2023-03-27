@@ -18,6 +18,7 @@ import EditProfileScreen from './screens/navigation/setting/EditProfileScreen';
 import ChatScreen from './screens/navigation/chat/ChatScreen';
 import NotificationScreen from './screens/navigation/NotificationScreen';
 import PartnerInfoScreen from './screens/navigation/PartnerInfoScreen';
+import Map from './components/Map';
 // import LoadingScreen from './screens/LoadingScreen';
 
 
@@ -45,7 +46,11 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerShown: false, statusBarHidden: true, navigationBarHidden: true}}>
           
         {/* <Stack.Screen name="EditProfile" component={EditProfileScreen} /> */}
-          {/* <Stack.Screen name="PartnerInfo" component={PartnerInfoScreen} /> */}
+        <Stack.Screen name="Navigation" component={AnimTab1} />
+          <Stack.Screen name="PartnerInfo" component={PartnerInfoScreen} />
+          <Stack.Screen name="Map" component={Map} />
+          {/* <Stack.Screen name="Navigation" component={AnimTab1} /> */}
+          <Stack.Screen name="PartnerInfoScreen" component={PartnerInfoScreen} />
           <Stack.Screen name="Welcome" component={WelcomePage} />
             {/* Register */}
           <Stack.Screen name="Signin" component={SignInForm} />
@@ -56,7 +61,7 @@ export default function App() {
           <Stack.Screen name="Onboarding" component={OnboardingScreen} />
           <Stack.Screen name="Slide1" component={AgeScreen} />
             {/* Navvigation */}
-          <Stack.Screen name="Navigation" component={AnimTab1} />
+          {/* <Stack.Screen name="Navigation" component={AnimTab1} /> */}
           <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
             {/* home */}
           <Stack.Screen name="Home" component={HomeScreen} />

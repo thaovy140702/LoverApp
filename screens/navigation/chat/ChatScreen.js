@@ -32,17 +32,15 @@ const ChatScreen = () => {
 
 {/* header start*/}
         <View style={styles.headerStyle}>
+
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-
-          <View style={{marginTop: 10}}>
-          <BackButton />
-          </View>
+            <View style={{marginTop: 10}}>
+              <BackButton />
+            </View>
            
-
             <View style={{marginTop: 15}}>
               <RegularText text="You have an appointment with Lis at 8:00AM" fontSize={12} color="#8A8A8E"/>
             </View>
-
           </View>
 
           <View style={{flexDirection: 'row', marginTop: 10}}>
@@ -63,6 +61,7 @@ const ChatScreen = () => {
             <ButtonItem iconName="map-marker-alt"/>
             <ButtonItem iconName="phone-alt"/>
             <ButtonItem iconName="video"/>
+
           </View>
 
         </View>
@@ -70,7 +69,8 @@ const ChatScreen = () => {
 
 {/* message start */}
         <View style={{flex: 1}}>
-          <Bubble message={message} time="6:00 AM"/>
+          {/* <Bubble message={message} time="6:00 AM"/> */}
+          {/* <Bubble /> */}
         </View>
     
 {/* message end */}

@@ -12,6 +12,8 @@ export default [
         height: 160,
         address: 'Da Nang',
         paymment: 20,
+        character: ['cheerful', 'exciting'],
+        appearance: ['tall', 'thin']
     },
     {
         id: 2,
@@ -26,6 +28,8 @@ export default [
         height: 160,
         address: 'Da Nang',
         paymment: 20,
+        character: ['cheerful', 'exciting'],
+        appearance: ['tall', 'thin']
     },
     {
         id: 3,
@@ -40,6 +44,8 @@ export default [
         height: 160,
         address: 'Da Nang',
         paymment: 20,
+        character: ['cheerful', 'exciting'],
+        appearance: ['tall', 'thin']
     },
     {
         id: 4,
@@ -54,6 +60,8 @@ export default [
         height: 160,
         address: 'Da Nang',
         paymment: 20,
+        character: ['cheerful',' exciting'],
+        appearance: ['tall', 'thin']
     },
     {
         id: 5,
@@ -68,5 +76,7 @@ export default [
         height: 160,
         address: 'Da Nang',
         paymment: 20,
+        character: ['cheerful',' exciting'],
+        appearance: ['tall', 'thin']
     },
 ]

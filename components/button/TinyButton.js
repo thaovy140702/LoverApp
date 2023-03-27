@@ -23,7 +23,7 @@ const Item = props => (
   </View>
 )
 
-export default ComingButton = () => {
+const ComingButton = () => {
   return (
     <Item 
       title="Coming"
@@ -34,7 +34,18 @@ export default ComingButton = () => {
   )
 }
 
+const FinishButton = () => {
+  return (
+    <Item 
+      title="Coming"
+      color={colors.textColorBlack}
+      backgroundColor="#E5E4E3"
+      shadowColor="black"
+    />
+  )
+}
 
+export {ComingButton, FinishButton}
 const styles = StyleSheet.create({
   buttonStyle: {
   }

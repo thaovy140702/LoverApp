@@ -6,10 +6,12 @@ import newsData from './data/newsData'
 import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from '../../constants/colors';
 import MyStyles from '../../constants/MyStyles';
+import { useNavigation } from '@react-navigation/native'
 
 const {width, height} = Dimensions.get('window')
 
 const HomeScreen = () => {
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={{width, height, backgroundColor:'#f7f7f7'}}>
       <View style={{flex:1}}>
@@ -23,7 +25,7 @@ const HomeScreen = () => {
               <Image source={require('../../assets/images/userimage.jpg')} style={styles.image}/>
               <View style={{marginStart: '8%'}}>
                 <Text style={MyStyles.text_md_bold}>Hi Lis,</Text>
-                <TouchableOpacity style={{flexDirection: 'row'}}>
+                <TouchableOpacity style={{flexDirection: 'row'}} >
                   <SimpleLineIcons style={{start:-2}} name="location-pin" size={15} color={colors.grey} />
                   <Text style={MyStyles.text_sm_grey}>Da Nang</Text>
                 </TouchableOpacity>
@@ -80,7 +82,7 @@ const HomeScreen = () => {
             <View style={{marginTop: 20}}>
               {usersData.map((item) => {
                 return(
-                  <TouchableOpacity key={item.id} style={{marginBottom:'5%'}}>
+                  <TouchableOpacity key={item.id} style={{marginBottom:'5%'}} onPress={() => navigation.navigate("PartnerInfoScreen")}>
                       <View style={[styles.borderRetangle, {flexDirection:'row', borderRadius: 20}]}>
                         <Image style={[styles.imageCircle, {marginEnd:'5%'}]} source={item.image} />
                         <View style={{justifyContent:'center'}}>
@@ -91,7 +93,7 @@ const HomeScreen = () => {
                           </View>
                           <View style={{flexDirection:'row'}}>
                             <Text style={MyStyles.text_sm}> $ {item.paymment} per hour</Text>
-                            <TouchableOpacity style={styles.button}>
+                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("PartnerInfoScreen")}>
                               <Text style={MyStyles.text_sm_bold}>appointment</Text>
                             </TouchableOpacity>
                           </View>
