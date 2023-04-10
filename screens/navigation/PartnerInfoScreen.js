@@ -78,9 +78,21 @@ const PartnerInfoScreen = () => {
 
       <View style={{paddingStart: 20, marginTop: 20}}>
         <BoldText text="Reviewer" font={16}/>
+
+        <View style={{flexDirection: 'row'}}>
+          <View style={{marginTop: 20, marginRight: 10}}>
+            <UserImage width={40} height={40} widthContainer={40} heightContainer={40} image="https://i.pinimg.com/564x/ff/c4/b7/ffc4b7a16b9f80fae9a81c36ce9cbb54.jpg"/>
+          </View>
+          
+          <Input  
+            placeholder="Enter your comment"
+            backgroundColor='rgba(255,159,159,0.1)'
+            borderColor='rgba(255,159,159,0.1)'/>
+        </View>
       </View>
 
-      <Input placeholder="Enter your comment" borderColor="white" backgroundColor="rgba(255,159,159,0.1)"/>
+
+
 
     </SafeAreaView>
   )
