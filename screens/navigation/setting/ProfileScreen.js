@@ -29,25 +29,25 @@ const setting=[
     idSetting:3,
     iconSetting: <MaterialIcons name="location-pin" size={24} color={colors.grey} />,
     setting: 'Location',
-    page: ''
+    page: 'SettingLocation'
   },
   {
     idSetting:4,
     iconSetting: <Entypo name="wallet" size={24} color={colors.grey} />,
     setting: 'Payment',
-    page: ''
+    page: 'SettingPayment'
   },
   {
     idSetting:5,
     iconSetting: <MaterialCommunityIcons name="bell-ring" size={24} color={colors.grey} />,
     setting: 'Notification',
-    page: ''
+    page: 'SettingNotification'
   },
   {
     idSetting:6,
     iconSetting: <MaterialCommunityIcons name="translate" size={24} color={colors.grey} />,
     setting: 'Language',
-    page: ''
+    page: 'SettingLanguage'
   },
 ]
 
@@ -55,7 +55,7 @@ const ProfileScreen = () => {
   const navigation = useNavigation()
 
   return (
-    <SafeAreaView style={{width, height, backgroundColor:'#f7f7f7'}}>
+    <SafeAreaView style={{width, height, backgroundColor:'white'}}>
       <View style={{flex:1}}>
         <ScrollView
         showsVerticalScrollIndicator={false}
@@ -87,7 +87,7 @@ const ProfileScreen = () => {
             {
               setting.map((item) => {
                 return(
-                  <TouchableOpacity key={item.idSetting} style={styles.setting}>
+                  <TouchableOpacity key={item.idSetting} onPress={() => navigation.navigate(item.page)} style={styles.setting}>
                     <Text style={MyStyles.text_md}>{item.setting}</Text>
                     <View>{item.iconSetting}</View>
                   </TouchableOpacity>
@@ -123,6 +123,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems:'center',
     padding: 15,
-    borderRadius: 10
+    borderRadius: 10,
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    shadowOffset: {
+      width: 0,
+      height:4
+    },
+    shadowRadius: 50,
+    elevation:6
   }
 })

@@ -4,14 +4,16 @@ import colors from "../../constants/colors";
 
 const { width, height } = Dimensions.get("window");
 
-const currentAge = [];
-for (var i = 18; i < 100; i++) {
-  currentAge.push(
-    <View>
-      <Text style={{ fontSize: 40, fontWeight: "bold" }}>{i}</Text>
-    </View>
-  );
-}
+// const currentAge = [];
+// for (var i = 18; i < 100; i++) {
+//   currentAge.push(
+//     <View>
+//       <Text style={{ fontSize: 40, fontWeight: "bold" }}>{i}</Text>
+//     </View>
+//   );
+// }
+
+const currentAge = [...Array(83).keys()].map(i => ({ key: `${i}`, value: i + 18 }));
 
 const AgePage = () => {
   const scrollY = React.useRef(new Animated.Value(0)).current;
@@ -55,13 +57,11 @@ const AgePage = () => {
         });
         return (
           <Animated.View style={{ opacity, transform: [{ scale }] }}>
-            <Text style={{ marginVertical: "5%" }}>{item}</Text>
+            <Text style={{ marginVertical: "5%", fontSize: 40, fontWeight: "bold" }}>{item.value}</Text>
           </Animated.View>
         );
       }}
-      // keyExtractor={(item, index) => index.toString()}
-      // keyExtractor={(item) => item}
-      //  {...{ onScroll }}
+      keyExtractor={item => item.key.toString()}
     />
   );
 };

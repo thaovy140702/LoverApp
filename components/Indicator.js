@@ -1,13 +1,20 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text, TextInput } from 'react-native'
 import React from 'react'
 import colors from '../constants/colors'
 import MyStyles from '../constants/MyStyles'
 
 const Indicator = (props) => {
   return (
-    <View style={{flexDirection:'row'}}> 
-        <Text style={MyStyles.text_sm_grey}>{props.text}</Text>
-        
+    <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around', marginVertical:15}}> 
+        <Text style={[MyStyles.text_md_grey, {width: '30%'}]}>{props.title}</Text>
+        <TextInput 
+          placeholder={props.placeholder}
+          selectionColor={colors.pink}
+          value={props.text}
+          // disableFullscreenUI={props.disableFullscreenUI}
+          style={[styles.input, MyStyles.text_md]}
+          
+        />
     </View>
   )
 }
@@ -15,10 +22,9 @@ const Indicator = (props) => {
 export default Indicator
 
 const styles = StyleSheet.create({
-    Indicator: {
-        width: 100,
-        marginVertical: 20,
-        marginHorizontal: 15,
+    input: {
+        width: '70%',
+        padding: 5,
         borderBottomColor: colors.mediumGrey,
         borderBottomWidth: 1,
     }

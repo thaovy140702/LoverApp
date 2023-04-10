@@ -49,8 +49,18 @@ export default{
         color: 'black',
         fontFamily: 'bold'
     },
+    text_md_grey:{
+        fontSize: 14,
+        color: colors.grey,
+        fontFamily: 'light'
+    },
     text_xl:{
         fontSize: 16,
+        color: 'black',
+        fontFamily: 'bold'        
+    },
+    text_xxl:{
+        fontSize: 20,
         color: 'black',
         fontFamily: 'bold'        
     },

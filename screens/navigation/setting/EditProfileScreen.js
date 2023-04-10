@@ -1,47 +1,62 @@
-import { View, Text, Dimensions, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions, ScrollView, StyleSheet, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
-import MyStyles from '../../../constants/MyStyles'
-import colors from '../../../constants/colors';
-import { useNavigation, CommonActions } from '@react-navigation/native';
 import Indicator from '../../../components/Indicator';
 
 const {width, height} = Dimensions.get('window')
 
 const EditProfileScreen = () => {
-
-    const navigation = useNavigation()
   return (
-    <SafeAreaView style={{width, height, backgroundColor:'#f7f7f7'}}>
+    <SafeAreaView style={{width, height, backgroundColor:'white'}}>
         <View style={{flex:1}}>
-            <View style={{flexDirection:'row', marginTop:'8%', marginHorizontal:20, alignItems:'center', justifyContent:'space-between'}}>
-                <TouchableOpacity onPress={() => navigation.dispatch(CommonActions.goBack())}>
-                    <MaterialIcons style={MyStyles.arrowBack} name="keyboard-arrow-left" size={24} color={colors.pink} />
-                </TouchableOpacity>
-                <Text style={[MyStyles.text_md_bold,{start: 0}]}>Edit Profile</Text>
+            {/* <View style={{flexDirection:'row', paddingTop:'8%', paddingHorizontal:20, alignItems:'center', justifyContent:'space-between'}}>
+                <BackButton />
+                <Text style={[MyStyles.text_xxl,{start: 0}]}>Edit Profile</Text>
                 <TouchableOpacity>
                     <MaterialIcons name="fact-check" size={24} color={colors.pink} />
                 </TouchableOpacity>
+            </View> */}
+
+            <View
+                // showsVerticalScrollIndicator={false}
+                // scrollEventThrottle={16}
+                style={{flex: 1,paddingHorizontal: 20}}>
+
+                <View style={{marginTop:'5%', alignItems:'center'}}>
+                    <View style={{position:'relative', padding: 1}}>
+                        <Image style={styles.userImage} source={require('../../../assets/images/userimage.jpg')} />
+                        <TouchableOpacity style={{position: 'absolute', bottom: 0, right:0}}>
+                            <MaterialCommunityIcons style={styles.camera} name="camera-flip-outline" size={24} color="gray" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                {/* <View>
+                    {
+                        usersData.map(({item}) => {
+                            if(item.id=1){
+                                return(
+                                    <Indicator title={item} />
+                                ) 
+                            }
+                        })
+                    }
+                </View> */}
+                <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior={Platform.OS === "ios" ? "height" : undefined}
+                    keyboardVerticalOffset={100}
+                >
+                    <Indicator title="Username" text='name' />
+                    {/* <Indicator title="Password" text='*****' /> */}
+                    <Indicator title="Genres" text='male' />
+                    <Indicator title="Age" text='18' />
+                    <Indicator title="Email" text='name@gmail.com' />
+                    <Indicator title="Number" text='0962542727' />
+                </KeyboardAvoidingView>
+
             </View>
-
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                style={{paddingHorizontal: 20}}>
-
-                <View style={{marginTop:'5%', alignItems:'center', position:'relative', paddingBottom: 10}}>
-                    <Image style={styles.userImage} source={require('../../../assets/images/userimage.jpg')} />
-                    <TouchableOpacity style={{position: 'absolute', bottom: 0 }}>
-                        <MaterialCommunityIcons style={styles.camera} name="camera-flip-outline" size={24} color="black" />
-                    </TouchableOpacity>
-                </View>
-
-                <View>
-                    {/* <Indicator title="name" /> */}
-                </View>
-
-            </ScrollView>
         </View>
     </SafeAreaView>
   )

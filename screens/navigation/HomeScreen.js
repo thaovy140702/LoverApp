@@ -11,7 +11,7 @@ const {width, height} = Dimensions.get('window')
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView style={{width, height, backgroundColor:'#f7f7f7'}}>
+    <SafeAreaView style={{width, height, backgroundColor:'white'}}>
       <View style={{flex:1}}>
         <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -22,11 +22,11 @@ const HomeScreen = () => {
             <View style={{flexDirection: 'row'}}>
               <Image source={require('../../assets/images/userimage.jpg')} style={styles.image}/>
               <View style={{marginStart: '8%'}}>
-                <Text style={MyStyles.text_md_bold}>Hi Lis,</Text>
                 <TouchableOpacity style={{flexDirection: 'row'}}>
                   <SimpleLineIcons style={{start:-2}} name="location-pin" size={15} color={colors.grey} />
                   <Text style={MyStyles.text_sm_grey}>Da Nang</Text>
                 </TouchableOpacity>
+                <Text style={MyStyles.text_md_bold}>Anna</Text>
               </View>
             </View>
             <TouchableOpacity>
@@ -81,13 +81,13 @@ const HomeScreen = () => {
               {usersData.map((item) => {
                 return(
                   <TouchableOpacity key={item.id} style={{marginBottom:'5%'}}>
-                      <View style={[styles.borderRetangle, {flexDirection:'row', borderRadius: 20}]}>
+                      <View style={styles.borderRetangle}>
                         <Image style={[styles.imageCircle, {marginEnd:'5%'}]} source={item.image} />
                         <View style={{justifyContent:'center'}}>
                           <Text style={MyStyles.text_md_bold}> {item.name} </Text>
                           <View style={{flexDirection: 'row'}}>
                             <SimpleLineIcons name="location-pin" size={15} color={colors.grey} />
-                            <Text style={MyStyles.text_sm_grey}> {item.address}</Text>
+                            <Text style={MyStyles.text_sm_grey} numberOfLines={1}> {item.address}</Text>
                           </View>
                           <View style={{flexDirection:'row'}}>
                             <Text style={MyStyles.text_sm}> $ {item.paymment} per hour</Text>
@@ -141,15 +141,18 @@ const styles = StyleSheet.create({
   borderRetangle:{
     width: '100%',
     height: 80,
+    flexDirection:'row',
     padding: 10,
     alignItems:'center',
     backgroundColor: 'white',
     shadowColor: 'rgba(0, 0, 0, 0.25)',
     shadowOffset: {
-      width:0,
+      width: 0,
       height:4
     },
-    shadowRadius: 6
+    shadowRadius: 50,
+    elevation:6, 
+    borderRadius: 20
   },
   imageNew:{
     width: 260,
