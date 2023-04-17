@@ -12,11 +12,11 @@ const Bubble = ({message, time}) => {
 
   return (
     <View style={{flex: 1}}>
-        < View style={styles.theirMessageStyle}>
-            <RegularText text={message} color={colors.textColorBlack} fontSize={13} />
+        < View style={[styles.messageStyle,{ maxWidth: 230, padding: 15}]}>
+            <RegularText text={message} color='white' fontSize={13} />
         </View>
             
-        <View style={{marginStart: 24}}>
+        <View style={{marginTop: 5, alignItems:'flex-start'}}>
             <RegularText text={time} color={colors.grey} fontSize={13}/>
         </View>
     </View>
@@ -26,36 +26,30 @@ const Bubble = ({message, time}) => {
 export default Bubble
 
 const styles = StyleSheet.create({
-    wrapperStyle: {
-        flexDirection: 'row',
-        justifyContent: 'center'
-    },
-    container: {
-        backgroundColor: 'white',
-        borderRadius: 6,
-        padding: 5,
-        marginBottom: 10,
-        borderColor: '#E2DACC',
-        borderWidth: 1
-    },
+    // wrapperStyle: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'center'
+    // },
+    // container: {
+    //     backgroundColor: 'white',
+    //     borderRadius: 6,
+    //     padding: 5,
+    //     marginBottom: 10,
+    //     borderColor: '#E2DACC',
+    //     borderWidth: 1
+    // },
     messageStyle: {
         backgroundColor: colors.lightPink,
-        marginStart: 24,
-        alignItems: 'center',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        borderBottomRightRadius: 20,
-        width: 235,
-        padding: 10
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomRightRadius: 15,
+        alignSelf:'flex-start'
     },
     theirMessageStyle: {
-        position: 'absolute',
-        maxWidth: 300,
         backgroundColor: 'rgba(207,159,255,0.1)',
-        padding: 15,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        borderBottomLeftRadius: 20,
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
         alignSelf: 'flex-end'
     }
 })

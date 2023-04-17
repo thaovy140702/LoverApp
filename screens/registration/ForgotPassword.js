@@ -10,17 +10,14 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import imageBackground from "../assets/images/test.png";
-import BigButton from "../components/button/BigButton";
-import Input from "../components/Input";
-import RegularText from "../components/text/RegularText";
-import Title from "../components/text/Title";
-import { validateInput } from "../utils/actions/formActions";
-import { reducer } from "../utils/reducers/formReducers";
+import imageBackground from "../../assets/images/test.png";
+import BigButton from "../../components/button/BigButton";
+import Input from "../../components/Input";
+import { validateInput } from "../../utils/actions/formActions";
+import { reducer } from "../../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
-import BoldText from "../components/text/BoldText";
-import colors from "../constants/colors";
-import MyStyles from "../constants/MyStyles";
+import colors from "../../constants/colors";
+import MyStyles from "../../constants/MyStyles";
 
 const { width, height } = Dimensions.get("window");
 

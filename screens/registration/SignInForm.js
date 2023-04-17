@@ -11,18 +11,16 @@ import {
   Platform,
   Dimensions,
 } from "react-native";
-import imageBackground from "../assets/images/test.png";
-import BigButton from "../components/button/BigButton";
-import BoldText from "../components/text/BoldText";
-import Input from "../components/Input";
-import RegularText from "../components/text/RegularText";
-import Title from "../components/text/Title";
-import Separator from "../components/Separator";
-import colors from "../constants/colors";
-import { validateInput } from "../utils/actions/formActions";
-import { reducer } from "../utils/reducers/formReducers";
+import imageBackground from "../../assets/images/test.png";
+import BigButton from "../../components/button/BigButton";
+import Input from "../../components/Input";
+import RegularText from "../../components/text/RegularText";
+import Separator from "../../components/Separator";
+import colors from "../../constants/colors";
+import { validateInput } from "../../utils/actions/formActions";
+import { reducer } from "../../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MyStyles from "../constants/MyStyles";
+import MyStyles from "../../constants/MyStyles";
 
 const { width, height } = Dimensions.get("window");
 

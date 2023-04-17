@@ -1,11 +1,11 @@
 import { View, Text, Dimensions, ScrollView, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import usersData from './data/usersData'
-import newsData from './data/newsData'
-import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-import colors from '../../constants/colors';
-import MyStyles from '../../constants/MyStyles';
+import usersData from '../data/usersData'
+import newsData from '../data/newsData'
+import { SimpleLineIcons, MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
+import colors from '../../../constants/colors';
+import MyStyles from '../../../constants/MyStyles'
 
 const {width, height} = Dimensions.get('window')
 
@@ -16,17 +16,17 @@ const HomeScreen = () => {
         <ScrollView 
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        style={{paddingHorizontal: 20}}>
+        style={{paddingStart: 20, backgroundColor:'rgba(255,255,255,50)'}}>
           {/* top  */}
-          <View style={{flexDirection: 'row', justifyContent:'space-between', marginTop:'8%'}}>
+          <View style={{flexDirection: 'row', justifyContent:'space-between', marginTop:'8%', marginEnd: 20}}>
             <View style={{flexDirection: 'row'}}>
-              <Image source={require('../../assets/images/userimage.jpg')} style={styles.image}/>
-              <View style={{marginStart: '8%'}}>
-                <TouchableOpacity style={{flexDirection: 'row'}}>
-                  <SimpleLineIcons style={{start:-2}} name="location-pin" size={15} color={colors.grey} />
-                  <Text style={MyStyles.text_sm_grey}>Da Nang</Text>
+              <Image source={require('../../../assets/images/userimage.jpg')} style={styles.image}/>
+              <View style={{flexDirection:'column', justifyContent:'flex-start', marginStart: '8%'}}>
+                <Text style={[MyStyles.text_md_bold,{marginStart:'5%'}]}>Anna</Text>
+                <TouchableOpacity style={{flexDirection: 'row', alignItems:'center'}}>
+                  <Entypo name="dot-single" style={{ margin:"-10%"}} size={24} color="green" />
+                  <Text style={MyStyles.text_sm_grey}>Active</Text>
                 </TouchableOpacity>
-                <Text style={MyStyles.text_md_bold}>Anna</Text>
               </View>
             </View>
             <TouchableOpacity>
@@ -77,7 +77,7 @@ const HomeScreen = () => {
 
           <View>
             <Text style={[MyStyles.text_xl,{marginTop:'5%'}]}>Near by</Text>
-            <View style={{marginTop: 20}}>
+            <View style={{marginTop: 20, marginEnd:20}}>
               {usersData.map((item) => {
                 return(
                   <TouchableOpacity key={item.id} style={{marginBottom:'5%'}}>
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 80,
     flexDirection:'row',
+    marginHorizontal: 3,
     padding: 10,
     alignItems:'center',
     backgroundColor: 'white',
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
       height:4
     },
     shadowRadius: 50,
-    elevation:6, 
+    elevation:10, 
     borderRadius: 20
   },
   imageNew:{

@@ -6,15 +6,17 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 
-import UserScheduleScreen from './UserScheduleScreen';
-import HomeScreen from './HomeScreen';
-import SearchScreen from './SearchScreen';
+import UserScheduleScreen from './booking/UserScheduleScreen';
+import HomeScreen from './home/HomeScreen';
+import SearchScreen from './firstPage/SearchScreen';
 import ChatListScreen from './chat/ChatListScreen';
 import ProfileScreen from './setting/ProfileScreen';
+import HomePartnerScreen from './home/HomePartnerScreen';
 
 
 const TabArr = [
-  { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
+  // { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
+  { route: 'Home', label: 'Home', component: HomePartnerScreen, iconName: 'home' },
   { route: 'Appointment', label: 'Appointment', component: UserScheduleScreen, iconName: 'clipboard'},
   { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'search' },
   { route: 'Chat', label: 'My Chat', component: ChatListScreen, iconName: 'message-square' },

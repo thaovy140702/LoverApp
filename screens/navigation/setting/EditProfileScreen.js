@@ -18,9 +18,9 @@ const EditProfileScreen = () => {
                 </TouchableOpacity>
             </View> */}
 
-            <View
-                // showsVerticalScrollIndicator={false}
-                // scrollEventThrottle={16}
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
                 style={{flex: 1,paddingHorizontal: 20}}>
 
                 <View style={{marginTop:'5%', alignItems:'center'}}>
@@ -48,15 +48,18 @@ const EditProfileScreen = () => {
                     behavior={Platform.OS === "ios" ? "height" : undefined}
                     keyboardVerticalOffset={100}
                 >
+                    <Indicator title="Describle" text='' />
                     <Indicator title="Username" text='name' />
                     {/* <Indicator title="Password" text='*****' /> */}
                     <Indicator title="Genres" text='male' />
                     <Indicator title="Age" text='18' />
                     <Indicator title="Email" text='name@gmail.com' />
-                    <Indicator title="Number" text='0962542727' />
+                    <Indicator title="Number" text='+84 962542727' />
                 </KeyboardAvoidingView>
 
-            </View>
+                
+
+            </ScrollView>
         </View>
     </SafeAreaView>
   )

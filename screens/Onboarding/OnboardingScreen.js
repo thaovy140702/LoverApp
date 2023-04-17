@@ -84,6 +84,7 @@ const OnboardingScreen = () => {
               data={dataSlide}
               horizontal
               pagingEnabled
+              // scrollEnabled={false}
               showsHorizontalScrollIndicator={false}
               bounces={false}
               onScroll={Animated.event(

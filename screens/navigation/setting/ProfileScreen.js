@@ -99,7 +99,7 @@ const ProfileScreen = () => {
           
           <BigButton style={{marginTop: '5%', width: '100%'}} text="Log out" />
 
-          <View style={{margin: '20%'}} />
+          <View style={{margin: '10%'}} />
           
 
         </ScrollView>

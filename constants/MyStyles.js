@@ -24,6 +24,14 @@ export default{
         flexDirection: 'row', 
         justifyContent: 'space-between'
     },
+    text_sx_bold:{
+        fontSize: 9,
+        fontFamily: 'bold'
+    },
+    text_sx:{
+        fontSize: 9,
+        fontFamily: 'regular'
+    },
     text_sm_grey:{
         fontSize: 12,
         color: colors.grey,

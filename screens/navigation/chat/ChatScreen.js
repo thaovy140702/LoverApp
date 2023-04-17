@@ -34,7 +34,7 @@ const ChatScreen = () => {
   );
 
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor: "white" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       {/* header start*/}
       <View style={styles.headerStyle}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -44,7 +44,7 @@ const ChatScreen = () => {
 
           <View style={{ marginTop: 15 }}>
             <RegularText
-              text="You have an appointment with Lis at 8:00AM"
+              text="You have an appointment with Lis at 8:00 AM"
               fontSize={12}
               color="#8A8A8E"
             />
@@ -85,44 +85,41 @@ const ChatScreen = () => {
       {/* header end */}
 
       {/* message start */}
-      <View style={{ flex: 1, padding: 20 }}>
+      <View style={{ flex: 0.65, padding: 20 }}>
         <Bubble message={message} time="6:00 AM" />
       </View>
 
       {/* message end */}
 
       <View style={styles.textInputMessage}>
-
-        <TouchableOpacity>
-          <Feather name="camera" size={20} color="black" />
-        </TouchableOpacity>
-
-        <KeyboardAvoidingView 
-        behavior={Platform.OS === "ios" ? "height" : undefined}
-        keyboardVerticalOffset={100}
-        style={{ flexDirection: "row", alignItems: "center", justifyContent:'center'}}>
-          {/* <Input 
-            placeHolder="Enter your message" 
-            borderColor={colors.lightPink}
-            onInputChanged={ () => {} } /> */}
-          <TextInput
-            placeholder="Enter your message"
-            selectionColor={colors.pink}
-            style={styles.tetxInput}
-          />
           <TouchableOpacity>
-            <Feather
-              name="smile"
-              size={20}
-              color="black"
-              style={{ position: "absolute", end: 10, top:-10 }}
-            />
+            <Feather name="camera" size={20} color="black" />
           </TouchableOpacity>
-        </KeyboardAvoidingView>
 
-        <TouchableOpacity>
-          <FontAwesome name="send" size={20} color={colors.pink} />
-        </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextInput
+              placeholder="Enter your message"
+              selectionColor={colors.pink}
+              style={styles.tetxInput}
+            />
+            <TouchableOpacity>
+              <Feather
+                name="smile"
+                size={20}
+                color="black"
+                style={{ position: "absolute", end: 10, top: -10 }}
+              />
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity>
+            <FontAwesome name="send" size={20} color={colors.pink} />
+          </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -132,8 +129,9 @@ export default ChatScreen;
 
 const styles = StyleSheet.create({
   headerStyle: {
-    flex: 0.3,
-    width: '100%',
+    flex: 0.2,
+    width: "100%",
+    height:300,
     backgroundColor: "rgba(255, 159, 159, 0.25)",
     borderBottomEndRadius: 30,
     borderBottomStartRadius: 30,
@@ -155,8 +153,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20,
     marginHorizontal: 5,
-    width: 26,
-    height: 26,
+    width: 30,
+    height: 30,
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
@@ -167,8 +165,10 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   textInputMessage: {
-    flex: 0.2,
-    width: '100%',
+    flex: 0.15,
+    backgroundColor: "white",
+    width: "100%",
+    height: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     flexDirection: "row",
@@ -176,21 +176,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "space-between",
-    shadowColor: colors.pink,
+    shadowColor: colors.darkPink,
     shadowOffset: {
       width: 0,
-      height: -1,
+      height: -4,
     },
-    // shadowRadius: 5,
+    shadowRadius: 5,
     // shadowOpacity: 0.25,
-    elevation: 3,
+    elevation: 10,
   },
   tetxInput: {
     position: "relative",
     width: "90%",
-    borderColor: colors.lightPink,
+    height: 50,
+    borderColor: colors.pink,
     borderRadius: 20,
     borderWidth: 1,
-    padding: 10
+    paddingStart: 10,
   },
 });

@@ -1,16 +1,16 @@
 import { Dimensions, FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import BackButton from '../../components/button/BackButton'
+import BackButton from '../../../components/button/BackButton'
 import { Feather } from '@expo/vector-icons';
-import BoldText from '../../components/text/BoldText'
-import Info from '../../components/Info';
-import UserImage from '../../components/UserImage';
-import MyStyles from '../../constants/MyStyles';
-import Rating from '../../components/Rating';
-import RegularText from '../../components/text/RegularText';
-import colors from '../../constants/colors';
-import LightText from '../../components/text/LightText';
-import Input from '../../components/Input';
+import BoldText from '../../../components/text/BoldText'
+import Info from '../../../components/Info';
+import UserImage from '../../../components/UserImage';
+import MyStyles from '../../../constants/MyStyles';
+import Rating from '../../../components/Rating';
+import RegularText from '../../../components/text/RegularText';
+import colors from '../../../constants/colors';
+import LightText from '../../../components/text/LightText';
+import Input from '../../../components/Input';
 
 
 const PartnerInfoScreen = () => {
