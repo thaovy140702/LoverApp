@@ -7,25 +7,24 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import BackButton from "../../components/button/BackButton";
+import BackButton from "../../../components/button/BackButton";
 import { Feather } from "@expo/vector-icons";
-import BoldText from "../../components/text/BoldText";
-import Info from "../../components/Info";
-import { UserImageCircle } from "../../components/UserImage";
-import Rating from "../../components/Rating";
-import RegularText from "../../components/text/RegularText";
-import colors from "../../constants/colors";
-import LightText from "../../components/text/LightText";
-import Input from "../../components/Input";
-import usersData from "./data/usersData";
-import Map from "../../components/Map";
-import Schedule from "../../components/Schedule";
-import ButtonIcon from "../../components/button/ButtonIcon";
+import BoldText from "../../../components/text/BoldText";
+import Info from "../../../components/Info";
+import { UserImageCircle } from "../../../components/UserImage";
+import Rating from "../../../components/Rating";
+import RegularText from "../../../components/text/RegularText";
+import colors from "../../../constants/colors";
+import LightText from "../../../components/text/LightText";
+import usersData from ".././data/usersData";
+import Map from "../../../components/Map";
+import Schedule from "../../../components/Schedule";
+import ButtonIcon from "../../../components/button/ButtonIcon";
 import { FontAwesome } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useState } from "react";
 import { BottomSheet } from 'react-native-btr';
-import BottomSheetMap from "../../components/BottomSheetMap";
+import BottomSheetMap from "../../../components/BottomSheetMap";
 
 
 

@@ -53,7 +53,7 @@ const NotificationScreen = () => {
   )
 
   return (
-    <SafeAreaView style={{ width, height, position:'absolute', top:0 }}>
+    <SafeAreaView style={{ width, height, backgroundColor:'white'}}>
 
       {/* header start */}
       <View style={{flexDirection: 'row'}}>

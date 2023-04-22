@@ -3,43 +3,24 @@ import * as Animatable from "react-native-animatable";
 import React, { useEffect, useRef } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
-import { Feather } from "@expo/vector-icons";
-import colors from "../../constants/colors";
-
-import UserScheduleScreen from "./UserScheduleScreen";
-import HomeScreen from "./HomeScreen";
-import SearchScreen from "./SearchScreen";
-import ChatListScreen from "./chat/ChatListScreen";
-import ProfileScreen from "./setting/ProfileScreen";
+import { Feather } from '@expo/vector-icons';
+import colors from '../../constants/colors';
+import SearchScreen from './firstPage/SearchScreen';
+import ChatListScreen from './chat/ChatListScreen';
+import ProfileScreen from './setting/ProfileScreen';
+import HomeScreen from '../../screens/navigation/home/HomeScreen'
+import UserScheduleScreen from "../../screens/navigation/booking/UserScheduleScreen";
+// import HomeScreen from "../navigation/home/HomeScreen";
 import { useDispatch, useSelector } from "react-redux";
-import { getRefreshToken, updateData } from "../../utils/actions/refreshAction";
+import { getRefreshToken } from "../../utils/actions/refreshAction";
 
 const TabArr = [
-  { route: "Home", label: "Home", component: HomeScreen, iconName: "home" },
-  {
-    route: "Appointment",
-    label: "Appointment",
-    component: UserScheduleScreen,
-    iconName: "clipboard",
-  },
-  {
-    route: "Search",
-    label: "Search",
-    component: SearchScreen,
-    iconName: "search",
-  },
-  {
-    route: "Chat",
-    label: "My Chat",
-    component: ChatListScreen,
-    iconName: "message-square",
-  },
-  {
-    route: "Profile",
-    label: "My profile",
-    component: ProfileScreen,
-    iconName: "user",
-  },
+  { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
+  // { route: 'Home', label: 'Home', component: HomePartnerScreen, iconName: 'home' },
+  { route: 'Appointment', label: 'Appointment', component: UserScheduleScreen, iconName: 'clipboard'},
+  { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'search' },
+  { route: 'Chat', label: 'My Chat', component: ChatListScreen, iconName: 'message-square' },
+  { route: 'Profile', label: 'My profile', component: ProfileScreen, iconName: 'user' },
 ];
 
 const Tab = createBottomTabNavigator();

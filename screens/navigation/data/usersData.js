@@ -14,7 +14,56 @@ export default [
         paymment: 20,
         character: ['cheerful', 'exciting'],
         appearance: ['tall', 'thin'],
-        feedback: "You are awesome :>>>"
+        feedback: "You are awesome :>>>",
+        locationSetting: [
+            {
+                id:1,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: true,
+            },
+            {
+                id:2,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+            {
+                id:3,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+        ],
+        card:[
+            {
+                id:1,
+                bank: 'MB Bank',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NGUYEN VO HOANG',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:2,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:3,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+        ]
     },
     {
         id: 2,
@@ -31,7 +80,56 @@ export default [
         paymment: 20,
         character: ['cheerful', 'exciting'],
         appearance: ['tall', 'thin'],
-        feedback: "You are awesome :>>>"
+        feedback: "You are awesome :>>>",
+        locationSetting: [
+            {
+                id:1,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: true,
+            },
+            {
+                id:2,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+            {
+                id:3,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+        ],
+        card:[
+            {
+                id:1,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:2,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:3,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+        ]
     },
     {
         id: 3,
@@ -48,7 +146,56 @@ export default [
         paymment: 20,
         character: ['cheerful', 'exciting'],
         appearance: ['tall', 'thin'],
-        feedback: "You are awesome :>>>"
+        feedback: "You are awesome :>>>",
+        locationSetting: [
+            {
+                id:1,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: true,
+            },
+            {
+                id:2,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+            {
+                id:3,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+        ],
+        card:[
+            {
+                id:1,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:2,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:3,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+        ]
     },
     {
         id: 4,
@@ -65,7 +212,56 @@ export default [
         paymment: 20,
         character: ['cheerful',' exciting'],
         appearance: ['tall', 'thin'],
-        feedback: "You are awesome :>>>"
+        feedback: "You are awesome :>>>",
+        locationSetting: [
+            {
+                id:1,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: true,
+            },
+            {
+                id:2,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+            {
+                id:3,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+        ],
+        card:[
+            {
+                id:1,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:2,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:3,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+        ]
     },
     {
         id: 5,
@@ -82,6 +278,55 @@ export default [
         paymment: 20,
         character: ['cheerful',' exciting'],
         appearance: ['tall', 'thin'],
-        feedback: "You are awesome :>>>"
+        feedback: "You are awesome :>>>",
+        locationSetting: [
+            {
+                id:1,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: true,
+            },
+            {
+                id:2,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+            {
+                id:3,
+                name: 'Username',
+                number: '0946476414',
+                address: 'Da Nang',
+                setDefault: false,
+            },
+        ],
+        card:[
+            {
+                id:1,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:2,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+            {
+                id:3,
+                bank: 'bidv',
+                numberCard: 'xxxx-xxxx-xxxx-xxxx',
+                name: 'NAME',
+                validDate: '17/02',
+                cvv:'***'
+            },
+        ]
     },
 ]

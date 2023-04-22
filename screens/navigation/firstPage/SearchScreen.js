@@ -1,13 +1,13 @@
 import {Button, Dimensions, FlatList, StyleSheet, TextInput, Image, View, TouchableOpacity} from "react-native";
 import React, { useEffect, useState } from "react";
-import RegularText from "../../components/text/RegularText";
-import BoldText from "../../components/text/BoldText";
+import RegularText from "../../../components/text/RegularText";
+import BoldText from "../../../components/text/BoldText";
 import { Feather, FontAwesome  } from "@expo/vector-icons";
-import colors from "../../constants/colors";
+import colors from "../../../constants/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Info from "../../components/Info";
-import usersData from "./data/usersData";
-import { getAllPartners } from "../../utils/actions/partnerAction";
+import Info from "../../../components/Info";
+import usersData from ".././data/usersData";
+import { getAllPartners } from "../../../utils/actions/partnerAction";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -16,7 +16,7 @@ const ratingOptions = [1, 2, 3, 4, 5];
 
 const searchItemData = [
   { id: 1, filter: "Da Nang" },
-  { id: 2, filter: "HCM" },
+  { id: 2, filter: "Ho Chi Minh" },
   { id: 3, filter: "Da Nang" },
   { id: 4, filter: "Da Nang" },
   { id: 5, filter: "Da Nang" },
@@ -128,13 +128,14 @@ const SearchScreen = () => {
               <TouchableOpacity
                 onPress={() => onSelect(item, index)}
                 style={[styles.searchItem,{ 
-                  backgroundColor: item.selected
+                    backgroundColor: item.selected
                         ? "rgba(255, 159, 159, 0.2)"
                         : "white",
+                    paddingEnd: item.selected? 10 : 0,
                   }]}>
                 <RegularText text={item.filter} color={colors.pink}/>
                 {item.selected &&
-                <Feather style={{marginLeft: 5}} name="x-circle" size={16} color="white" />
+                  <AntDesign style={{position:'absolute', end: 5}} name="closecircle" size={16} color="white" />
                 }
                 </TouchableOpacity>
             );
@@ -165,7 +166,7 @@ const SearchScreen = () => {
           />
         </View>
 
-        <TouchableOpacity style={{flex: 0.5, alignItems: 'center'}}>
+        <TouchableOpacity style={{flex: 0.2, alignItems: 'center'}}>
           <BoldText text="Have it later" color={colors.pink} textDecorationLine='underline'/>
         </TouchableOpacity> 
       </View>
@@ -206,7 +207,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingStart: 65,
     backgroundColor: 'white',
-    borderColor: 'white',
+    borderColor: 'pink',
     color: colors.textColorBlack,
     fontFamily: "medium",
   },

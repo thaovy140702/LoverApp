@@ -11,8 +11,14 @@ const Bubble = ({message, time}) => {
     // const bgColor = props.disabled ? disabledBgColor : enabledBgColor;
 
   return (
-    <View style={{backgroundColor: 'pink'}}>
-        <RegularText text="Hi, I am Lisa" fontSize={12}/>
+    <View style={{flex: 1}}>
+        < View style={[styles.messageStyle,{ maxWidth: 230, padding: 15}]}>
+            <RegularText text={message} color='white' fontSize={13} />
+        </View>
+            
+        <View style={{marginTop: 5, alignItems:'flex-start'}}>
+            <RegularText text={time} color={colors.grey} fontSize={13}/>
+        </View>
     </View>
   )
 }
@@ -20,5 +26,30 @@ const Bubble = ({message, time}) => {
 export default Bubble
 
 const styles = StyleSheet.create({
-    
+    // wrapperStyle: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'center'
+    // },
+    // container: {
+    //     backgroundColor: 'white',
+    //     borderRadius: 6,
+    //     padding: 5,
+    //     marginBottom: 10,
+    //     borderColor: '#E2DACC',
+    //     borderWidth: 1
+    // },
+    messageStyle: {
+        backgroundColor: colors.lightPink,
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomRightRadius: 15,
+        alignSelf:'flex-start'
+    },
+    theirMessageStyle: {
+        backgroundColor: 'rgba(207,159,255,0.1)',
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        alignSelf: 'flex-end'
+    }
 })

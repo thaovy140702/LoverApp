@@ -2,13 +2,12 @@ import { Platform, SafeAreaView, StyleSheet, TouchableOpacity, View } from 'reac
 import React, { useState } from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Feather } from '@expo/vector-icons';
-import BoldText from '../../components/text/BoldText';
-import colors from '../../constants/colors';
-import RegularText from '../../components/text/RegularText';
+import BoldText from '../../../components/text/BoldText';
+import colors from '../../../constants/colors';
+import RegularText from '../../../components/text/RegularText';
 import { useNavigation } from '@react-navigation/native';
-import { UserImageSquare } from '../../components/UserImage';
-import { CanceledButton } from '../../components/button/TinyButton';
-
+import { UserImageSquare } from '../../../components/UserImage';
+import { CanceledButton } from '../../../components/button/TinyButton';
 
 const UserScheduleScreen = () => {
 

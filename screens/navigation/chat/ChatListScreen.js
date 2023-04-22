@@ -104,7 +104,7 @@ const ChatListScreen = () => {
       <View style={styles.content}>
         <HeaderTitle text={name} fontSize={16} />
         <View style={MyStyles.flexDirection}>
-          <RegularText text={lastMessage} color={colors.grey} />
+          <RegularText text={lastMessage} color={colors.grey}/>
           <RegularText text={time} color={colors.grey} />
         </View>
       </View>
@@ -113,7 +113,7 @@ const ChatListScreen = () => {
   )
   
   return (
-    <SafeAreaView style={{ width, height, backgroundColor:'#f7f7f7' }}>
+    <SafeAreaView style={{ width, height, backgroundColor:'white' }}>
       <View style={{flex:1}}>
         <View style={styles.headerTitle}>
           <HeaderTitle text="Message" fontSize={20} />
@@ -176,19 +176,26 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems:'center',
     marginVertical: "2%",
+    marginHorizontal: 20,
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowRadius: 50,
+    elevation: 6, 
+    borderRadius: 20
   },
   iconSearch: {
-    start: -10,
+    start: 0,
     position: "absolute",
     backgroundColor: 'rgba(255, 159, 159, 1)',
     borderRadius: 20,
     padding: 16,
-    // width: 50,
-    // height: 50,
   },
   textInputSearch: {
     height: 50,
-    width: "85%",
+    width: "100%",
     borderWidth: 1,
     borderRadius: 20,
     paddingStart: 65,

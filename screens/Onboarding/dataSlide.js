@@ -1,17 +1,24 @@
 import { Animated, Dimensions, Text, View, FlatList, TouchableOpacity } from "react-native";
 import React, {useState} from "react";
+import {maleIcon, femaleIcon} from "../../constants/Icon"
 import colors from "../../constants/colors";
 
 const { width, height } = Dimensions.get("window");
 
-const currentAge = [];
-for (var i = 18; i < 100; i++) {
-  currentAge.push(
-    <View>
-      <Text style={{ fontSize: 40, fontWeight: "bold" }}>{i}</Text>
-    </View>
-  );
-}
+// const currentAge = [];
+// for (var i = 18; i < 100; i++) {
+//   currentAge.push(
+//     <View>
+//       <Text style={{ fontSize: 40, fontWeight: "bold" }}>{i}</Text>
+//     </View>
+//   );
+// }
+
+const wA = Dimensions.get('screen').width
+const hA = Dimensions.get('screen').height
+const mg = 10*2
+
+const currentAge = [...Array(83).keys()].map(i => ({ key: `${i}`, value: i + 18 }));
 
 const AgePage = () => {
   const scrollY = React.useRef(new Animated.Value(0)).current;
@@ -19,7 +26,7 @@ const AgePage = () => {
 
   return (
     <Animated.FlatList
-      // style={{ width: "100%" }}
+      style={{ width: wA, height:hA}}
       showsVerticalScrollIndicator={false}
       data={currentAge}
       bounces={false}
@@ -29,18 +36,19 @@ const AgePage = () => {
       )}
       renderToHardwareTextureAndroid
       contentContainerStyle={{
-        paddingTop: 200 / 2 - 40,
-        // paddingBottom: height / 2 - 20 ,
-        padding: 20,
+        // paddingTop: hA / 2 - 20,
+        // paddingBottom: hA / 2 - 20 ,
+        // padding: 20,
+        paddingVertical: hA/2 - 20,
         alignItems: "center",
       }}
       decelerationRate={0}
       scrollEventThrottle={16}
       renderItem={({ item, index }) => {
         const inputRange = [
-          (index - 1) * (77 + 0.8),
-          index * (77 + 0.8),
-          (index + 1) * (77 + 0.8),
+          (index - 1) * (60),
+          index * (60),
+          (index + 1) * (60),
         ];
 
         const scale = scrollY.interpolate({
@@ -50,18 +58,16 @@ const AgePage = () => {
         });
         const opacity = scrollY.interpolate({
           inputRange,
-          outputRange: [0.4, 1, 0.4],
+          outputRange: [0.2, 1, 0.2],
           // extrapolate: 'clamp',
         });
         return (
           <Animated.View style={{ opacity, transform: [{ scale }] }}>
-            <Text style={{ marginVertical: "5%" }}>{item}</Text>
+            <Text style={{ marginVertical: 10, fontSize: 40, fontWeight: "bold" }}>{item.value}</Text>
           </Animated.View>
         );
       }}
-      // keyExtractor={(item, index) => index.toString()}
-      // keyExtractor={(item) => item}
-      //  {...{ onScroll }}
+      keyExtractor={item => item.key.toString()}
     />
   );
 };
@@ -69,10 +75,12 @@ const AgePage = () => {
 const dataGenres = [
   {
     id: 1,
+    icon: maleIcon,
     genres: "male",
   },
   {
     id: 2,
+    icon: femaleIcon,
     genres: "female",
   },
 ];

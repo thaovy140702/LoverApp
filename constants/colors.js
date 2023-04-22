@@ -3,6 +3,7 @@ export default {
     pink: "#E97777",
     lightPink: "#FF9F9F",
     darkPink: "#FF6984",
+    pink_20:'rgba(255, 159, 159, 0.2)',
 
     // yellow
     yellow: "#FCDDB0",

@@ -15,17 +15,17 @@ import React, {
     Dimensions,
     ActivityIndicator,
   } from "react-native";
-  import imageBackground from "../assets/images/test.png";
-  import BigButton from "../components/button/BigButton";
-  import Input from "../components/Input";
-  import colors from "../constants/colors";
-  import { validateInput } from "../utils/actions/formActions";
-  import { reducer } from "../utils/reducers/formReducers";
+  import imageBackground from "../../assets/images/test.png";
+  import BigButton from "../../components/button/BigButton";
+  import Input from "../../components/Input";
+  import colors from "../../constants/colors";
+  import { validateInput } from "../../utils/actions/formActions";
+  import { reducer } from "../../utils/reducers/formReducers";
   import { SafeAreaView } from "react-native-safe-area-context";
-  import MyStyles from "../constants/MyStyles";
+  import MyStyles from "../../constants/MyStyles";
   import { useDispatch, useSelector } from "react-redux";
   import { Feather } from "@expo/vector-icons";
-import { enterNewPassword } from "../utils/actions/otherActions";
+import { enterNewPassword } from "../../utils/actions/otherActions";
   
   const { width, height } = Dimensions.get("window");
   

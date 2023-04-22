@@ -24,6 +24,14 @@ export default{
         flexDirection: 'row', 
         justifyContent: 'space-between'
     },
+    text_sx_bold:{
+        fontSize: 9,
+        fontFamily: 'bold'
+    },
+    text_sx:{
+        fontSize: 9,
+        fontFamily: 'regular'
+    },
     text_sm_grey:{
         fontSize: 12,
         color: colors.grey,
@@ -49,8 +57,18 @@ export default{
         color: 'black',
         fontFamily: 'bold'
     },
+    text_md_grey:{
+        fontSize: 14,
+        color: colors.grey,
+        fontFamily: 'light'
+    },
     text_xl:{
         fontSize: 16,
+        color: 'black',
+        fontFamily: 'bold'        
+    },
+    text_xxl:{
+        fontSize: 20,
         color: 'black',
         fontFamily: 'bold'        
     },

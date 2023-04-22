@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../utils/actions/logoutAction";
 
 const { width, height } = Dimensions.get("window");
+
 const profile = [
   {
     idAcc: 1,
@@ -42,34 +43,28 @@ const profile = [
 
 const setting = [
   {
-    idSetting: 3,
-    iconSetting: (
-      <MaterialIcons name="location-pin" size={24} color={colors.grey} />
-    ),
-    setting: "Location",
-    page: "",
+    idSetting:3,
+    iconSetting: <MaterialIcons name="location-pin" size={24} color={colors.grey} />,
+    setting: 'Location',
+    page: 'SettingLocation'
   },
   {
     idSetting: 4,
     iconSetting: <Entypo name="wallet" size={24} color={colors.grey} />,
-    setting: "Payment",
-    page: "",
+    setting: 'Payment',
+    page: 'SettingPayment'
   },
   {
-    idSetting: 5,
-    iconSetting: (
-      <MaterialCommunityIcons name="bell-ring" size={24} color={colors.grey} />
-    ),
-    setting: "Notification",
-    page: "NotificationScreen",
+    idSetting:5,
+    iconSetting: <MaterialCommunityIcons name="bell-ring" size={24} color={colors.grey} />,
+    setting: 'Notification',
+    page: 'NotificationScreen'
   },
   {
-    idSetting: 6,
-    iconSetting: (
-      <MaterialCommunityIcons name="translate" size={24} color={colors.grey} />
-    ),
-    setting: "Language",
-    page: "",
+    idSetting:6,
+    iconSetting: <MaterialCommunityIcons name="translate" size={24} color={colors.grey} />,
+    setting: 'Language',
+    page: 'SettingLanguage'
   },
 ];
 
@@ -84,8 +79,8 @@ const ProfileScreen = () => {
   }
 
   return (
-    <SafeAreaView style={{ width, height, backgroundColor: "#f7f7f7" }}>
-      <View style={{ flex: 1 }}>
+    <SafeAreaView style={{width, height, backgroundColor:'white'}}>
+      <View style={{flex:1}}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
@@ -101,21 +96,17 @@ const ProfileScreen = () => {
           </View>
 
           <View>
-            <Text style={[MyStyles.text_sm_grey, { marginTop: "5%" }]}>
-              ACCOUNT
-            </Text>
-            {profile.map((item) => {
-              return (
-                <TouchableOpacity
-                  key={item.idAcc}
-                  onPress={() => navigation.navigate(item.page)}
-                  style={styles.setting}
-                >
-                  <Text style={MyStyles.text_md}>{item.account}</Text>
-                  <View>{item.iconAcc}</View>
-                </TouchableOpacity>
-              );
-            })}
+            <Text style={[MyStyles.text_sm_grey,{marginTop:'5%'}]}>ACCOUNT</Text>
+            {
+              profile.map((item) => {
+                return(
+                  <TouchableOpacity key={item.idAcc} onPress={() => navigation.navigate(item.page)} style={styles.setting}>
+                    <Text style={MyStyles.text_md}>{item.account}</Text>
+                    <View>{item.iconAcc}</View>
+                  </TouchableOpacity>
+                )
+              })
+            }
           </View>
 
           <View>
@@ -165,5 +156,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 15,
     borderRadius: 10,
-  },
-});
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    shadowOffset: {
+      width: 0,
+      height:4
+    },
+    shadowRadius: 50,
+    elevation:6
+  }
+})
