@@ -1,5 +1,5 @@
 import {Button, Dimensions, FlatList, StyleSheet, TextInput, Image, View, TouchableOpacity} from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegularText from "../../components/text/RegularText";
 import BoldText from "../../components/text/BoldText";
 import { Feather, FontAwesome  } from "@expo/vector-icons";
@@ -7,6 +7,8 @@ import colors from "../../constants/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Info from "../../components/Info";
 import usersData from "./data/usersData";
+import { getAllPartners } from "../../utils/actions/partnerAction";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const { width, height } = Dimensions.get("screen");
@@ -80,8 +82,18 @@ const SearchScreen = () => {
     })
     setFilter(newArrFilter);
   }
-  
+
+  const dispatch = useDispatch()
+
+  const {partners, error} = useSelector(state=>state.partner)
+  console.log(partners,error)
+
+  useEffect(() => {
+    dispatch(getAllPartners())
+  }, [dispatch])
+
   return (
+    
     <SafeAreaView style={{ width, height, backgroundColor:'#f7f7f7'}}>
       <View style={{flex:1, paddingHorizontal:20}}>
         {/* <View style={styles.headerTitle}>
@@ -135,16 +147,16 @@ const SearchScreen = () => {
           <FlatList
             horizontal
             // style={{flex: 1}}
-            data={usersData}
+            data={partners}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
               <UserItem
                 name={item.name}
                 image={item.image}
                 rate={item.rate}
-                price={item.paymment}
+                price={item.rent_cost}
                 age={item.age}
-                gender={item.genres}
+                gender={item.gender}
                 weight={item.weight}
                 height={item.height}
               />

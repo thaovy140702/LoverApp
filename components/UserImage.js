@@ -1,31 +1,32 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 import React from 'react'
 import colors from '../constants/colors'
 
 
-const UserImage = props => {
+const UserImageSquare = (props) => {
   return (
-    <View style={[styles.imageContainer, {width: props.widthContainer, height: props.heightContainer}]}>
-        <Image source={{ uri: props.image }} 
-        style={[
-          styles.userImage, 
-          {height: props.height, width: props.width}
-          ]} />
-      </View>
+    <View style={styles.imageSquareContainer}>
+        <Image source={{ uri: props.image }} style={styles.userSquareImage} />
+    </View>
   )
 }
 
-export default UserImage
+
+const UserImageCircle = (props) => {
+  return (
+    <View style={[styles.imageCircleContainer, {width: props.widthContainer, height: props.heightContainer}]}>
+        <Image source={{ uri: props.image }} style={[styles.userCircleImage, {width: props.width, height: props.height}]} />
+    </View>
+  )
+}
+
+export {UserImageSquare, UserImageCircle}
 
 const styles = StyleSheet.create({
-  userImage: {
-    borderRadius: 40,
-  },
-  imageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: 'rgba(255, 159, 159, 0.2)',
-    borderRadius: 50,
+  userSquareImage: {
+    height: 70,
+    width: 70,
+    borderRadius: 20,
     overlayColor: "40%",
     shadowColor: colors.grey,
     shadowOffset: {
@@ -36,23 +37,26 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 3,
   },
-  // shadow1: {
-  //   shadowColor: colors.grey,
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 4
-  //   },
-  //   shadowRadius: 20,
-  //   shadowOpacity: 0.25,
-  //   elevation: 3,
-  // },
-  // shadow2: {
-  //   shadowProp: {
-  //     shadowColor: '#171717',
-  //     shadowOffset: {width: 0, height: 4},
-  //     shadowOpacity: 0.2,
-  //     shadowRadius: 3
-  //   },
-  //   elevation: 10
-  // }
+  imageSquareContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: 'rgba(255, 159, 159, 0.2)',
+    borderRadius: 50,
+    overlayColor: "40%",
+    width: 70,
+    height: 70,
+    overlayColor: "40%"
+  },
+  userCircleImage: {
+    width: 70,
+    height: 70,
+    borderRadius: 50,
+  },
+  imageCircleContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.lightGrey,
+    borderRadius: 50,
+    overlayColor: "40%"
+  },
 })

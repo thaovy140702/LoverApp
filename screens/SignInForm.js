@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useLayoutEffect } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
@@ -6,27 +6,33 @@ import {
   TouchableOpacity,
   View,
   Text,
-  ScrollView,
   KeyboardAvoidingView,
   Platform,
   Dimensions,
+  ActivityIndicator,
 } from "react-native";
 import imageBackground from "../assets/images/test.png";
 import BigButton from "../components/button/BigButton";
-import BoldText from "../components/text/BoldText";
 import Input from "../components/Input";
 import RegularText from "../components/text/RegularText";
-import Title from "../components/text/Title";
 import Separator from "../components/Separator";
 import colors from "../constants/colors";
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MyStyles from "../constants/MyStyles";
+import { useDispatch } from "react-redux";
+import { login } from "../utils/actions/userAction";
+import { Feather } from '@expo/vector-icons';
+import { useMessageAndErrorUser } from "../utils/hooks";
 
 const { width, height } = Dimensions.get("window");
 
 const initialState = {
+  inputValues: {
+    email: "",
+    password: "",
+  },
   inputValidities: {
     username: false,
     password: false,
@@ -35,14 +41,28 @@ const initialState = {
 };
 
 const SignInForm = () => {
-  const navigation = useNavigation();
 
+  // const [username, setUsername] = useState("")
+  // const [password, setPassword] = useState("")
+  
+  const [isSecureEntry, setIsSecureEntry] = useState(true)
+
+  const dispatch = useDispatch()
+  const navigation = useNavigation();
+  const loading = useMessageAndErrorUser(navigation, dispatch, "Navigation")
+
+  
+  const submitHandler = () => {
+    dispatch(login(formState.inputValues.username, formState.inputValues.password))
+
+  }
+  
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
 
   const inputChangedHandler = useCallback(
     (inputId, inputValue) => {
       const result = validateInput(inputId, inputValue);
-      dispatchFormState({ inputId, validationResult: result });
+      dispatchFormState({ inputId, validationResult: result, inputValue });
     },
     [dispatchFormState]
   );
@@ -83,15 +103,28 @@ const SignInForm = () => {
                 onInputChanged={inputChangedHandler}
                 borderColor={colors.lightGrey}
                 errorText={formState.inputValidities["username"]}
+                initialValue={formState.inputValues.username}
               />
-              <Input
-                id="password"
-                placeholder="Password"
-                secureTextEntry={true}
-                borderColor={colors.lightGrey}
-                onInputChanged={inputChangedHandler}
-                errorText={formState.inputValidities["password"]}
-              />
+              <View>
+                <View>
+                <Input
+                  id="password"
+                  placeholder="Password"
+                  secureTextEntry={isSecureEntry}
+                  borderColor={colors.lightGrey}
+                  onInputChanged={inputChangedHandler}
+                  initialValue={formState.inputValues.username}
+                  errorText={formState.inputValidities["password"]}
+                />
+                </View>
+                <TouchableOpacity 
+                  style={styles.iconHide}
+                  onPress={() => setIsSecureEntry((prev => !prev))}>
+                  <Feather name={isSecureEntry ? "eye" : "eye-off"} size={20} color={colors.grey} />
+                </TouchableOpacity>
+
+              </View>
+                      
 
               <TouchableOpacity
                 onPress={() => {
@@ -115,15 +148,17 @@ const SignInForm = () => {
               alignSelf: "center",
             }}
           >
-            <View style={styles.button}>
+           { loading ?
+           <ActivityIndicator size='large' color={colors.pink} style={{marginTop: 20}}/> :
+           <View style={styles.button}>
               <BigButton
                 text="Get Started"
                 disabled={!formState.formIsValid}
                 onPress={() => {
-                  navigation.navigate("Onboarding");
+                  submitHandler()
                 }}
               />
-            </View>
+            </View>}
 
             <View style={styles.separator}>
               {/* <BoldText text="Didn't have an account?" /> */}
@@ -187,6 +222,11 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     flexDirection: "row-reverse",
   },
+  iconHide: {
+    position: 'absolute', 
+    marginTop: 35, 
+    marginStart: 260
+  }
 });
 
 export default SignInForm;

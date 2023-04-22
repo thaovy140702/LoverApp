@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import colors from '../constants/colors';
 
-const Map = () => {
+const BottomSheetMap = () => {
     const [pin, setPin] = useState({
         latitude: 37.78825,
         longitude: -122.4324,
@@ -14,30 +14,29 @@ const Map = () => {
       longitude: -122.4324,
   })
   return (
-    <View style={{ height: 120, width: 150}}>
+    <View style={{ width: 350}}>
       <GooglePlacesAutocomplete
-        // placeholder='Enter your location'
+        placeholder='Enter your location'
         fetchDetails={true}
-        // GooglePlacesSearchQuery={{
-        //   rankby: "distance"
-        // }}
+        GooglePlacesSearchQuery={{
+          rankby: "distance"
+        }}
         onPress={(data, details = null) => {
           console.log(data, details)
         }}
         query={{
-          key: 'AIzaSyDWisMZFr8yJ657ijvtNg8Seo-bPljFn9Y',
+          key: 'AIzaSyCY7fGSAA46fNk8qXgmb4i_8bGQVKbr6XA',
           language: 'en',
           components: "country:us",
           type: "establishment",
           radius: 30000,
           location: `${region.latitude}, ${region.longitude}`
         }}
-        // styles={{
-        //   container: {flex: 0, position: 'absolute', width: '100%', zIndex: 1},
-        //   listView: { backgroundColor: 'white'},
-        //   textInput: { fontFamily: 'regular', borderWidth: 2, borderColor: colors.lightPink},
-        // }} 
-        />
+        styles={{
+          container: {flex: 0, position: 'absolute', width: '100%', zIndex: 1},
+          listView: { backgroundColor: 'white'},
+          textInput: { fontFamily: 'regular', borderWidth: 2, borderColor: colors.lightPink},
+        }} />
 
       <MapView 
         style={styles.map}
@@ -79,7 +78,7 @@ const Map = () => {
   )
 }
 
-export default Map
+export default BottomSheetMap
 
 const styles = StyleSheet.create({
     container: {

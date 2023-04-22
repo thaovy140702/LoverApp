@@ -1,22 +1,20 @@
 import {
   Dimensions,
   FlatList,
-  Image,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
-import HeaderTitle from "../../../components/text/HeaderTitle";
+import HeaderTitle from '../../../components/text/HeaderTitle'
 import RegularText from "../../../components/text/RegularText";
 import { Feather } from "@expo/vector-icons";
 import colors from "../../../constants/colors";
 import MyStyles from "../../../constants/MyStyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-// import ChatScreen from "./ChatScreen";
-import UserImage from "../../../components/UserImage";
+import { UserImageCircle } from "../../../components/UserImage";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -88,18 +86,20 @@ const DATA = [
   },
 ];
 
-const ChatListScreen = () => {
 
+
+const ChatListScreen = () => {
+  
   const navigation = useNavigation();
 
   // user item
   const Item = ({ image, name, lastMessage, time }) => (
   
-    <TouchableOpacity 
+    <TouchableOpacity
       onPress={() => navigation.navigate('ChatScreen')}
       style={styles.item}>
       
-      <UserImage height={60} width={60} image={image} widthContainer={70} heightContainer={70}/>
+      <UserImageCircle height={60} width={60} image={image} widthContainer={70} heightContainer={70}/>
   
       <View style={styles.content}>
         <HeaderTitle text={name} fontSize={16} />
@@ -110,13 +110,13 @@ const ChatListScreen = () => {
       </View>
     </TouchableOpacity>
   
-  );
+  )
   
   return (
     <SafeAreaView style={{ width, height, backgroundColor:'#f7f7f7' }}>
       <View style={{flex:1}}>
         <View style={styles.headerTitle}>
-          <HeaderTitle text="Contact" fontSize={20} />
+          <HeaderTitle text="Message" fontSize={20} />
           <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
               <Feather name="bell" size={24} color="black" />
           </TouchableOpacity>

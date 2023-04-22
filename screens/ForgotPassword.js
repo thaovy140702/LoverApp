@@ -1,99 +1,134 @@
-import React, { useCallback, useReducer, useLayoutEffect } from "react";
+import React, { useCallback, useReducer } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   ImageBackground,
+  TouchableOpacity,
   View,
   Text,
   KeyboardAvoidingView,
   Platform,
-  TouchableOpacity,
   Dimensions,
+  ActivityIndicator,
 } from "react-native";
 import imageBackground from "../assets/images/test.png";
 import BigButton from "../components/button/BigButton";
 import Input from "../components/Input";
-import RegularText from "../components/text/RegularText";
-import Title from "../components/text/Title";
+import colors from "../constants/colors";
 import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
-import BoldText from "../components/text/BoldText";
-import colors from "../constants/colors";
 import MyStyles from "../constants/MyStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { useMessageAndErrorUser } from "../utils/hooks";
+import { resetPassword } from "../utils/actions/otherActions";
 
 const { width, height } = Dimensions.get("window");
 
 const initialState = {
+  inputValues: {
+    email: ""
+  },
   inputValidities: {
-    email: false,
+    email: false
   },
   formIsValid: false,
 };
 
 const ForgotPassword = () => {
-  const navigation = useNavigation();
 
+
+  const dispatch = useDispatch()
+  const navigation = useNavigation();
+  
+  
+  const submitHandler = () => {
+    console.log(formState.inputValues.email)
+    dispatch(resetPassword(formState.inputValues.email))
+    navigation.navigate("ForgotPassEnterCode")
+  }
+  const {loading, message} = useSelector((state) => state.other)
+    console.log(message)
+    
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
 
   const inputChangedHandler = useCallback(
     (inputId, inputValue) => {
       const result = validateInput(inputId, inputValue);
-      dispatchFormState({ inputId, validationResult: result });
+      dispatchFormState({ inputId, validationResult: result, inputValue });
     },
     [dispatchFormState]
   );
 
   return (
     <ImageBackground source={imageBackground} style={styles.image}>
-      <SafeAreaView style={{ width, height}}>
+      <SafeAreaView style={{ width, height }}>
         <KeyboardAvoidingView
-          style={{ flex: 1}}
+          style={{ flex: 1 }}
           behavior={Platform.OS === "ios" ? "height" : undefined}
           keyboardVerticalOffset={100}
         >
-            <View style={{flex:.3}}>
-          <Text style={[MyStyles.text_lg, { marginStart: "8%", top: 8 }]}>
-            Forgot password
-          </Text>
-          <Text style={[MyStyles.text_md, { marginStart: "8%" }]}>
-            Please enter your email
-          </Text>
+          <View style={{ flex: 0.25 }}>
+            {/* <Title text="Hi!" /> */}
+            <Text style={[MyStyles.text_lg, { marginStart: "8%", top: 8 }]}>
+              Forgot password !
+            </Text>
+            <Text style={[MyStyles.text_md, { marginStart: "8%", marginTop: 15 }]}>
+              Please enter your email
+            </Text>
           </View>
 
-          <View style={styles.container}>
-            <Input
-              id="email"
-              placeholder="Email"
-              keyboardType="email-address"
-              borderColor={colors.lightGrey}
-              onInputChanged={inputChangedHandler}
-              errorText={formState.inputValidities["email"]}
-            />
+          <View style={[styles.container]}>
+            <View style={{marginTop: 50}}>
+              <Input
+                id="email"
+                placeholder="email"
+                onInputChanged={inputChangedHandler}
+                borderColor={colors.lightGrey}
+                errorText={formState.inputValidities["email"]}
+                initialValue={formState.inputValues.email}
+              />
+                    
+            </View>
           </View>
 
           <View
-          style={{
-            flex: .25,
-            justifyContent: 'center',
-            alignSelf: "center",
-          }}>
-            <View style={styles.button}>
+            style={{
+              flex: 0.25,
+              justifyContent: "center",
+              alignSelf: "center",
+            }}
+          >
+           { loading ?
+           <ActivityIndicator size='large' color={colors.pink} style={{marginTop: 20}}/> :
+           <View style={styles.button}>
               <BigButton
-                text="Send Email"
-                onPress={() => navigation.navigate("ChangePassword")}
+                text="Next"
                 disabled={!formState.formIsValid}
+                onPress={() => {
+                  submitHandler()
+                }}
               />
-            </View>
+            </View>}
 
             <View style={styles.separator}>
-            <Text style={[MyStyles.text_sm,{fontFamily:'bold'}]}>Already have an account ?</Text>
+              {/* <BoldText text="Didn't have an account?" /> */}
+              <Text style={[MyStyles.text_sm, { fontFamily: "bold" }]}>
+                Already have an account ?
+              </Text>
               <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-              <Text style={[MyStyles.text_sm,{fontFamily:'bold', color:colors.pink}]}> Sign In</Text>
+                <Text
+                  style={[
+                    MyStyles.text_sm,
+                    { fontFamily: "bold", color: colors.pink },
+                  ]}
+                >
+                  {" "}
+                  Sign In
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
-
         </KeyboardAvoidingView>
       </SafeAreaView>
     </ImageBackground>
@@ -102,31 +137,43 @@ const ForgotPassword = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor:'red',
-    flex: .7,
-    position:'relative',
+    flex: 0.8,
     paddingHorizontal: "8%",
-    justifyContent: 'flex-start',
-    alignSelf: 'center',
-    alignContent: 'center',
+    alignSelf: "center",
+    alignContent: 'center'
   },
   image: {
-    flex: .25,
+    flex: 0.23,
     padding: 0,
     margin: 0,
     height: 200,
     resizeMode: "cover",
   },
   separator: {
-    marginTop: "3%",
+    marginTop: "5%",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
   },
   button: {
-    // marginTop: "65%",
+    // marginTop: '18%',
     alignItems: "center",
   },
+  checkbox: {
+    // marginStart: '9%',
+    width: 300,
+    marginTop: "5%",
+    flexDirection: "row",
+  },
+
+  textForgot: {
+    marginTop: "5%",
+    flexDirection: "row-reverse",
+  },
+  iconHide: {
+    position: 'absolute', 
+    marginTop: 35, 
+    marginStart: 260
+  }
 });
 
 export default ForgotPassword;

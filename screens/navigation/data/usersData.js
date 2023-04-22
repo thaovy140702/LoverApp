@@ -13,7 +13,8 @@ export default [
         address: 'Da Nang',
         paymment: 20,
         character: ['cheerful', 'exciting'],
-        appearance: ['tall', 'thin']
+        appearance: ['tall', 'thin'],
+        feedback: "You are awesome :>>>"
     },
     {
         id: 2,
@@ -29,7 +30,8 @@ export default [
         address: 'Da Nang',
         paymment: 20,
         character: ['cheerful', 'exciting'],
-        appearance: ['tall', 'thin']
+        appearance: ['tall', 'thin'],
+        feedback: "You are awesome :>>>"
     },
     {
         id: 3,
@@ -45,7 +47,8 @@ export default [
         address: 'Da Nang',
         paymment: 20,
         character: ['cheerful', 'exciting'],
-        appearance: ['tall', 'thin']
+        appearance: ['tall', 'thin'],
+        feedback: "You are awesome :>>>"
     },
     {
         id: 4,
@@ -61,7 +64,8 @@ export default [
         address: 'Da Nang',
         paymment: 20,
         character: ['cheerful',' exciting'],
-        appearance: ['tall', 'thin']
+        appearance: ['tall', 'thin'],
+        feedback: "You are awesome :>>>"
     },
     {
         id: 5,
@@ -77,6 +81,7 @@ export default [
         address: 'Da Nang',
         paymment: 20,
         character: ['cheerful',' exciting'],
-        appearance: ['tall', 'thin']
+        appearance: ['tall', 'thin'],
+        feedback: "You are awesome :>>>"
     },
 ]

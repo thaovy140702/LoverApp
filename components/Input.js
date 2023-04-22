@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TextInput, View, Text } from "react-native";
 import colors from "../constants/colors";
 import { AntDesign } from '@expo/vector-icons';
 
 const Input = props => {
+    const [value, setValue] = useState(props.initialValue)
 
     // const [text, onChangeText] = React.useState('');
     const onChangeText = text => {
+        setValue(text)
         props.onInputChanged(props.id, text)
     }
 
@@ -23,7 +25,7 @@ const Input = props => {
         onChangeText={onChangeText}
         placeholder={props.placeholder}
         placeholderTextColor={colors.grey}
-        value={props.value}
+        value={value}
         />
         </View>
 
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
         color: colors.textColorBlack,
         // backgroundColor: 'pink',
         paddingStart: 20,
-        fontFamily: 'medium',
+        fontFamily: 'medium'
       },
       errorContainer:{
         marginStart: '9%',

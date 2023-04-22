@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useLayoutEffect } from "react";
+import React, { useCallback, useReducer, useLayoutEffect, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
@@ -9,6 +9,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Dimensions,
+  ActivityIndicator,
 } from "react-native";
 import { useState } from "react";
 import imageBackground from "../assets/images/test.png";
@@ -23,6 +24,9 @@ import { validateInput } from "../utils/actions/formActions";
 import { reducer } from "../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MyStyles from "../constants/MyStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../utils/actions/userAction";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const { width, height } = Dimensions.get("window");
 
@@ -36,20 +40,60 @@ const initialState = {
 };
 
 const SignUpForm = (props) => {
-  const navigation = useNavigation();
 
+  const dispatch = useDispatch()
+  const {loading, message, error, isAuthenticated} = useSelector((state) => state.user)
+  const navigation = useNavigation();
   const [isChecked, setChecked] = useState(false);
 
   // check state of sign up form and validate input
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
 
+  // useEffect(() => {
+  //   if(message){
+  //     console.log(message)
+  //     Toast.show({
+  //       type: 'success',
+  //       text1: message
+  //     });
+  //     dispatch({
+  //       type: "clearMessage"
+  //     })
+  //   }
+
+  //   if(error){
+  //     console.log(error)
+  //     Toast.show({
+  //       type: 'error',
+  //       text1: error
+  //     });
+  //     dispatch({
+  //       type: "clearError"
+  //     });
+  //   }
+
+  // }, [error, message, dispatch]);
+
   const inputChangedHandler = useCallback(
     (inputId, inputValue) => {
       const result = validateInput(inputId, inputValue);
-      dispatchFormState({ inputId, validationResult: result });
+      dispatchFormState({ inputId, validationResult: result, inputValue });
     },
     [dispatchFormState]
   );
+
+  const submitHandler = () => {
+
+    // const myForm = new (FormData)
+    // myForm.append("email", formState.inputValues.email)
+    // myForm.append("usename", formState.inputValues.username)
+    // myForm.append("password", formState.inputValues.password)
+
+    dispatch(register(formState.inputValues.email, formState.inputValues.username, formState.inputValues.password))
+    console.log(formState.inputValues.email, formState.inputValues.username, formState.inputValues.password, isAuthenticated)
+
+  }
+  
 
   return (
     <ImageBackground source={imageBackground} style={styles.image}>
@@ -83,6 +127,7 @@ const SignUpForm = (props) => {
                 borderColor={colors.lightGrey}
                 onInputChanged={inputChangedHandler}
                 errorText={formState.inputValidities["username"]}
+              
               />
 
               <Input
@@ -93,6 +138,7 @@ const SignUpForm = (props) => {
                 borderColor={colors.lightGrey}
                 onInputChanged={inputChangedHandler}
                 errorText={formState.inputValidities["password"]}
+                
               />
             </View>
 
@@ -123,9 +169,14 @@ const SignUpForm = (props) => {
               alignSelf: "center",
             }}
           >
+            { loading ?
+           <ActivityIndicator size='large' color={colors.pink} style={{marginTop: 20}}/> :
             <View style={styles.button}>
-              <BigButton text="Get Started" disabled={!formState.formIsValid} />
+              <BigButton text="Get Started" disabled={!formState.formIsValid} onPress={() => {
+                  submitHandler()
+                }}/>
             </View>
+          }
 
             <View style={styles.separator}>
               <Text style={[MyStyles.text_sm,{fontFamily:'bold'}]}>Already have an account ?</Text>

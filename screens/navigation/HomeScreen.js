@@ -1,5 +1,5 @@
 import { View, Text, Dimensions, ScrollView, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import usersData from './data/usersData'
 import newsData from './data/newsData'
@@ -7,11 +7,21 @@ import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from '../../constants/colors';
 import MyStyles from '../../constants/MyStyles';
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllPartners } from '../../utils/actions/partnerAction'
 
 const {width, height} = Dimensions.get('window')
 
 const HomeScreen = () => {
   const navigation = useNavigation()
+  const dispatch = useDispatch()
+
+  const {partners, error} = useSelector(state=>state.partner)
+
+  useEffect(() => {
+    dispatch(getAllPartners())
+  }, [dispatch])
+  
   return (
     <SafeAreaView style={{width, height, backgroundColor:'#f7f7f7'}}>
       <View style={{flex:1}}>
@@ -31,7 +41,7 @@ const HomeScreen = () => {
                 </TouchableOpacity>
               </View>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("NotificationScreen")}>
               <MaterialCommunityIcons name="bell-outline" size={24} color="black" />
             </TouchableOpacity>
           </View>
