@@ -52,38 +52,13 @@ export const login = (username, password) => async (dispatch) => {
             type: "loginSuccess",
             payload: data.message,
             payloadToken: data.accessToken,
-            payloadId: data.data
+            payloadId: data.data._id,
+            payloadRole: data.data.role
         });
     
     } catch (error) {
         dispatch({
             type: "loginFail",
-            payload: error.response.data.message
-        });
-
-    }
-};
-
-export const loadUser = () => async (dispatch) => {
-    try {
-        dispatch({
-            type: "loadUserRequest",
-        });
-
-        const { data } = await axios.get(
-            `${server}/auth/login`, 
-             {
-                withCredentials: true
-            });
-
-        dispatch({
-            type: "loadUserSuccess",
-            payload: data.user,
-        });
-    
-    } catch (error) {
-        dispatch({
-            type: "loadUserFail",
             payload: error.response.data.message
         });
 
@@ -122,6 +97,5 @@ export const logout = (username, password) => async (dispatch) => {
 
     }
 };
-
 
 

@@ -6,11 +6,12 @@ import { PartnerReducer } from "../utils/reducers/PartnerReducer";
 import { otherReducer } from "../utils/reducers/otherReducers";
 import { RefreshReducer } from "../utils/reducers/RefreshReducer";
 import { LogoutReducer } from "../utils/reducers/LogoutReducer";
+import { ResetPasswordReducer } from "../utils/reducers/ResetPasswordReducer";
 
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ['user']
+  whitelist: ['user', 'resetpassword']
 };
 
 let rootReducer = combineReducers({
@@ -18,7 +19,8 @@ let rootReducer = combineReducers({
   partner: PartnerReducer,
   other: otherReducer,
   refresh: RefreshReducer,
-  logout: LogoutReducer
+  logout: LogoutReducer,
+  resetpassword: ResetPasswordReducer
 });
 
 // export const store = configureStore({

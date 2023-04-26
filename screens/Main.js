@@ -31,6 +31,7 @@ import LanguageScreen from "../screens/navigation/setting/LanguageScreen";
 import SuccsessModal from "../components/Alert/SuccsessModal";
 import { backIcon, mapIcon, editIcon, notificationIcon } from "../constants/Icon";
 import { HeaderLeft, HeaderPartnerLeft } from "../components/Header";
+import Test from './Test';
 
 
 const Main = () => {
@@ -61,6 +62,7 @@ const Main = () => {
     }}
   /> */}
    {/* Navvigation */}
+   {/* <Stack.Screen name="Test" component={Test} /> */}
    { isAuthenticated &&
   <Stack.Screen name="Navigation" component={BottomNavigation} />
 }

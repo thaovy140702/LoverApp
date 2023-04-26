@@ -13,6 +13,7 @@ export const UserReducer = createReducer({},
         state.message = action.payload
         state.accessToken = action.payloadToken
         state.id = action.payloadId
+        state.role = action.payloadRole
     });
     builder.addCase("loginFail", (state, action) => {
         state.loading = false
@@ -36,25 +37,6 @@ export const UserReducer = createReducer({},
         state.error = action.payload
     });
 
-
-    // load user
-    builder.addCase("loadUserRequest", (state) => {
-        state.loading = true
-    })
-    .addCase("loadUsers", (state) => {
-        state.loading = true
-    })
-    .addCase("loadUserSuccess", (state, action) => {
-        state.loading = false
-        state.isAuthenticated = true
-        state.user = action.payload
-    })
-    .addCase("loadUserFail", (state, action) => {
-        state.loading = false
-        state.isAuthenticated = false
-        state.error = action.payload
-    })
-
     // clear toast message
 
     builder.addCase("clearError", (state) => {
@@ -63,4 +45,19 @@ export const UserReducer = createReducer({},
     builder.addCase("clearMessage", (state) => {
         state.message = null
     });
+
+    builder
+      .addCase("getResetPasswordRequest", (state) => {
+        state.loading = true;
+      })
+      .addCase("getResetPasswordSuccess", (state, action) => {
+        state.loading = false
+        state.messageResetPass = action.payloadMessage
+        state.accessToken = action.accessOtpToken
+
+      })
+      .addCase("getResetPasswordFail", (state, action) => {
+        state.loading = false
+        state.error = action.payload
+      });
 })

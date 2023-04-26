@@ -2,7 +2,7 @@ import {Button, Dimensions, FlatList, StyleSheet, TextInput, Image, View, Toucha
 import React, { useEffect, useState } from "react";
 import RegularText from "../../../components/text/RegularText";
 import BoldText from "../../../components/text/BoldText";
-import { Feather, FontAwesome  } from "@expo/vector-icons";
+import { Feather, FontAwesome, AntDesign  } from "@expo/vector-icons";
 import colors from "../../../constants/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Info from "../../../components/Info";

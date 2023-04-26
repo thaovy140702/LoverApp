@@ -25,7 +25,8 @@ import React, {
   import MyStyles from "../../constants/MyStyles";
   import { useDispatch, useSelector } from "react-redux";
   import { Feather } from "@expo/vector-icons";
-import { enterNewPassword } from "../../utils/actions/otherActions";
+import { enterNewPassword } from "../../utils/actions/resetPasswordAction";
+import AsyncStorage from "@react-native-async-storage/async-storage";
   
   const { width, height } = Dimensions.get("window");
   
@@ -53,10 +54,11 @@ import { enterNewPassword } from "../../utils/actions/otherActions";
       console.log(formState.inputValues.password);
       dispatch(enterNewPassword(formState.inputValues.password))
       navigation.navigate("Signin")
+      // 
     };
   
-    const {loading,mess} = useSelector((state) => state.other)
-    console.log(mess)
+    const {loading,mess} = useSelector((state) => state.resetpassword)
+    console.log('mess',mess)
     const [formState, dispatchFormState] = useReducer(reducer, initialState);
   
     // funtion handler change text input

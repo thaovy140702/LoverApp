@@ -20,8 +20,7 @@ import { reducer } from "../../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MyStyles from "../../constants/MyStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPassword } from "../../utils/actions/otherActions";
-
+import { resetPassword } from "../../utils/actions/resetPasswordAction";
 const { width, height } = Dimensions.get("window");
 
 const initialState = {
@@ -46,8 +45,8 @@ const ForgotPassword = () => {
     dispatch(resetPassword(formState.inputValues.email))
     navigation.navigate("ForgotPassEnterCode")
   }
-  const {loading, message} = useSelector((state) => state.other)
-    console.log(message)
+  const {loading, messageResetPass, accessToken} = useSelector((state) => state.user)
+    console.log(messageResetPass, accessToken)
     
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
 

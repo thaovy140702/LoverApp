@@ -27,7 +27,7 @@ import { reducer } from "../../utils/reducers/formReducers";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MyStyles from "../../constants/MyStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { enterOTPCode } from "../../utils/actions/otherActions";
+import { enterOTPCode } from "../../utils/actions/resetPasswordAction";
 
 const { width, height } = Dimensions.get("window");
 
@@ -72,8 +72,8 @@ const ForgotPassEnterCode = () => {
     navigation.navigate("ForgotPassEnterPass")
   };
 
-  const {loading, messOtp, error} = useSelector((state) => state.other)
-  console.log("test", messOtp)
+  const {loading, messOtp} = useSelector((state) => state.resetpassword)
+  console.log("Mess OTP", messOtp)
 
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
 
@@ -110,6 +110,7 @@ const ForgotPassEnterCode = () => {
             <TextInput
               style={styles.input}
               keyboardType="numeric"
+              cursorColor={colors.pink}
               maxLength={1}
               onChangeText={(text) => {
                 setOtp1(text);
@@ -125,6 +126,7 @@ const ForgotPassEnterCode = () => {
             <TextInput
               style={styles.input}
               keyboardType="numeric"
+              cursorColor={colors.pink}
               maxLength={1}
               onChangeText={(text) => {
                 setOtp2(text);
@@ -142,6 +144,7 @@ const ForgotPassEnterCode = () => {
             <TextInput
               style={styles.input}
               keyboardType="numeric"
+              cursorColor={colors.pink}
               maxLength={1}
               onChangeText={(text) => {
                 setOtp3(text);
@@ -160,6 +163,7 @@ const ForgotPassEnterCode = () => {
             <TextInput
               style={styles.input}
               keyboardType="numeric"
+              cursorColor={colors.pink}
               maxLength={1}
               onChangeText={(text) => {
                 setOtp4(text);
@@ -178,6 +182,7 @@ const ForgotPassEnterCode = () => {
             <TextInput
               style={styles.input}
               keyboardType="numeric"
+              cursorColor={colors.pink}
               maxLength={1}
               onChangeText={(text) => {
                 setOtp5(text);
@@ -196,6 +201,7 @@ const ForgotPassEnterCode = () => {
             <TextInput
               style={styles.input}
               keyboardType="numeric"
+              cursorColor={colors.pink}
               maxLength={1}
               onChangeText={(text) => {
                 setOtp6(text);

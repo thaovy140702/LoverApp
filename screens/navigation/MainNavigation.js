@@ -6,17 +6,18 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import SearchScreen from './firstPage/SearchScreen';
+import LoverScreen from './firstPage/LoverScreen';
 import ChatListScreen from './chat/ChatListScreen';
 import ProfileScreen from './setting/ProfileScreen';
 import HomeScreen from '../../screens/navigation/home/HomeScreen'
+import HomePartnerScreen from '../../screens/navigation/home/HomePartnerScreen'
 import UserScheduleScreen from "../../screens/navigation/booking/UserScheduleScreen";
-// import HomeScreen from "../navigation/home/HomeScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { getRefreshToken } from "../../utils/actions/refreshAction";
 
 const TabArr = [
-  { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
-  // { route: 'Home', label: 'Home', component: HomePartnerScreen, iconName: 'home' },
+  // { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
+  { route: 'Home', label: 'Home', component: HomePartnerScreen, iconName: 'home' },
   { route: 'Appointment', label: 'Appointment', component: UserScheduleScreen, iconName: 'clipboard'},
   { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'search' },
   { route: 'Chat', label: 'My Chat', component: ChatListScreen, iconName: 'message-square' },
@@ -88,6 +89,8 @@ const TabButton = (props) => {
 };
 
 export default function AnimTab1() {
+
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -97,6 +100,9 @@ export default function AnimTab1() {
   const { loading, isAuthenticated, accessToken } = useSelector(
     (state) => state.user
   );
+
+  const {role} = useSelector((state) => state.user);
+  
   // console.log(isAuthenticated, accessToken);
 
 
@@ -108,6 +114,26 @@ export default function AnimTab1() {
   //     updateData(refreshToken)
   //     );
   // }, [dispatch]);
+  const TabArr = [
+    // { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
+    { route: 'Home', label: 'Home', component: HomePartnerScreen, iconName: 'home' },
+    { route: 'Appointment', label: 'Appointment', component: UserScheduleScreen, iconName: 'clipboard'},
+    { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'search' },
+    { route: 'Chat', label: 'My Chat', component: ChatListScreen, iconName: 'message-square' },
+    { route: 'Profile', label: 'My profile', component: ProfileScreen, iconName: 'user' },
+  ];
+
+  const index = TabArr.findIndex(obj => {
+    return obj.route === "Home";
+  });
+  
+  if(role === "user") {
+    TabArr[index].component = HomeScreen
+    TabArr[2].component = SearchScreen
+  }else if (role === "parter"){
+    TabArr[index].component = HomePartnerScreen
+    TabArr[2].component = LoverScreen
+  }
 
   return (
     <Tab.Navigator

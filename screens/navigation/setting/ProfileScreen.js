@@ -73,7 +73,7 @@ const ProfileScreen = () => {
   const navigation = useNavigation();
 
   const {id} = useSelector((state) => state.user);
-
+  
   const submitHandler = () => {
     dispatch(logout())
   }
