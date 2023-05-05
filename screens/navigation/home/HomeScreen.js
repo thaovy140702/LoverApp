@@ -30,9 +30,9 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  // const {partners, error} = useSelector(state=>state.partner)
+  const {partners, error} = useSelector(state=>state.partner)
   const { slide } = useSelector((state) => state.other);
-  console.log(slide);
+  // console.log(slide);
 
   useEffect(() => {
     dispatch(getAllPartners());
@@ -121,8 +121,8 @@ const HomeScreen = () => {
             <FlatList
               style={{ marginTop: 20 }}
               horizontal
-              data={usersData}
-              keyExtractor={(item) => item.id}
+              data={partners}
+              keyExtractor={(item) => item._id}
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => {
                 return (
@@ -130,10 +130,9 @@ const HomeScreen = () => {
                     <View
                       style={{ flexDirection: "column", alignItems: "center" }}
                     >
-                      <Image style={styles.imageRetangle} source={item.image} />
+                      <Image style={styles.imageRetangle} source={{uri: item.img}} />
                       <View>
                         <Text style={[MyStyles.text_md_bold, { marginTop: 5 }]}>
-                          {" "}
                           {item.name}{" "}
                         </Text>
                       </View>
@@ -147,16 +146,34 @@ const HomeScreen = () => {
           <View>
             <Text style={[MyStyles.text_xl, { marginTop: "5%" }]}>Near by</Text>
             <View style={{ marginTop: 20, marginEnd: 20 }}>
-              {usersData.map((item) => {
+              {partners.map((item) => {
+                // console.log(item)
                 return (
                   <TouchableOpacity
-                    key={item.id}
-                    style={{ marginBottom: "5%" }}
+                    key={item._id}
+                    style={[styles.borderRetangle, { marginBottom: "5%" , backgroundColor:'white'}]}
+                    onPress={() =>
+                      navigation.navigate("PartnerInfoScreen",{
+                        partnerId: item._id,
+                        urlImg: item.img,
+                        partnerName: item.name,
+                        address: item.address,
+                        price: item.rent_cost,
+                        partnerHeigth: item.height,
+                        partnerWeigth: item.weight,
+                        sex: item.gender,
+                        age: item.old,
+                        rate: item.rate,
+                        character: item.character,
+                        appearance: item.appearance,
+                        description: item.description
+                      })
+                    }
                   >
-                    <View style={styles.borderRetangle}>
+                    {/* <View style={styles.borderRetangle}> */}
                       <Image
                         style={[styles.imageCircle, { marginEnd: "5%" }]}
-                        source={item.image}
+                        source={{uri: item.img}}
                       />
                       <View style={{ justifyContent: "center" }}>
                         <Text style={MyStyles.text_md_bold}> {item.name} </Text>
@@ -174,21 +191,16 @@ const HomeScreen = () => {
                         <View style={{ flexDirection: "row" }}>
                           <Text style={MyStyles.text_sm}>
                             {" "}
-                            $ {item.paymment} per hour
+                            $ {item.rent_cost} per hour
                           </Text>
-                          <TouchableOpacity
-                            style={styles.button}
-                            onPress={() =>
-                              navigation.navigate("PartnerInfoScreen")
-                            }
-                          >
+                          <View style={styles.button}>
                             <Text style={MyStyles.text_sm_bold}>
                               appointment
                             </Text>
-                          </TouchableOpacity>
+                          </View>
                         </View>
                       </View>
-                    </View>
+                    {/* </View> */}
                   </TouchableOpacity>
                 );
               })}
