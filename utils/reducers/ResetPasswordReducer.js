@@ -4,23 +4,7 @@ export const ResetPasswordReducer = createReducer(
   {},
   (builder) => {
    
-    // reset password
-    // builder
-    //   .addCase("getResetPasswordRequest", (state) => {
-    //     state.loading = true;
-    //   })
-    //   .addCase("getResetPasswordSuccess", (state, action) => {
-    //     state.loading = false
-    //     state.message = action.payloadMessage
-    //     state.accessToken = action.accessOtpToken
-
-    //   })
-    //   .addCase("getResetPasswordFail", (state, action) => {
-    //     state.loading = false
-    //     state.error = action.payload
-    //   });
-
-    // // enter otp code
+    // enter otp code
     builder
       .addCase("getOtpRequest", (state) => {
         state.loading = true;

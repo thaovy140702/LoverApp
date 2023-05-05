@@ -1,7 +1,5 @@
 import axios from "axios";
-import server from "../store/store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useSelector } from "react-redux";
 
 const instance = axios.create({
   baseURL: "https://lover-seven.vercel.app/api/v1",

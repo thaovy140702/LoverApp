@@ -2,64 +2,23 @@ import { createReducer } from "@reduxjs/toolkit";
 
 export const otherReducer = createReducer(
   {
-    slide: []
+    slide: [],
+    myProfile: {}
   },
   (builder) => {
     // slide
-    builder.addCase("getSlideRequest", (state) => {
-      state.loading = true
-  })
-  .addCase("getSlideSuccess", (state, action) => {
-      state.loading = false
-      state.slide = action.payload
-  })
-  .addCase("getSlideFail", (state, action) => {
-      state.loading = false
-      state.error = action.payload
-  });
-
-    // // reset password
-    // builder
-    //   .addCase("getResetPasswordRequest", (state) => {
-    //     state.loading = true;
-    //   })
-    //   .addCase("getResetPasswordSuccess", (state, action) => {
-    //     state.loading = false;
-    //     state.message = action.payloadMessage;
-    //   })
-    //   .addCase("getResetPasswordFail", (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload;
-    //   });
-
-    // // enter otp code
-    // builder
-    //   .addCase("getOtpRequest", (state) => {
-    //     state.loading = true;
-    //   })
-    //   .addCase("getOtpSuccess", (state, action) => {
-    //     state.loading = false;
-    //     state.messOtp = action.payloadMessOtp;
-    //   })
-    //   .addCase("getOtpFail", (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload;
-    //   });
-      
-
-    // // set new password
-    // builder
-    //   .addCase("setNewPasswordRequest", (state) => {
-    //     state.loading = true;
-    //   })
-    //   .addCase("setNewPasswordSuccess", (state, action) => {
-    //     state.loading = false;
-    //     state.mess = action.payloadMess;
-    //   })
-    //   .addCase("setNewPasswordFail", (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload;
-    //   });
+    builder
+      .addCase("getSlideRequest", (state) => {
+        state.loading = true;
+      })
+      .addCase("getSlideSuccess", (state, action) => {
+        state.loading = false;
+        state.slide = action.payload;
+      })
+      .addCase("getSlideFail", (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
 
 
     // change password
@@ -74,6 +33,21 @@ export const otherReducer = createReducer(
       .addCase("putChangePasswordFail", (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      });
+
+
+    // load profile of user
+    builder
+      .addCase("getProfileRequest", (state) => {
+        state.loading = true
+      })
+      .addCase("getProfileSuccess", (state, action) => {
+        state.loading = false
+        state.myProfile = action.payloadProfile
+      })
+      .addCase("getProfileFail", (state, action) => {
+        state.loading = false
+        state.error = action.payload
       });
   }
 );

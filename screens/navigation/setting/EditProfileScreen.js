@@ -3,10 +3,17 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Indicator from '../../../components/Indicator';
+import { useSelector } from 'react-redux';
 
 const {width, height} = Dimensions.get('window')
 
 const EditProfileScreen = () => {
+
+    const { myProfile } = useSelector((state) => state.other);
+    const {id, email, username} = useSelector((state) => state.user);
+    const old = String(myProfile.old)
+    const phone = String(myProfile.phone)
+
   return (
     <SafeAreaView style={{width, height, backgroundColor:'white'}}>
         <View style={{flex:1}}>
@@ -25,7 +32,7 @@ const EditProfileScreen = () => {
 
                 <View style={{marginTop:'5%', alignItems:'center'}}>
                     <View style={{position:'relative', padding: 1}}>
-                        <Image style={styles.userImage} source={require('../../../assets/images/userimage.jpg')} />
+                        <Image style={styles.userImage} source={{ uri: myProfile.img}} />
                         <TouchableOpacity style={{position: 'absolute', bottom: 0, right:0}}>
                             <MaterialCommunityIcons style={styles.camera} name="camera-flip-outline" size={24} color="gray" />
                         </TouchableOpacity>
@@ -48,13 +55,14 @@ const EditProfileScreen = () => {
                     behavior={Platform.OS === "ios" ? "height" : undefined}
                     keyboardVerticalOffset={100}
                 >
-                    <Indicator title="Describle" text='' />
-                    <Indicator title="Username" text='name' />
-                    {/* <Indicator title="Password" text='*****' /> */}
-                    <Indicator title="Genres" text='male' />
-                    <Indicator title="Age" text='18' />
-                    <Indicator title="Email" text='name@gmail.com' />
-                    <Indicator title="Number" text='+84 962542727' />
+                    <Indicator title="Describe" text='' numberOfLines={2} maxLength={50} />
+                    <Indicator title="Username" text={username} />
+                    <Indicator title="Email" text={email} editable={false} selectTextOnFocus={false}/>
+                    <Indicator title="Gender" text= {myProfile.gender} />
+                    <Indicator title="Age" text= {old} />
+                    <Indicator title="Phone" text={phone} />
+                    <Indicator title="Character" text="" />
+                    <Indicator title="Appearance" text="" />
                 </KeyboardAvoidingView>
 
                 

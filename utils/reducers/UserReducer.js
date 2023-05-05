@@ -14,6 +14,8 @@ export const UserReducer = createReducer({},
         state.accessToken = action.payloadToken
         state.id = action.payloadId
         state.role = action.payloadRole
+        state.email = action.payloadEmail
+        state.username = action.payloadUsername
     });
     builder.addCase("loginFail", (state, action) => {
         state.loading = false

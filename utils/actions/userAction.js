@@ -53,7 +53,9 @@ export const login = (username, password) => async (dispatch) => {
             payload: data.message,
             payloadToken: data.accessToken,
             payloadId: data.data._id,
-            payloadRole: data.data.role
+            payloadRole: data.data.role,
+            payloadEmail: data.data.email,
+            payloadUsername: data.data.username
         });
     
     } catch (error) {

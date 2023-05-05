@@ -54,7 +54,6 @@ const SignInForm = () => {
   
   const submitHandler = () => {
     dispatch(login(formState.inputValues.username, formState.inputValues.password))
-
   }
   
   const [formState, dispatchFormState] = useReducer(reducer, initialState);

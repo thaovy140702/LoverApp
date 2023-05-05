@@ -32,6 +32,7 @@ import SuccsessModal from "../components/Alert/SuccsessModal";
 import { backIcon, mapIcon, editIcon, notificationIcon } from "../constants/Icon";
 import { HeaderLeft, HeaderPartnerLeft } from "../components/Header";
 import Test from './Test';
+import Loading from '../components/Loading';
 
 
 const Main = () => {
@@ -62,11 +63,11 @@ const Main = () => {
     }}
   /> */}
    {/* Navvigation */}
-   {/* <Stack.Screen name="Test" component={Test} /> */}
    { isAuthenticated &&
   <Stack.Screen name="Navigation" component={BottomNavigation} />
 }
   <Stack.Screen name="Welcome" component={WelcomePage} />
+  <Stack.Screen name="Loading" component={Loading} />
   {/* Register */}
   <Stack.Screen name="Signin" component={SignInForm} />
   <Stack.Screen name="Signup" component={SignUpForm} />

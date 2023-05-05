@@ -2,18 +2,24 @@ import { StyleSheet, View, Text, TextInput } from 'react-native'
 import React from 'react'
 import colors from '../constants/colors'
 import MyStyles from '../constants/MyStyles'
+import { useState } from 'react'
 
 const Indicator = (props) => {
+  
+  const [text, onChangeText] = React.useState(props.text)
+
   return (
     <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around', marginVertical:15}}> 
         <Text style={[MyStyles.text_md_grey, {width: '30%'}]}>{props.title}</Text>
         <TextInput 
-          placeholder={props.placeholder}
           selectionColor={colors.pink}
-          value={props.text}
-          // disableFullscreenUI={props.disableFullscreenUI}
+          value={text}
+          onChangeText={onChangeText}
           style={[styles.input, MyStyles.text_md]}
-          
+          editable={props.editable}
+          selectTextOnFocus={props.selectTextOnFocus}
+          numberOfLines={props.numberOfLines}
+          maxLength={props.maxLength}
         />
     </View>
   )

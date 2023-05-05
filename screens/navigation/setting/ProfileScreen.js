@@ -23,6 +23,8 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../utils/actions/logoutAction";
+import { useEffect } from "react";
+import { getProfile } from "../../../utils/actions/otherActions";
 
 const { width, height } = Dimensions.get("window");
 
@@ -72,8 +74,13 @@ const ProfileScreen = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation();
 
-  const {id} = useSelector((state) => state.user);
-  
+  const {id, email, username} = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getProfile(id))
+  }, [dispatch])
+
+  const { myProfile } = useSelector((state) => state.other);
+ 
   const submitHandler = () => {
     dispatch(logout())
   }
@@ -89,10 +96,10 @@ const ProfileScreen = () => {
           <View style={{ marginTop: "8%", alignItems: "center" }}>
             <Image
               style={styles.userImage}
-              source={require("../../../assets/images/userimage.jpg")}
+              source={{ uri: myProfile.img }}
             />
-            <Text style={[MyStyles.text_xl, { marginTop: 3 }]}>Lis</Text>
-            <Text style={MyStyles.text_sm}>lis@gmail.com</Text>
+            <Text style={[MyStyles.text_xl, { marginTop: 3 }]}>{username}</Text>
+            <Text style={MyStyles.text_sm}>{email}</Text>
           </View>
 
           <View>
