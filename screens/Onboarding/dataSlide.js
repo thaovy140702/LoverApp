@@ -1,4 +1,4 @@
-import { Animated, Dimensions, Text, View, FlatList, TouchableOpacity } from "react-native";
+import { Animated, Dimensions, Text, View, FlatList, TouchableOpacity, Alert } from "react-native";
 import React, {useState} from "react";
 import {maleIcon, femaleIcon} from "../../constants/Icon"
 import colors from "../../constants/colors";
@@ -29,7 +29,7 @@ const AgePage = () => {
   const onConnectPress = React.useCallback(() => {
       Alert.alert('Connect with:', currentAge[age].value.toString());
     });
-  console.log(scrollToIndex)
+  console.log(onConnectPress)
 
   return (
     <Animated.FlatList
