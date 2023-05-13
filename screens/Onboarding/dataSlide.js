@@ -2,6 +2,7 @@ import { Animated, Dimensions, Text, View, FlatList, TouchableOpacity } from "re
 import React, {useState} from "react";
 import {maleIcon, femaleIcon} from "../../constants/Icon"
 import colors from "../../constants/colors";
+import { useRef } from "react";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,14 +23,22 @@ const currentAge = [...Array(83).keys()].map(i => ({ key: `${i}`, value: i + 18 
 
 const AgePage = () => {
   const scrollY = React.useRef(new Animated.Value(0)).current;
-  // const [age, setAge] = React.useState(0);
+  const [age, setAge] = React.useState(0);
+  const AgeRef = useRef();
+  const onItemIndexChange = React.useCallback(setAge, []);
+  const onConnectPress = React.useCallback(() => {
+      Alert.alert('Connect with:', currentAge[age].value.toString());
+    });
+  console.log(scrollToIndex)
 
   return (
     <Animated.FlatList
       style={{ width: wA, height:hA}}
+      ref={AgeRef}
       showsVerticalScrollIndicator={false}
       data={currentAge}
       bounces={false}
+      snapToInterval={40}
       onScroll={Animated.event(
         [{ nativeEvent: { contentOffset: { y: scrollY } } }],
         { useNativeDriver: false }
@@ -68,6 +77,13 @@ const AgePage = () => {
         );
       }}
       keyExtractor={item => item.key.toString()}
+      onMomentumScrollEnd={ev => {
+        const newAge = Math.round(ev.nativeEvent.contentOffset.y / 40)
+
+        if(onItemIndexChange){
+          onItemIndexChange(newAge)
+        }
+      }}
     />
   );
 };
