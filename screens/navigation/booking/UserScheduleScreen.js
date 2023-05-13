@@ -43,14 +43,14 @@ const UserScheduleScreen = () => {
       {
         show && (
           <DateTimePicker
-          
-          testID='dateTimePicker'
-          locale={"en"}
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display='default'
-          onChange={onChange} />
+            testID='dateTimePicker'
+            locale={"en"}
+            value={date}
+            mode={mode}
+            is24Hour={true}
+            display='spinner'
+            onChange={onChange} 
+          />
         )
       }
 

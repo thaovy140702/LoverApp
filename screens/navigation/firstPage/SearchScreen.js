@@ -148,6 +148,7 @@ const SearchScreen = () => {
           <FlatList
             data={filter}
             horizontal
+            showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               alignItems: "center",
               padding: 8

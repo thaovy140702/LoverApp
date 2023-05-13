@@ -13,7 +13,7 @@ import HeartShape from '../../../components/HeartShape'
 import usersData from '../data/usersData'
 import { UserImageCircle } from "../../../components/UserImage";
 import ButtonIcon from "../../../components/button/ButtonIcon";
-
+import { useSelector } from 'react-redux'
 const FeedbackItem = ({ name, rate, feedback }) => (
   <View style={[styles.card]}>
     <View style={{ marginLeft: 20, flexDirection: "row" }}>
@@ -43,6 +43,9 @@ const FeedbackItem = ({ name, rate, feedback }) => (
 
 const PartnerInfoScreen = () => {
 
+  // const partnerDetail = useSelector((state) => state.partner.selectPartnerDetail)
+  // console.log(partnerDetail)
+
   const {
     params :{
       partnerId,
@@ -62,8 +65,8 @@ const PartnerInfoScreen = () => {
   } = useRoute()
 
   return (
-    <SafeAreaView style={{flex:1, paddingHorizontal: 20, backgroundColor: '#FFE3E3'}}>
-
+    <SafeAreaView key={partnerId} style={{flex:1, paddingHorizontal: 20, backgroundColor: '#FFE3E3'}}>
+    
       {/* header start */}
       <View style={styles.headerStyle}>
         <BackButton />
