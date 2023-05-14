@@ -21,7 +21,7 @@ import colors from "../../../constants/colors";
 import MyStyles from "../../../constants/MyStyles";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPartners } from "../../../utils/actions/partnerAction";
+import { getAllPartners, selectPartnerDetail } from "../../../utils/actions/partnerAction";
 import { getSlide } from "../../../utils/actions/otherActions";
 
 const { width, height } = Dimensions.get("window");
@@ -152,8 +152,10 @@ const HomeScreen = () => {
                   <TouchableOpacity
                     key={item._id}
                     style={[styles.borderRetangle, { marginBottom: "5%" , backgroundColor:'white'}]}
-                    onPress={() =>
-                      navigation.navigate("PartnerInfoScreen",{
+                    onPress={() =>{
+                      // dispatch(selectPartnerDetail(item.user))
+                      navigation.navigate("PartnerInfoScreen",
+                      {
                         partnerId: item._id,
                         urlImg: item.img,
                         partnerName: item.name,
@@ -168,7 +170,7 @@ const HomeScreen = () => {
                         appearance: item.appearance,
                         description: item.description
                       })
-                    }
+                    }}
                   >
                     {/* <View style={styles.borderRetangle}> */}
                       <Image

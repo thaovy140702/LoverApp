@@ -3,7 +3,10 @@ import { createReducer } from "@reduxjs/toolkit";
 export const PartnerReducer = createReducer(
     {
         partners: [],
-        partner: {}
+        partner: {},
+        loading: false,
+        error: null,
+        selectedPartnerId: null,
     },
     (builder) => {
         builder
@@ -17,6 +20,15 @@ export const PartnerReducer = createReducer(
             .addCase("getAllPartnersFail", (state, action) => {
                 state.loading = false
                 state.error = action.payload
+            })
+            
+            .addCase("selectPartnerDetail", (state, action) => {
+                const selectedPartnerId = action.payload;
+                const selectedPartner = state.partners.find(
+                (partner) => partner.id === selectedPartnerId
+                );
+                state.selectedPartnerId = selectedPartnerId;
+                state.partner = selectedPartner || {};
             })
 
             .addCase("getPartnerDetailRequest", (state) => {

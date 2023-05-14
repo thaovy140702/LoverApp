@@ -30,6 +30,12 @@ export const getAllPartners = () => async (dispatch) => {
     }
 };
 
+export const selectPartnerDetail = (partnerId) => {
+    return {
+      type: "selectPartnerDetail",
+      payload: partnerId,
+    };
+  };
 
 export const getPartnerDetail = (id) => async (dispatch) => {
     try {

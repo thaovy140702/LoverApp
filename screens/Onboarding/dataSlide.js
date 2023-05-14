@@ -1,7 +1,8 @@
-import { Animated, Dimensions, Text, View, FlatList, TouchableOpacity } from "react-native";
+import { Animated, Dimensions, Text, View, FlatList, TouchableOpacity, Alert } from "react-native";
 import React, {useState} from "react";
 import {maleIcon, femaleIcon} from "../../constants/Icon"
 import colors from "../../constants/colors";
+import { useRef } from "react";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,16 +23,24 @@ const currentAge = [...Array(83).keys()].map(i => ({ key: `${i}`, value: i + 18 
 
 const AgePage = () => {
   const scrollY = React.useRef(new Animated.Value(0)).current;
-  // const [age, setAge] = React.useState(0);
+  const [age, setAge] = React.useState(0);
+  const AgeRef = useRef();
+  const onItemIndexChange = React.useCallback(setAge, []);
+  const onConnectPress = React.useCallback(() => {
+      Alert.alert('Connect with:', currentAge[age].value.toString());
+    });
+  console.log(onConnectPress)
 
   const imageFile = "https://i.pinimg.com/474x/71/4d/6e/714d6e774366a2fd464807c9005a1d01.jpg"
 
   return (
     <Animated.FlatList
       style={{ width: wA, height:hA}}
+      ref={AgeRef}
       showsVerticalScrollIndicator={false}
       data={currentAge}
       bounces={false}
+      snapToInterval={40}
       onScroll={Animated.event(
         [{ nativeEvent: { contentOffset: { y: scrollY } } }],
         { useNativeDriver: false }
@@ -70,6 +79,13 @@ const AgePage = () => {
         );
       }}
       keyExtractor={item => item.key.toString()}
+      onMomentumScrollEnd={ev => {
+        const newAge = Math.round(ev.nativeEvent.contentOffset.y / 40)
+
+        if(onItemIndexChange){
+          onItemIndexChange(newAge)
+        }
+      }}
     />
   );
 };

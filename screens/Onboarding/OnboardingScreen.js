@@ -96,7 +96,7 @@ const OnboardingScreen = () => {
               )}
               scrollEventThrottle={32}
               onViewableItemsChanged={viewableItemsChanged}
-              viewabilityConfig={viewConfig}
+              viewabilityConfig={viewConfig} 
               ref={slideRef}
               renderItem={({ item }) => {
                 return (
