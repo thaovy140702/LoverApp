@@ -49,9 +49,8 @@ const SignInForm = () => {
 
   const dispatch = useDispatch()
   const navigation = useNavigation();
-  const loading = useMessageAndErrorUser(navigation, dispatch, "Navigation")
+  const loading = useMessageAndErrorUser(navigation, dispatch, "Onboarding")
 
-  
   const submitHandler = () => {
     dispatch(login(formState.inputValues.username, formState.inputValues.password))
   }

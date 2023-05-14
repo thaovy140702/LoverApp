@@ -24,6 +24,8 @@ const AgePage = () => {
   const scrollY = React.useRef(new Animated.Value(0)).current;
   // const [age, setAge] = React.useState(0);
 
+  const imageFile = "https://i.pinimg.com/474x/71/4d/6e/714d6e774366a2fd464807c9005a1d01.jpg"
+
   return (
     <Animated.FlatList
       style={{ width: wA, height:hA}}
@@ -63,7 +65,7 @@ const AgePage = () => {
         });
         return (
           <Animated.View style={{ opacity, transform: [{ scale }] }}>
-            <Text style={{ marginVertical: 10, fontSize: 40, fontWeight: "bold" }}>{item.value}</Text>
+            <Text style={{ marginVertical: 10, fontSize: 40, fontWeight: "bold", fontFamily: 'regular' }}>{item.value}</Text>
           </Animated.View>
         );
       }}
@@ -116,6 +118,7 @@ const GenresPage = () => {
             style={{ margin: 10 }}
             onPress={() => {
               onClickItem(item, index);
+              console.log(item.genres)
             }}
           >
             <Text
@@ -126,6 +129,7 @@ const GenresPage = () => {
                   : colors.lightGrey,
                 borderRadius: 10,
                 fontSize: 14,
+                fontFamily: 'regular'
               }}
             >
               {item.genres}
@@ -139,14 +143,14 @@ const GenresPage = () => {
 };
 
 const dataCharacter = [
-  { id: 1, character: "one" },
-  { id: 2, character: "one" },
-  { id: 3, character: "one" },
-  { id: 4, character: "one" },
-  { id: 5, character: "one" },
-  { id: 6, character: "one" },
-  { id: 7, character: "one" },
-  { id: 8, character: "one" },
+  { id: 1, character: "Honest" },
+  { id: 2, character: "Flexible" },
+  { id: 3, character: "Patient" },
+  { id: 4, character: "Cheerful" },
+  { id: 5, character: "Friendly" },
+  { id: 6, character: "Openness" },
+  { id: 7, character: "Emotions" },
+  { id: 8, character: "Humble" },
   { id: 9, character: "Other" },
 ];
 
@@ -179,17 +183,23 @@ const CharacterPage = () => {
       renderItem={({ item, index }) => {
         return (
           <TouchableOpacity
-            style={{ margin: 10 }}
-            onPress={() => onSelect(item, index)}
-          >
-            <Text
-              style={{
-                padding: 15,
+            style={{ 
+              margin: 10,
+              padding: 10,
                 backgroundColor: item.selected
                   ? colors.lightPink
                   : colors.lightGrey,
                 borderRadius: 10,
+                width: 100,
+                justifyContent: 'center',
+                alignItems: 'center'
+             }}
+            onPress={() => onSelect(item, index)}
+          >
+            <Text
+              style={{
                 fontSize: 14,
+                fontFamily: 'regular',
               }}
             >
               {item.character}
@@ -203,14 +213,14 @@ const CharacterPage = () => {
 };
 
 const dataApperance = [
-  { id: 1, appearance: "one" },
-  { id: 2, appearance: "one" },
-  { id: 3, appearance: "one" },
-  { id: 4, appearance: "one" },
-  { id: 5, appearance: "one" },
-  { id: 6, appearance: "one" },
-  { id: 7, appearance: "one" },
-  { id: 8, appearance: "one" },
+  { id: 1, appearance: "Tall" },
+  { id: 2, appearance: "Thin" },
+  { id: 3, appearance: "Short" },
+  { id: 4, appearance: "Smiley" },
+  { id: 5, appearance: "Wavy" },
+  { id: 6, appearance: "Pretty" },
+  { id: 7, appearance: "Cute" },
+  { id: 8, appearance: "Chubby" },
   { id: 9, appearance: "Other" },
 ];
 
@@ -244,16 +254,22 @@ const AppearancePage = () => {
       renderItem={({ item, index }) => {
         return (
           <TouchableOpacity
-            style={{ margin: 10 }}
-            onPress={() => onSelect(item, index)}
-          >
-            <Text
-              style={{
-                padding: 15,
+            style={{ 
+              margin: 10,
+              padding: 10,
                 backgroundColor: item.selected
                   ? colors.lightPink
                   : colors.lightGrey,
                 borderRadius: 10,
+                width: 100,
+                justifyContent: 'center',
+                alignItems: 'center'
+             }}
+            onPress={() => onSelect(item, index)}
+          >
+            <Text
+              style={{
+                fontFamily: 'regular',
                 fontSize: 14,
               }}
             >

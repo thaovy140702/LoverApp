@@ -25,6 +25,7 @@ import MyStyles from "../../constants/MyStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../utils/actions/userAction";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
+import { useMessageAndErrorUser } from "../../utils/hooks";
 
 const { width, height } = Dimensions.get("window");
 
@@ -40,37 +41,13 @@ const initialState = {
 const SignUpForm = (props) => {
 
   const dispatch = useDispatch()
-  const {loading, message, error, isAuthenticated} = useSelector((state) => state.user)
+  const {isAuthenticated} = useSelector((state) => state.user)
+  const loading = useMessageAndErrorUser(navigation, dispatch, "Signin")
   const navigation = useNavigation();
   const [isChecked, setChecked] = useState(false);
 
   // check state of sign up form and validate input
   const [formState, dispatchFormState] = useReducer(reducer, initialState);
-
-  // useEffect(() => {
-  //   if(message){
-  //     console.log(message)
-  //     Toast.show({
-  //       type: 'success',
-  //       text1: message
-  //     });
-  //     dispatch({
-  //       type: "clearMessage"
-  //     })
-  //   }
-
-  //   if(error){
-  //     console.log(error)
-  //     Toast.show({
-  //       type: 'error',
-  //       text1: error
-  //     });
-  //     dispatch({
-  //       type: "clearError"
-  //     });
-  //   }
-
-  // }, [error, message, dispatch]);
 
   const inputChangedHandler = useCallback(
     (inputId, inputValue) => {
@@ -81,11 +58,6 @@ const SignUpForm = (props) => {
   );
 
   const submitHandler = () => {
-
-    // const myForm = new (FormData)
-    // myForm.append("email", formState.inputValues.email)
-    // myForm.append("usename", formState.inputValues.username)
-    // myForm.append("password", formState.inputValues.password)
 
     dispatch(register(formState.inputValues.email, formState.inputValues.username, formState.inputValues.password))
     console.log(formState.inputValues.email, formState.inputValues.username, formState.inputValues.password, isAuthenticated)

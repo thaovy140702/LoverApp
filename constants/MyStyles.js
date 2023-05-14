@@ -13,12 +13,12 @@ export default{
     headerSlide: {
         position: 'absolute',
         fontSize: 20,
-        fontWeight: 'bold',
         alignSelf: 'center',
         justifyContent: 'center',
         // top: '15%',
         marginHorizontal: '5%',
         textAlign: 'center',
+        fontFamily: 'bold'
     },
     flexDirection: {
         flexDirection: 'row', 

@@ -39,6 +39,7 @@ import { HeaderLeft, HeaderPartnerLeft } from "../components/Header";
 import Loading from '../components/Loading';
 import BookingScreen from "./navigation/booking/BookingScreen";
 import HomeScreen from "./navigation/home/HomeScreen";
+import Test from "./Test";
 
 
 const Main = () => {
@@ -102,7 +103,8 @@ const Main = () => {
    {/* Navvigation */}
    { isAuthenticated &&
   <Stack.Screen name="Navigation" component={BottomNavigation} />
-}
+  }
+  
   <Stack.Screen name="Welcome" component={WelcomePage} />
   <Stack.Screen name="Loading" component={Loading} />
   {/* Register */}
@@ -146,14 +148,14 @@ const Main = () => {
         <Stack.Screen
           name="EditProfile"
           component={EditProfileScreen}
-          options={{
-            headerShown: true,
-            title: "My profile",
-            headerTitleAlign: "center",
-            headerLeft: backIcon,
-            headerShadowVisible: false,
-            headerRight: editIcon,
-          }}
+          // options={{
+          //   headerShown: true,
+          //   title: "My profile",
+          //   headerTitleAlign: "center",
+          //   headerLeft: backIcon,
+          //   headerShadowVisible: false,
+          //   headerRight: editIcon,
+          // }}
         />
         <Stack.Screen
           name="SettingLocation"

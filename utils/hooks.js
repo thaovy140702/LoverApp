@@ -31,3 +31,23 @@ export const useMessageAndErrorUser = (navigation, dispatch, navigateTo = "login
 
       return loading
 }
+
+
+export const useMessage = (navigation, dispatch, navigateTo = "login") => {
+  const {loading, message} = useSelector((state) => state.other);
+  useEffect(() => {
+      
+      if(message){
+        navigation.navigate(navigateTo)
+        Toast.show({
+          type: 'success',
+          text1: message
+        });
+        dispatch({
+          type: "clearMessage"
+        })
+      }
+    }, [message, dispatch]);
+
+    return loading
+}

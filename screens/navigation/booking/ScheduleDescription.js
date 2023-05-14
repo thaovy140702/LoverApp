@@ -1,12 +1,12 @@
 import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import colors from '../../constants/colors';
-import RegularText from '../../components/text/RegularText'
+import colors from '../../../constants/colors';
+import RegularText from '../../../components/text/RegularText'
 import { Feather } from '@expo/vector-icons';
-import BoldText from '../../components/text/BoldText';
-import { UserImageSquare } from '../../components/UserImage';
-import SmallButton from '../../components/button/SmallButton'
-import RectangleButton from '../../components/button/RectangleButton';
+import BoldText from '../../../components/text/BoldText';
+import { UserImageSquare } from '../../../components/UserImage';
+import SmallButton from '../../../components/button/SmallButton'
+import RectangleButton from '../../../components/button/RectangleButton';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 
 const ScheduleDescription = () => {
