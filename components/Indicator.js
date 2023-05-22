@@ -4,16 +4,24 @@ import colors from '../constants/colors'
 import MyStyles from '../constants/MyStyles'
 import { useState } from 'react'
 
-const Indicator = (props) => {
+const Indicator = props => {
+  const [value, setValue] = useState(props.initialValue)
+  const onChangeText = text => {
+    // console.log(text)
+    setValue(text)
+    props.onInputChanged(props.id, text)
+}
   
-  const [text, onChangeText] = React.useState(props.text)
-
+let field = props.id
   return (
     <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around', marginVertical:15}}> 
         <Text style={[MyStyles.text_md_grey, {width: '30%'}]}>{props.title}</Text>
-        <TextInput 
+        <TextInput
+          {...props}
+          placeholder={props.placeholder}
+          placeholderTextColor='black'
           selectionColor={colors.pink}
-          value={text}
+          value={value}
           onChangeText={onChangeText}
           style={[styles.input, MyStyles.text_md]}
           editable={props.editable}

@@ -23,6 +23,13 @@ import { useNavigation } from "@react-navigation/native";
 const { width, height } = Dimensions.get("screen");
 const ratingOptions = [1, 2, 3, 4, 5];
 
+const tabSearchItemData = [
+  { id: 1, tab: "Age" },
+  { id: 2, tab: "Height" },
+  { id: 3, tab: "Weight" },
+  { id: 4, tab: "Rank" },
+];
+
 const searchItemData = [
   { id: 1, filter: "Da Nang" },
   { id: 2, filter: "Ho Chi Minh" },
@@ -35,6 +42,43 @@ const searchItemData = [
 const SearchScreen = () => {
   const navigation = useNavigation();
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleTextInputChange = (text) => {
+    setSelectedOption(text);
+  };
+
+  const TabSearchItem = ({ tab }) => (
+    <View>
+      <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
+        <View
+          style={styles.tabsearchItem}
+        >
+          <RegularText text={selectedOption || tab} color="white" />
+          <AntDesign
+            name={isOpen ? "caretup" : "caretdown"}
+            size={12}
+            color="white"
+            style={{ marginLeft: 5 }}
+          />
+        </View>
+      </TouchableOpacity>
+      {isOpen && (
+        <View style={{ padding: 5 }}>
+          <TextInput
+            style={{ color: colors.grey, borderWidth: 1, borderColor: colors.grey, borderRadius: 20}}
+            value={selectedOption}
+            onChangeText={handleTextInputChange}
+            autoFocus
+            onSubmitEditing={() => setIsOpen(false)}
+          />
+        </View>
+      )}
+    </View>
+  );
+
+  // user item
   const UserItem = ({
     name,
     image,
@@ -44,7 +88,7 @@ const SearchScreen = () => {
     gender,
     weight,
     height,
-    onPress
+    onPress,
   }) => (
     <View style={{ alignItems: "center", marginEnd: 20 }}>
       {/* <Image source={{uri: image}} style={styles.imageUser}/> */}
@@ -84,10 +128,7 @@ const SearchScreen = () => {
           <Info type="Height" value={height} />
         </View>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress= {onPress}
-        >
+        <TouchableOpacity style={styles.button} onPress={onPress}>
           <BoldText text="Appointment" color={colors.pink} />
         </TouchableOpacity>
       </View>
@@ -116,7 +157,6 @@ const SearchScreen = () => {
   const dispatch = useDispatch();
 
   const { partners, error } = useSelector((state) => state.partner);
-  // console.log(partners, error);
 
   useEffect(() => {
     dispatch(getAllPartners());
@@ -125,11 +165,6 @@ const SearchScreen = () => {
   return (
     <SafeAreaView style={{ width, height, backgroundColor: "white" }}>
       <View style={{ flex: 1, paddingHorizontal: 20 }}>
-        {/* <View style={styles.headerTitle}>
-          <Feather name="map-pin" size={24} color={colors.grey} />
-          <RegularText text=" Da Nang" color={colors.grey}/>
-        </View> */}
-
         <View style={styles.searchInput}>
           <TextInput
             style={styles.textInputSearch}
@@ -144,6 +179,13 @@ const SearchScreen = () => {
           />
         </View>
 
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          {tabSearchItemData.map((item) => {
+            return <TabSearchItem tab={item.tab} />;
+          })}
+        </View>
+
+        <RegularText text="Recent search" color={colors.grey} />
         <View style={{ flex: 0.1 }}>
           <FlatList
             data={filter}
@@ -151,7 +193,7 @@ const SearchScreen = () => {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               alignItems: "center",
-              padding: 8
+              padding: 8,
             }}
             renderItem={({ item, index }) => {
               return (
@@ -184,10 +226,10 @@ const SearchScreen = () => {
           />
         </View>
 
-        <View style={{ flex: .7 }}>
+        <View style={{ flex: 0.7 }}>
           <FlatList
             horizontal
-            style={{marginTop: 40}}
+            style={{ marginTop: 40 }}
             data={partners}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
@@ -202,7 +244,7 @@ const SearchScreen = () => {
                 weight={item.weight}
                 height={item.height}
                 onPress={() =>
-                  navigation.navigate("PartnerInfoScreen",{
+                  navigation.navigate("PartnerInfoScreen", {
                     partnerId: item._id,
                     urlImg: item.img,
                     partnerName: item.name,
@@ -215,7 +257,7 @@ const SearchScreen = () => {
                     rate: item.rate,
                     character: item.character,
                     appearance: item.appearance,
-                    description: item.description
+                    description: item.description,
                   })
                 }
               />
@@ -290,6 +332,16 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.9,
     elevation: 5,
+  },
+  tabsearchItem: {
+    backgroundColor: colors.lightPink,
+    borderRadius: 20,
+    paddingHorizontal: 5,
+    padding: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+
   },
   imageUser: {
     height: 90,

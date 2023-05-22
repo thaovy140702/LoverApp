@@ -15,6 +15,7 @@ import MyStyles from "../../constants/MyStyles";
 import BigButton from "../../components/button/BigButton";
 import dataSlide from "./dataSlide";
 import { useNavigation } from "@react-navigation/native";
+import BoldText from "../../components/text/BoldText";
 
 const { width, height } = Dimensions.get("window");
 
@@ -67,7 +68,9 @@ const OnboardingScreen = () => {
   const scrollTo = () => {
     if (currentIndex < dataSlide.length - 1) {
       slideRef.current.scrollToIndex({ index: currentIndex + 1 });
+// handle here
     } else {
+      
        navigation.navigate('Navigation')
     }
   };

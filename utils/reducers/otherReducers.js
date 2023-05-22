@@ -49,5 +49,49 @@ export const otherReducer = createReducer(
         state.loading = false
         state.error = action.payload
       });
+
+
+      // Edit profile of user
+    builder
+    .addCase("editProfileRequest", (state) => {
+      state.loading = true
+    })
+    .addCase("editProfileSuccess", (state, action) => {
+      state.loading = false
+      state.message = action.payloadEditProfile
+    })
+    .addCase("editProfileFail", (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    });
+
+
+      // Add info onboarding
+      builder
+      .addCase("addInfoRequest", (state) => {
+        state.loading = true
+      })
+      .addCase("addInfoSuccess", (state, action) => {
+        state.loading = false
+        state.messAddInfo = action.payloadAddInfo
+      })
+      .addCase("addInfoFail", (state, action) => {
+        state.loading = false
+        state.error = action.payload
+      });
+
+      // Paypal
+      builder
+      .addCase("addPaypalRequest", (state) => {
+        state.loading = true
+      })
+      .addCase("addPaypalSuccess", (state, action) => {
+        state.loading = false
+        state.messAddPaypal = action.payloadAddPaypal
+      })
+      .addCase("addPaypalFail", (state, action) => {
+        state.loading = false
+        state.error = action.payload
+      });
   }
 );
