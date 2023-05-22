@@ -153,23 +153,24 @@ const HomeScreen = () => {
                     key={item._id}
                     style={[styles.borderRetangle, { marginBottom: "5%" , backgroundColor:'white'}]}
                     onPress={() =>{
-                      // dispatch(selectPartnerDetail(item.user))
+                      dispatch(selectPartnerDetail(item.user))
                       navigation.navigate("PartnerInfoScreen",
-                      {
-                        partnerId: item._id,
-                        urlImg: item.img,
-                        partnerName: item.name,
-                        address: item.address,
-                        price: item.rent_cost,
-                        partnerHeigth: item.height,
-                        partnerWeigth: item.weight,
-                        sex: item.gender,
-                        age: item.old,
-                        rate: item.rate,
-                        character: item.character,
-                        appearance: item.appearance,
-                        description: item.description
-                      })
+                      // {
+                      //   partnerId: item._id,
+                      //   urlImg: item.img,
+                      //   partnerName: item.name,
+                      //   address: item.address,
+                      //   price: item.rent_cost,
+                      //   partnerHeigth: item.height,
+                      //   partnerWeigth: item.weight,
+                      //   sex: item.gender,
+                      //   age: item.old,
+                      //   rate: item.rate,
+                      //   character: item.character,
+                      //   appearance: item.appearance,
+                      //   description: item.description
+                      // }
+                      )
                     }}
                   >
                     {/* <View style={styles.borderRetangle}> */}

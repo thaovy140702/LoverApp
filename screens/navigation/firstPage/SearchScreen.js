@@ -156,6 +156,7 @@ const SearchScreen = () => {
             renderItem={({ item, index }) => {
               return (
                 <TouchableOpacity
+                  key={item.id}
                   onPress={() => onSelect(item, index)}
                   style={[
                     styles.searchItem,
@@ -190,6 +191,7 @@ const SearchScreen = () => {
             data={partners}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
+              <View key={item.id}>
               <UserItem
                 name={item.name}
                 image={item.img}
@@ -217,6 +219,7 @@ const SearchScreen = () => {
                   })
                 }
               />
+              </View>
             )}
             keyExtractor={(item) => item.id}
           />
