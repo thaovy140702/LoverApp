@@ -39,7 +39,9 @@ import { HeaderLeft, HeaderPartnerLeft } from "../components/Header";
 import Loading from '../components/Loading';
 import BookingScreen from "./navigation/booking/BookingScreen";
 import HomeScreen from "./navigation/home/HomeScreen";
-import Test from "./Test";
+import ScheduleDescription from "./navigation/booking/ScheduleDescription";
+import ScheduleDescriptionScreen from "./navigation/booking/ScheduleDescriptionScreen";
+// import Test from "./Test";
 
 
 const Main = () => {
@@ -82,11 +84,7 @@ const Main = () => {
           headerShown: false,
           statusBarHidden: true,
           navigationBarHidden: true,
-          gestureEnabled: true,
-          transitionSpec: {
-            open: config,
-            close: closeConfig,
-          },
+          gestureEnabled: true
         }}
       >
         {/* <Stack.Screen
@@ -116,7 +114,7 @@ const Main = () => {
   <Stack.Screen name="ChangePassword" component={ChangePassword} />
   {/* Onboarding */}
   <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-  <Stack.Screen name="Slide1" component={AgeScreen} />
+  {/* <Stack.Screen name="Slide1" component={AgeScreen} /> */}
 
         {/* Home */}
         <Stack.Screen name="Home" component={HomeScreen} />
@@ -135,6 +133,8 @@ const Main = () => {
             cardStyleInterpolator: forFade,
           }}
         />
+        <Stack.Screen name="ScheduleDescription1" component={ScheduleDescription} />
+        <Stack.Screen name="ScheduleDescription" component={ScheduleDescriptionScreen} />
         <Stack.Screen
           name="NotificationScreen"
           component={NotificationScreen}

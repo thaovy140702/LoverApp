@@ -3,6 +3,7 @@ import * as Animatable from "react-native-animatable";
 import React, { useEffect, useRef } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
+import NotificationScreen from "../navigation/NotificationScreen";
 import { Feather } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import SearchScreen from './firstPage/SearchScreen';
@@ -19,8 +20,8 @@ const TabArr = [
   // { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
   { route: 'Home', label: 'Home', component: HomePartnerScreen, iconName: 'home' },
   { route: 'Appointment', label: 'Appointment', component: UserScheduleScreen, iconName: 'clipboard'},
-  { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'search' },
-  { route: 'Chat', label: 'My Chat', component: ChatListScreen, iconName: 'message-square' },
+  { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'calendar' },
+  { route: 'Notification', label: 'Notification', component: NotificationScreen, iconName: 'bell' },
   { route: 'Profile', label: 'My profile', component: ProfileScreen, iconName: 'user' },
 ];
 
@@ -118,8 +119,8 @@ export default function AnimTab1() {
     // { route: 'Home', label: 'Home', component: HomeScreen, iconName: 'home' },
     { route: 'Home', label: 'Home', component: HomePartnerScreen, iconName: 'home' },
     { route: 'Appointment', label: 'Appointment', component: UserScheduleScreen, iconName: 'clipboard'},
-    { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'search' },
-    { route: 'Chat', label: 'My Chat', component: ChatListScreen, iconName: 'message-square' },
+    { route: 'Search', label: 'Search', component: SearchScreen, iconName: 'calendar' },
+    { route: 'Notification', label: 'Notification', component: NotificationScreen, iconName: 'bell' },
     { route: 'Profile', label: 'My profile', component: ProfileScreen, iconName: 'user' },
   ];
 

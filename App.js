@@ -6,6 +6,7 @@ import Main from "./screens/Main";
 import ToastConfig from "./constants/ToastConfig";
 import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/integration/react";
+import { StatusBar } from "expo-status-bar";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // AsyncStorage.clear()
@@ -31,6 +32,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
+      <StatusBar style="auto" />
       <PersistGate persistor={persistor}>
         <Main />
       </PersistGate>

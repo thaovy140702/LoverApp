@@ -13,10 +13,11 @@ const BigButton = props => {
         <TouchableOpacity 
         style={{
             ...styles.button,
+            ...{ backgroundColor: bgColor}, 
             ...props.style,
-            ...{ backgroundColor: bgColor }}}
+            }}
         onPress={props.onPress}>
-        <Text style={styles.text}>{props.text}</Text>
+        <Text style={[styles.text,{...props.styleText}]}>{props.text}</Text>
         </TouchableOpacity>
     );
 }

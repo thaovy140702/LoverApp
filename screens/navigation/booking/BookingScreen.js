@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Text, ScrollView } from "react-native";
 import React from "react";
 import BackButton from "../../../components/button/BackButton";
 import { Feather } from "@expo/vector-icons";
@@ -65,7 +65,7 @@ const BookingScreen = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, paddingHorizontal: 20, backgroundColor: "white" }}>
-      
+      <ScrollView showsVerticalScrollIndicator={false}>
       {/* header start */}
       <View style={styles.headerStyle}>
         <BackButton />
@@ -170,6 +170,7 @@ const BookingScreen = () => {
           </View>
         </View>
       </BottomSheet>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -178,10 +179,11 @@ export default BookingScreen;
 
 const styles = StyleSheet.create({
   headerStyle: {
-    flex: 0.1,
+    // flex: 0.1,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems:'center'
+    alignItems:'center',
+    marginVertical: 20
   },
   btn_border:{
     padding: 10,

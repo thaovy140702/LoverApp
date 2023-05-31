@@ -1,6 +1,14 @@
-import { Animated, Dimensions, Text, View, FlatList, TouchableOpacity, Alert } from "react-native";
-import React, {useState} from "react";
-import {maleIcon, femaleIcon} from "../../constants/Icon"
+import {
+  Animated,
+  Dimensions,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
+import React, { useState } from "react";
+import { maleIcon, femaleIcon } from "../../constants/Icon";
 import colors from "../../constants/colors";
 import { useRef } from "react";
 
@@ -15,11 +23,14 @@ const { width, height } = Dimensions.get("window");
 //   );
 // }
 
-const wA = Dimensions.get('screen').width
-const hA = Dimensions.get('screen').height
-const mg = 10*2
+const wA = Dimensions.get("screen").width;
+const hA = Dimensions.get("screen").height;
+const mg = 10 * 2;
 
-const currentAge = [...Array(83).keys()].map(i => ({ key: `${i}`, value: i + 18 }));
+const currentAge = [...Array(83).keys()].map((i) => ({
+  key: `${i}`,
+  value: i + 18,
+}));
 
 const AgePage = () => {
   const scrollY = React.useRef(new Animated.Value(0)).current;
@@ -27,15 +38,16 @@ const AgePage = () => {
   const AgeRef = useRef();
   const onItemIndexChange = React.useCallback(setAge, []);
   const onConnectPress = React.useCallback(() => {
-      Alert.alert('Connect with:', currentAge[age].value.toString());
-    });
-  console.log(onConnectPress)
+    Alert.alert("Connect with:", currentAge[age].value.toString());
+  });
+  console.log(onConnectPress);
 
-  const imageFile = "https://i.pinimg.com/474x/71/4d/6e/714d6e774366a2fd464807c9005a1d01.jpg"
+  const imageFile =
+    "https://i.pinimg.com/474x/71/4d/6e/714d6e774366a2fd464807c9005a1d01.jpg";
 
   return (
     <Animated.FlatList
-      style={{ width: wA, height:hA}}
+      style={{ width: wA, height: hA }}
       ref={AgeRef}
       showsVerticalScrollIndicator={false}
       data={currentAge}
@@ -50,17 +62,13 @@ const AgePage = () => {
         // paddingTop: hA / 2 - 20,
         // paddingBottom: hA / 2 - 20 ,
         // padding: 20,
-        paddingVertical: hA/2 - 20,
+        paddingVertical: hA / 2 - 20,
         alignItems: "center",
       }}
       decelerationRate={0}
       scrollEventThrottle={16}
       renderItem={({ item, index }) => {
-        const inputRange = [
-          (index - 1) * (60),
-          index * (60),
-          (index + 1) * (60),
-        ];
+        const inputRange = [(index - 1) * 60, index * 60, (index + 1) * 60];
 
         const scale = scrollY.interpolate({
           inputRange,
@@ -74,16 +82,25 @@ const AgePage = () => {
         });
         return (
           <Animated.View style={{ opacity, transform: [{ scale }] }}>
-            <Text style={{ marginVertical: 10, fontSize: 40, fontWeight: "bold", fontFamily: 'regular' }}>{item.value}</Text>
+            <Text
+              style={{
+                marginVertical: 10,
+                fontSize: 40,
+                fontWeight: "bold",
+                fontFamily: "regular",
+              }}
+            >
+              {item.value}
+            </Text>
           </Animated.View>
         );
       }}
-      keyExtractor={item => item.key.toString()}
-      onMomentumScrollEnd={ev => {
-        const newAge = Math.round(ev.nativeEvent.contentOffset.y / 40)
+      keyExtractor={(item) => item.key.toString()}
+      onMomentumScrollEnd={(ev) => {
+        const newAge = Math.round(ev.nativeEvent.contentOffset.y / 40);
 
-        if(onItemIndexChange){
-          onItemIndexChange(newAge)
+        if (onItemIndexChange) {
+          onItemIndexChange(newAge);
         }
       }}
     />
@@ -134,7 +151,7 @@ const GenresPage = () => {
             style={{ margin: 10 }}
             onPress={() => {
               onClickItem(item, index);
-              console.log(item.genres)
+              console.log(item.genres);
             }}
           >
             <Text
@@ -142,10 +159,10 @@ const GenresPage = () => {
                 padding: 15,
                 backgroundColor: item.selected
                   ? colors.lightPink
-                  : colors.lightGrey,
+                  : "rgba(250, 235, 240,.6)",
                 borderRadius: 10,
                 fontSize: 14,
-                fontFamily: 'regular'
+                fontFamily: "regular",
               }}
             >
               {item.genres}
@@ -199,23 +216,23 @@ const CharacterPage = () => {
       renderItem={({ item, index }) => {
         return (
           <TouchableOpacity
-            style={{ 
+            style={{
               margin: 10,
               padding: 10,
-                backgroundColor: item.selected
-                  ? colors.lightPink
-                  : colors.lightGrey,
-                borderRadius: 10,
-                width: 100,
-                justifyContent: 'center',
-                alignItems: 'center'
-             }}
+              backgroundColor: item.selected
+                ? colors.lightPink
+                : "rgba(250, 235, 240,.6)",
+              borderRadius: 10,
+              width: 100,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
             onPress={() => onSelect(item, index)}
           >
             <Text
               style={{
                 fontSize: 14,
-                fontFamily: 'regular',
+                fontFamily: "regular",
               }}
             >
               {item.character}
@@ -270,22 +287,22 @@ const AppearancePage = () => {
       renderItem={({ item, index }) => {
         return (
           <TouchableOpacity
-            style={{ 
+            style={{
               margin: 10,
               padding: 10,
-                backgroundColor: item.selected
-                  ? colors.lightPink
-                  : colors.lightGrey,
-                borderRadius: 10,
-                width: 100,
-                justifyContent: 'center',
-                alignItems: 'center'
-             }}
+              backgroundColor: item.selected
+                ? colors.lightPink
+                : "rgba(250, 235, 240,.6)",
+              borderRadius: 10,
+              width: 100,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
             onPress={() => onSelect(item, index)}
           >
             <Text
               style={{
-                fontFamily: 'regular',
+                fontFamily: "regular",
                 fontSize: 14,
               }}
             >
@@ -299,26 +316,25 @@ const AppearancePage = () => {
   );
 };
 
-
 export default [
   {
     id: 1,
-    nameHeader: 'Choose your Age',
-    pageSlide: <AgePage />
+    nameHeader: "Choose your Age",
+    pageSlide: <AgePage />,
   },
   {
     id: 2,
-    nameHeader: 'Your SEX is',
-    pageSlide: <GenresPage />
+    nameHeader: "Your SEX is",
+    pageSlide: <GenresPage />,
   },
   {
     id: 3,
     nameHeader: "How about your partner's APPEARANCE",
-    pageSlide: <AppearancePage />
+    pageSlide: <AppearancePage />,
   },
   {
     id: 4,
     nameHeader: "Your partner’s CHARACTER you LIKE",
-    pageSlide: <CharacterPage />
+    pageSlide: <CharacterPage />,
   },
-]
+];

@@ -194,3 +194,28 @@ export const addInfoOnboarding =
       });
     }
   };
+  
+  // get list booking
+
+  export const getListBooking= (id) => async (dispatch) => {
+    try {
+      dispatch({
+        type: "getBookingRequest",
+      });
+  
+      const { data } = await axiosConfig({
+        method: "GET",
+        url: `/book/listbooking/${id}`,
+      });
+  
+      dispatch({
+        type: "getBookingSuccess",
+        payloadBooking: data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "getBookingFail",
+        payload: error.response.data.message,
+      });
+    }
+  };

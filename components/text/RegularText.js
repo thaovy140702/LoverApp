@@ -4,7 +4,7 @@ const RegularText = props => {
 
     return (
     <Text 
-    style={[styles.regText, {color: props.color, marginStart: props.marginStart, fontSize: props.fontSize}]}>
+    style={[styles.regText, {color: props.color, marginStart: props.marginStart, fontSize: props.fontSize, ...props.style}]}>
             {props.text}
     </Text>
     );

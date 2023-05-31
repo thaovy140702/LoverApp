@@ -25,6 +25,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../utils/actions/logoutAction";
 import { useEffect } from "react";
 import { getProfile } from "../../../utils/actions/otherActions";
+import { getPartnerProfile } from "../../../utils/actions/partnerAction";
+import { useState } from "react";
 
 const { width, height } = Dimensions.get("window");
 
@@ -74,16 +76,27 @@ const ProfileScreen = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation();
 
-  const {id, email, username} = useSelector((state) => state.user);
+  const {id, email} = useSelector((state) => state.user);
+  const { role, myProfile } = useSelector((state) => state.other);
+  const { partner } = useSelector((state) => state.partner);
   useEffect(() => {
     dispatch(getProfile(id))
+    dispatch(getPartnerProfile(id))
   }, [dispatch])
 
-  const { myProfile } = useSelector((state) => state.other);
- 
+  
   const submitHandler = () => {
     dispatch(logout())
   }
+
+  // const [userProfile, setUserProfile] = useState()
+  // if(role === 'user'){
+  //   const roleUser = myProfile
+  // } else if(role === 'partner') {
+  //   const rolePartner = partner
+  // }
+  const userProfile = role === 'user' ? myProfile : partner || role === 'parter' ? partner : myProfile
+  // console.log(userProfile)
 
   return (
     <SafeAreaView style={{width, height, backgroundColor:'white'}}>
@@ -96,9 +109,9 @@ const ProfileScreen = () => {
           <View style={{ marginTop: "8%", alignItems: "center" }}>
             <Image
               style={styles.userImage}
-              source={{ uri: myProfile.img }}
+              source={{ uri: userProfile.img }}
             />
-            <Text style={[MyStyles.text_xl, { marginTop: 3 }]}>{username}</Text>
+            <Text style={[MyStyles.text_xl, { marginTop: 3 }]}>{userProfile.name}</Text>
             <Text style={MyStyles.text_sm}>{email}</Text>
           </View>
 

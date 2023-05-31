@@ -7,6 +7,7 @@ import {
   Image,
   View,
   TouchableOpacity,
+  Animated,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import RegularText from "../../../components/text/RegularText";
@@ -19,6 +20,7 @@ import usersData from ".././data/usersData";
 import { getAllPartners } from "../../../utils/actions/partnerAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { useRef } from "react";
 
 const { width, height } = Dimensions.get("screen");
 const ratingOptions = [1, 2, 3, 4, 5];
@@ -44,6 +46,7 @@ const SearchScreen = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const scrollX = React.useRef(new Animated.Value(0)).current
 
   const handleTextInputChange = (text) => {
     setSelectedOption(text);
@@ -171,12 +174,13 @@ const SearchScreen = () => {
             placeholder="Search"
             selectionColor={colors.pink}
           />
-          <Feather
-            style={styles.iconSearch}
-            name="search"
-            size={24}
-            color="white"
-          />
+          <View style={styles.iconSearch}>
+            <Feather
+              name="search"
+              size={24}
+              color="white"
+            />
+          </View>
         </View>
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -193,7 +197,7 @@ const SearchScreen = () => {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               alignItems: "center",
-              padding: 8,
+              paddingVertical: 8,
             }}
             renderItem={({ item, index }) => {
               return (
@@ -210,7 +214,7 @@ const SearchScreen = () => {
                     },
                   ]}
                 >
-                  <RegularText text={item.filter} color={colors.pink} />
+                  <RegularText style={{padding: 8}} text={item.filter} color={colors.pink} />
                   {item.selected && (
                     <AntDesign
                       style={{ position: "absolute", end: 5 }}
@@ -227,13 +231,38 @@ const SearchScreen = () => {
         </View>
 
         <View style={{ flex: 0.7 }}>
-          <FlatList
+          <Animated.FlatList
             horizontal
-            style={{ marginTop: 40 }}
+            style={{ paddingTop: 40 }}
             data={partners}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <View key={item.id}>
+            contentContainerStyle={{alignItems:'center'}}
+            snapToInterval={250}
+            decelerationRate={0}
+            bounces={false}
+            onScroll={Animated.event(
+              [{ nativeEvent: {contentOffset: {x: scrollX}}}],
+              {useNativeDriver: true}
+            )}
+            scrollEventThrottle={16}
+            renderItem={({ item, index }) => {
+              const inputRange = [
+                (index - 1) * 200,
+                (index) * 200,
+                (index + 1) * 200,
+              ]
+              const opacity = scrollX.interpolate({
+                inputRange,
+                outputRange: [0.4, 1, 0.4],
+                extrapolate: "clamp",
+              })
+
+              const translateY = scrollX.interpolate({
+                inputRange,
+                outputRange: [0, -30, 0]
+              })
+              return (
+              <Animated.View style={{opacity, transform: [{translateY}]}} key={item.id}>
               <UserItem
                 name={item.name}
                 image={item.img}
@@ -261,8 +290,8 @@ const SearchScreen = () => {
                   })
                 }
               />
-              </View>
-            )}
+              </Animated.View>
+            )}}
             keyExtractor={(item) => item.id}
           />
         </View>
@@ -299,8 +328,8 @@ const styles = StyleSheet.create({
   iconSearch: {
     // start: -10,
     position: "absolute",
-    backgroundColor: "rgba(255, 159, 159, 1)",
     borderRadius: 20,
+    backgroundColor: "rgba(255, 159, 159, 1)",
     padding: 16,
     // width: 50,
     // height: 50,
@@ -321,16 +350,15 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 5,
     marginHorizontal: 5,
     marginBottom: 15,
-    width: 100,
+    // width: 100,
     shadowColor: colors.pink,
     shadowOffset: {
       width: 0,
       height: 4,
     },
-    shadowOpacity: 0.9,
+    shadowOpacity: 0.2,
     elevation: 5,
   },
   tabsearchItem: {
@@ -344,17 +372,18 @@ const styles = StyleSheet.create({
 
   },
   imageUser: {
-    height: 90,
-    width: 90,
+    height: 80,
+    width: 80,
     borderRadius: 50,
     position: "absolute",
   },
   userCardView: {
     height: 300,
-    width: 220,
+    width: 250,
     position: "relative",
     backgroundColor: "white",
     marginTop: 50,
+    marginStart: 15,
     borderRadius: 20,
     justifyContent: "flex-end",
     paddingBottom: 20,
@@ -363,8 +392,8 @@ const styles = StyleSheet.create({
       width: 1,
       height: -5,
     },
-    shadowRadius: 7,
-    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    shadowOpacity: 0.2,
     elevation: 10,
   },
   button: {

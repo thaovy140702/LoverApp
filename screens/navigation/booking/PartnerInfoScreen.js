@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native'
 import React from 'react'
 import { useRoute } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -14,6 +14,9 @@ import usersData from '../data/usersData'
 import { UserImageCircle } from "../../../components/UserImage";
 import ButtonIcon from "../../../components/button/ButtonIcon";
 import { useSelector } from 'react-redux'
+import { LinearGradient } from 'expo-linear-gradient'
+
+const height = Dimensions.get('window').height
 const FeedbackItem = ({ name, rate, feedback }) => (
   <View style={[styles.card]}>
     <View style={{ marginLeft: 20, flexDirection: "row" }}>
@@ -65,16 +68,19 @@ const PartnerInfoScreen = () => {
   } = useRoute()
 
   return (
-    <SafeAreaView key={partnerId} style={{flex:1, paddingHorizontal: 20, backgroundColor: '#FFE3E3'}}>
+    <SafeAreaView key={partnerId} style={{position:'relative', height, paddingHorizontal: 20, backgroundColor: '#FFE3E3'}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
     
       {/* header start */}
       <View style={styles.headerStyle}>
         <BackButton />
-        <Feather name="heart" size={20} color="black" />
+        <TouchableOpacity style={{padding: 8, backgroundColor:'white', borderRadius: 20, shadowColor:'pink', elevation: 10}}>
+          <Feather name="heart" size={16} color="lightgray" />
+        </TouchableOpacity>
       </View>
       {/* header end */}
 
-      <View style={{flex: .48}}>
+      <View style={{height:310}}>
         <View style={{flexDirection:'row', alignItems:'center'}}>
           <Text style={[MyStyles.text_xl,{marginEnd: 10}]}>{partnerName}</Text>
           <Rating rate={rate} />
@@ -100,7 +106,7 @@ const PartnerInfoScreen = () => {
         </View>
       </View>
 
-      <View style={{flex:.15, paddingTop: 5}}>
+      <View style={{flex:.15, marginTop: 20}}>
         <FlatList
           data={usersData}
           showsHorizontalScrollIndicator={false}
@@ -114,7 +120,7 @@ const PartnerInfoScreen = () => {
         />
       </View>
 
-      <View style={{flex: .25, marginTop: 10}}>
+      <View style={{flex: .25, marginTop: 20}}>
         <FlatList
             horizontal
             data={usersData}
@@ -130,14 +136,15 @@ const PartnerInfoScreen = () => {
         />
       </View>
 
-      <View style={{position: "absolute", bottom: 20, right: 10 }}>
+      </ScrollView>
+      <LinearGradient colors={['rgba(255, 227, 227,.2)','#FFE3E3']} style={{position: "absolute", bottom: 0, alignSelf:'center', paddingVertical: 20}}>
         <ButtonIcon
           page='Booking'
           text="Appointment"
           backgroundColor={colors.pink}
           color={colors.textColorWhite}
         />
-      </View>
+      </LinearGradient>
     </SafeAreaView>
   )
 }
@@ -146,12 +153,12 @@ export default PartnerInfoScreen
 
 const styles = StyleSheet.create({
   headerStyle: {
-    flex: .1,
+    // flex: .2,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 20,
-    // backgroundColor: 'red'
+    marginVertical: 20,
+    // backgroundColor: 'blue'
   },
   borderInfo: {
     width: 43, 

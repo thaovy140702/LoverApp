@@ -20,10 +20,38 @@ import colors from "../../../constants/colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { analisticData } from "../data/data";
 import newsData from "../data/newsData";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getPartnerProfile } from "../../../utils/actions/partnerAction";
 
 const { width, height } = Dimensions.get("window");
 
-const HomePartnerScreen = () => {
+const HomePartnerScreen = ({data, loading, error, getPartnerProfile}) => {
+
+  
+  const dispatch = useDispatch()
+
+  const {id} = useSelector((state) => state.user);
+  const { partner } = useSelector((state) => state.partner);
+  
+  // useEffect(() => {
+  //   dispatch(getPartnerProfile(id))
+  // }, [dispatch])
+
+  useEffect(() => {
+    getPartnerProfile(id)
+  }, []);
+  
+  console.log(partner)
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (error) {
+    return <Text>Error: {error}</Text>;
+  }
+
   return (
     <SafeAreaView style={{ width, height, backgroundColor: "white" }}>
       <View style={{ flex: 1 }}>
@@ -39,44 +67,35 @@ const HomePartnerScreen = () => {
               justifyContent: "space-between",
               marginTop: "8%",
               marginHorizontal: 20,
+              alignItems:'center'
             }}
           >
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" , alignItems:'center'}}>
               <Image
-                source={require("../../../assets/images/userimage.jpg")}
+                source={{uri: partner.img}}
                 style={styles.image}
               />
               <View
                 style={{
                   flexDirection: "column",
                   justifyContent: "flex-start",
-                  marginStart: "8%",
+                  marginStart: 10,
                 }}
               >
-                <Text style={[MyStyles.text_md_bold, { marginStart: "5%" }]}>
-                  Anna
+                <Text style={[MyStyles.text_md, {color:'lightgray', fontSize: 18, marginBottom: -5}]}>Welcome</Text>
+                <Text style={MyStyles.text_md_bold}>
+                  {partner.name}
                 </Text>
-                <TouchableOpacity
-                  style={{ flexDirection: "row", alignItems: "center" }}
-                >
-                  <Entypo
-                    name="dot-single"
-                    style={{ margin: "-10%" }}
-                    size={24}
-                    color="green"
-                  />
-                  <Text style={MyStyles.text_sm_grey}>Active</Text>
-                </TouchableOpacity>
               </View>
             </View>
-
+{/* 
             <TouchableOpacity>
               <MaterialCommunityIcons
                 name="bell-outline"
                 size={24}
                 color="black"
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
            {/* level */}
@@ -153,6 +172,11 @@ const HomePartnerScreen = () => {
             <Text style={MyStyles.text_xl}>My love</Text>
             <View style={{flexDirection:'row', justifyContent:'space-between', marginTop:10}}>
               {analisticData.map((item) => {
+                // console.log(item.id===1)
+                if(item.id===1){
+                  // item.num = partner.rank_level.accumulated
+                  // console.log(partner.rank_level.accumulated)
+                }
                 return(
                   <View key={item.id} style={{alignItems:'center'}}>
                     <Text style={[MyStyles.text_xl,{color: item.color}]}>{item.num}</Text>
@@ -182,7 +206,17 @@ const HomePartnerScreen = () => {
   );
 };
 
-export default HomePartnerScreen;
+const mapStateToProps = (state) => ({
+  data: state.data,
+  loading: state.loading,
+  error: state.error,
+});
+
+const mapDispatchToProps = {
+  getPartnerProfile
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePartnerScreen);
 
 const styles = StyleSheet.create({
   image: {
@@ -196,7 +230,7 @@ const styles = StyleSheet.create({
     height: 130,
     // backgroundColor: 'rgba(255, 159, 159, 0.2)',
     marginEnd: "15%",
-    marginTop: "10%",
+    marginTop: '13%',
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
   },

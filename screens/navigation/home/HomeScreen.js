@@ -7,6 +7,7 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Animated,
 } from "react-native";
 import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -22,21 +23,38 @@ import MyStyles from "../../../constants/MyStyles";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPartners, selectPartnerDetail } from "../../../utils/actions/partnerAction";
-import { getSlide } from "../../../utils/actions/otherActions";
+import { getSlide, getProfile } from "../../../utils/actions/otherActions";
 
 const { width, height } = Dimensions.get("window");
 
+
 const HomeScreen = () => {
+  const scrollXIndex = React.useRef(new Animated.Value(0)).current
+  const scrollXAnimated = React.useRef(new Animated.Value(0)).current
+
+  React.useEffect(() => {
+    Animated.spring(scrollXAnimated, {
+      toValue: scrollXIndex,
+      useNativeDriver: true
+    }).start()
+
+    setInterval(()=> {
+      scrollXIndex.setValue(Math.floor(Math.random() * slide.length))  
+    },20000)
+  })
+
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const {id} = useSelector((state) => state.user);
   const {partners, error} = useSelector(state=>state.partner)
-  const { slide } = useSelector((state) => state.other);
+  const { slide, myProfile } = useSelector((state) => state.other);
   // console.log(slide);
 
   useEffect(() => {
     dispatch(getAllPartners());
     dispatch(getSlide());
+    dispatch(getProfile(id));
   }, [dispatch]);
 
   return (
@@ -54,11 +72,12 @@ const HomeScreen = () => {
               justifyContent: "space-between",
               marginTop: "8%",
               marginEnd: 20,
+              alignItems:'center'
             }}
           >
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row", alignItems:'center' }}>
               <Image
-                source={require("../../../assets/images/userimage.jpg")}
+                source={{uri: myProfile.img}}
                 style={styles.image}
               />
               <View
@@ -68,23 +87,13 @@ const HomeScreen = () => {
                   marginStart: "8%",
                 }}
               >
+                <Text style={[MyStyles.text_md, {color:'lightgray', fontSize: 18, marginBottom: -5}]}>Welcome</Text>
                 <Text style={[MyStyles.text_md_bold, { marginStart: "5%" }]}>
-                  Anna
+                  {myProfile.name}
                 </Text>
-                <TouchableOpacity
-                  style={{ flexDirection: "row", alignItems: "center" }}
-                >
-                  <Entypo
-                    name="dot-single"
-                    style={{ margin: "-10%" }}
-                    size={24}
-                    color="green"
-                  />
-                  <Text style={MyStyles.text_sm_grey}>Active</Text>
-                </TouchableOpacity>
               </View>
             </View>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => navigation.navigate("NotificationScreen")}
             >
               <MaterialCommunityIcons
@@ -92,24 +101,57 @@ const HomeScreen = () => {
                 size={24}
                 color="black"
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
-          <FlatList
-            style={{ marginTop: 10 }}
+          <Animated.FlatList
+            style={{height: 170, marginTop: 20}}
             horizontal
             inverted
             data={slide}
+            contentContainerStyle={{
+              flex:1,
+              justifyContent:'center'
+              // backgroundColor:'red'
+            }}
             keyExtractor={(item) => item._id}
             // pagingEnabled={true}
+            scrollEnabled={false}
+            removeClippedSubviews={false}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => {
+            CellRendererComponent={({item, index, children, style, ...props}) => {
+              const newStyles = [
+                style,
+                { zIndex: slide.length - index}
+              ]
               return (
-                <View>
+                <View style={newStyles} index={index} {...props}>
+                  {children}
+                </View>
+              )
+            }}
+            renderItem={({ item, index }) => {
+
+              const inputRange = [index-1, index, index+1]
+              const translateX = scrollXAnimated.interpolate({
+                inputRange,
+                outputRange:[50,0,-100]
+              })
+              const scale = scrollXAnimated.interpolate({
+                inputRange,
+                outputRange:[.8, 1, 1.3]
+              })
+              const opacity = scrollXAnimated.interpolate({
+                inputRange,
+                outputRange:[1-1/3,1,0]
+              })
+
+              return (
+                <Animated.View style={{position: 'absolute', left: -280/2, transform:[{translateX}, {scale}], opacity}}>
                   <View style={[styles.boderImage]}>
                     <Image source={{ uri: item.img }} style={styles.imageNew} />
                   </View>
-                </View>
+                </Animated.View>
               );
             }}
           />
@@ -153,23 +195,23 @@ const HomeScreen = () => {
                     key={item._id}
                     style={[styles.borderRetangle, { marginBottom: "5%" , backgroundColor:'white'}]}
                     onPress={() =>{
-                      dispatch(selectPartnerDetail(item.user))
+                      // dispatch(selectPartnerDetail(item.user))
                       navigation.navigate("PartnerInfoScreen",
-                      // {
-                      //   partnerId: item._id,
-                      //   urlImg: item.img,
-                      //   partnerName: item.name,
-                      //   address: item.address,
-                      //   price: item.rent_cost,
-                      //   partnerHeigth: item.height,
-                      //   partnerWeigth: item.weight,
-                      //   sex: item.gender,
-                      //   age: item.old,
-                      //   rate: item.rate,
-                      //   character: item.character,
-                      //   appearance: item.appearance,
-                      //   description: item.description
-                      // }
+                      {
+                        partnerId: item._id,
+                        urlImg: item.img,
+                        partnerName: item.name,
+                        address: item.address,
+                        price: item.rent_cost,
+                        partnerHeigth: item.height,
+                        partnerWeigth: item.weight,
+                        sex: item.gender,
+                        age: item.old,
+                        rate: item.rate,
+                        character: item.character,
+                        appearance: item.appearance,
+                        description: item.description
+                      }
                       )
                     }}
                   >
@@ -234,8 +276,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   boderImage: {
-    width: 265,
-    height: 155,
+    width: 300,
+    // backgroundColor:'red',
+    height: 160,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -260,8 +303,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   imageNew: {
-    width: 260,
-    height: 150,
+    width: 300,
+    height: 160,
     borderRadius: 10,
   },
   button: {

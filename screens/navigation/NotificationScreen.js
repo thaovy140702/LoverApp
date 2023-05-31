@@ -56,14 +56,14 @@ const NotificationScreen = () => {
     <SafeAreaView style={{ width, height, backgroundColor:'white'}}>
 
       {/* header start */}
-      <View style={{flexDirection: 'row'}}>
-        <View style={{alignItems: 'center', width: '100%', position: 'absolute', marginTop: 20}}>
+      <View style={{flexDirection: 'row', marginTop: 20, marginStart: 20}}>
           <BoldText text="Notifications" font={20} />
+        {/* <View style={{alignItems: 'center', width: '100%', position: 'absolute', marginTop: 20}}>
         </View>
 
         <View style={{width: 50, marginTop: 20, marginStart: 20}}>
           <BackButton/>
-        </View>
+        </View> */}
       </View>
       
       {/* header end */}

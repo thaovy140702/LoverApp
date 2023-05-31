@@ -62,3 +62,31 @@ export const getPartnerDetail = (id) => async (dispatch) => {
 
     }
 };
+
+
+  // get partner profile
+
+  export const getPartnerProfile = (id) => async (dispatch) => {
+    try {
+      dispatch({
+        type: "getPartnerProfileRequest",
+      });
+  
+      const { data } = await axiosConfig({
+        method: "GET",
+        url: `/parter/findinfo/${id}`,
+      });
+  
+      dispatch({
+        type: "getPartnerProfileSuccess",
+        payloadPartnerProfile: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "getPartnerProfileFail",
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+  
