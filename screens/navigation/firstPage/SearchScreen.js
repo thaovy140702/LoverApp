@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   Animated,
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import RegularText from "../../../components/text/RegularText";
@@ -262,7 +263,7 @@ const SearchScreen = () => {
                 outputRange: [0, -30, 0]
               })
               return (
-              <Animated.View style={{opacity, transform: [{translateY}]}} key={item.id}>
+              <Animated.View style={{opacity: Platform.OS === 'android'? null : opacity, transform: [{translateY}]}} key={item.id}>
               <UserItem
                 name={item.name}
                 image={item.img}

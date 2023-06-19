@@ -29,16 +29,19 @@ const UserScheduleScreen = () => {
 
   const { id } = useSelector((state) => state.user);
   const { partner } = useSelector((state) => state.partner);
-  const { booking, myProfile } = useSelector((state) => state.other);
+  const { booking, myProfile, role } = useSelector((state) => state.other);
 
+  
   useEffect(() => {
     dispatch(getPartnerProfile(id));
+    dispatch(getProfile(id));
     dispatch(getListBooking(partner._id));
-    dispatch(getProfile(booking[0].user_id));
-    // dispatch(getProfile(userIds));
+    // dispatch(getProfile(booking[0].user_id));
   }, [dispatch]);
-
-  // console.log(myProfile);
+  
+  const userProfile = role === 'user' ? myProfile : partner || role === 'parter' ? partner : myProfile
+  // const userId = role === 'user' ? user : _id || role === 'parter' ? _id : user
+  console.log(booking);
 
   const [dataBooking, setDataBooking] = React.useState({});
 
@@ -58,58 +61,17 @@ const UserScheduleScreen = () => {
     setDataBooking(processedItems);
   }, []);
 
-  // console.log(dataBooking)
+  // console.log(us)
 
-  // const dt = new Date();
 
   const navigation = useNavigation();
-  // const [date, setDate] = useState(new Date());
-  // const [mode, setMode] = useState("date");
-  // const [show, setShow] = useState(false);
-  // const [text, setText] = useState(
-  //   String(dt.getMonth()) + " / " + String(dt.getFullYear())
-  // );
-
-  // const onChange = (event, selectedDate) => {
-  //   const currentDate = selectedDate || date;
-  //   setShow(Platform.OS === "ios");
-  //   setDate(currentDate);
-
-  //   let tempDate = new Date(currentDate);
-  //   let fDate = tempDate.getMonth() + 1 + "/" + tempDate.getFullYear();
-  //   // let fTime = 'Hours: ' + tempDate.getHours() + 'Minutes: ' + tempDate.getMinutes()
-  //   setText(fDate);
-  // };
-  // const showMode = (currentMode) => {
-  //   setShow(true);
-  //   setMode(currentMode);
-  // };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-      {/* <Button title='Pick date' onPress={() => showMode('date')}/>
-      <Button title='Pick time' onPress={() => showMode('time')}/> */}
-      {/* {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          locale={"en"}
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display="spinner"
-          onChange={onChange}
-        />
-      )} */}
 
       {/* header start */}
       <View style={styles.headerStyle}>
         <View style={{ marginStart: 20 }}>
-          {/* <View style={{flexDirection: 'row', width: 100, justifyContent: 'space-around'}}>
-          <BoldText text={text} font={16}/>
-          <TouchableOpacity onPress={ () =>  showMode('date')}>
-            <Feather name="chevron-down" size={24} color="black" />
-          </TouchableOpacity>
-          </View> */}
           <BoldText text="My appointment" font={16} />
         </View>
         {/* <TouchableOpacity
@@ -123,7 +85,7 @@ const UserScheduleScreen = () => {
       {/* pending */}
       <View style={{ marginStart: 10 }}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {booking && booking.map((item) => {
+          {booking === null && <Text>Loading...</Text> || booking.map((item) => {
             const date = new Date(item.createdAt);
             const month = date.getMonth();
             const monthName = [
@@ -275,7 +237,7 @@ const UserScheduleScreen = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <UserImageSquare image={partner.img} />
+                <UserImageSquare image={userProfile.img} />
 
                 <View>
                   <RegularText text={time} color='gray' fontSize={12} />

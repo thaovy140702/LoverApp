@@ -28,6 +28,7 @@ const ScheduleDescriptionScreen = () => {
         params :{
             idBooking,
             idBookingUser,
+            idBookingParter,
             status,
             price,
             startDate,
@@ -38,12 +39,12 @@ const ScheduleDescriptionScreen = () => {
       } = useRoute()
     const dispatch = useDispatch();
 
-    // const { id } = useSelector((state) => state.user);
-    // const { partner } = useSelector((state) => state.partner);
-    const { booking, myProfile } = useSelector((state) => state.other);
+    // const { role } = useSelector((state) => state.user);
+    const { partner } = useSelector((state) => state.partner);
+    const { role, myProfile} = useSelector((state) => state.other);
   
     useEffect(() => {
-    //   dispatch(getPartnerProfile(id));
+      dispatch(getPartnerProfile(idBookingParter));
     //   dispatch(getListBooking(idBooking));
       // dispatch(getProfile(booking[0].user_id));
       dispatch(getProfile(idBookingUser));
@@ -56,7 +57,8 @@ const ScheduleDescriptionScreen = () => {
     const startDay = `${date1.getHours()} : ${date1.getMinutes()} - ${date1.getDate()} ${date1.getMonth()}, ${date1.getFullYear()}`;
     const endDay = `${date2.getHours()} : ${date2.getMinutes()} - ${date2.getDate()} ${date2.getMonth()}, ${date2.getFullYear()}`;
 
-    // console.log(myProfile)
+    const userProfile = role === 'user' ? myProfile : partner
+    console.log(userProfile)
     const changeModalContract = (bool) => {
         setIsModalContract(bool)
     }
@@ -80,8 +82,8 @@ const ScheduleDescriptionScreen = () => {
       <View style={styles.borderShadow}>
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <View style={{flexDirection:'row', alignItems:'center'}}>
-                <Image style={styles.image} source={{uri: myProfile.img}} />
-                <Text style={[MyStyles.text_md_bold,{marginStart:8}]}>{myProfile.name}</Text>
+                {/* <Image style={styles.image} source={{uri: userProfile.img}} />
+                <Text style={[MyStyles.text_md_bold,{marginStart:8}]}>{userProfile.name}</Text> */}
             </View>
             <TouchableOpacity style={styles.borderLine}>  
                 <Feather name="phone" size={16} color="gray" />
@@ -146,7 +148,7 @@ const ScheduleDescriptionScreen = () => {
         )
         || status === 'FINISH' && (
             <View style={{position: 'absolute', bottom: 20, alignSelf:'center'}}>
-                <BigButton onPress={() => changeModalEvaluate(true)} text='Evaluate' style={{borderRadius: 15}}/>
+                <BigButton text='Evaluate' style={{borderRadius: 15}}/>
                 <BigButton text='New appointment' styleText={{color: colors.pink}} 
                     style={{borderRadius: 15, borderWidth: 1, borderColor: colors.pink, marginTop: 10, backgroundColor:'white'}}
                 />
@@ -236,7 +238,7 @@ const ScheduleDescriptionScreen = () => {
       >
         <View style={[styles.modal,{height:280, padding: Platform.OS === 'ios'? -20 : 0}]}>
             <View style={{ alignItems:'center'}}>
-                <Image source={{uri: myProfile.img}} style={styles.image}/>
+                {/* <Image source={{uri: myProfile.img}} style={styles.image}/> */}
                 <Rating rate='3'/>
                 <View>
                     <Text style={[MyStyles.text_md,{marginBottom: 10}]}>Give your opinion about this experience</Text>

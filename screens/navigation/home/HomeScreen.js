@@ -16,7 +16,7 @@ import newsData from ".././data/newsData";
 import {
   SimpleLineIcons,
   MaterialCommunityIcons,
-  Entypo,
+  Feather
 } from "@expo/vector-icons";
 import colors from "../../../constants/colors";
 import MyStyles from "../../../constants/MyStyles";
@@ -93,15 +93,9 @@ const HomeScreen = () => {
                 </Text>
               </View>
             </View>
-            {/* <TouchableOpacity
-              onPress={() => navigation.navigate("NotificationScreen")}
-            >
-              <MaterialCommunityIcons
-                name="bell-outline"
-                size={24}
-                color="black"
-              />
-            </TouchableOpacity> */}
+            <TouchableOpacity style={{padding:8, backgroundColor:'white', borderRadius: 10, shadowColor: colors.pink, elevation: 3}}>
+              <Feather name="search" size={18} color="black" />
+            </TouchableOpacity>
           </View>
 
           <Animated.FlatList

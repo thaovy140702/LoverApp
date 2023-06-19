@@ -79,7 +79,7 @@ const ProfileScreen = () => {
   const {id, email} = useSelector((state) => state.user);
   const { role, myProfile } = useSelector((state) => state.other);
   const { partner } = useSelector((state) => state.partner);
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(getProfile(id))
     dispatch(getPartnerProfile(id))
   }, [dispatch])
